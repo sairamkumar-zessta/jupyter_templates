@@ -1,0 +1,2615 @@
+{% extends "templates/page.html" %}
+{% block stylesheet %}
+{{ super() }}
+<style>
+    .navbar-default {
+        height: 6rem;
+        background-color: #F6FBFE;
+        border-color: #e7e7e7;
+        box-shadow: 0px 3px 5px rgb(0 0 0 / 12%);
+    }
+
+    .navbar-header,.navbar-collapse{
+        padding: 1.5rem;
+    }
+
+    .navbar-nav {
+        font-family: poppins;
+        font-size: 16px;
+        color: #006BB6;
+        font-weight: 500;
+    }
+
+    .navbar-nav li {
+        margin-left: 3rem;
+    }
+
+    .navbar-right li {
+        margin-left: 3rem;
+    }
+
+    #logout{
+        border:none;
+        font-size: 16px;
+        color: #006BB6;
+    }
+
+    #logout:hover{ 
+        background-color: transparent; 
+        text-decoration: none; 
+    }
+    
+    .jpy-logo {
+        height: 3rem;
+    }
+@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap");
+*{
+    box-sizing: border-box;
+}
+
+.fs-16{
+    font-size: 1.6rem;
+}
+
+.fs-14{
+    font-size: 1.4rem;
+}
+
+.fs-13{
+    font-size: 1.3rem;
+}
+
+.fs-12{
+    font-size: 1.2rem;
+}
+
+.fs-22{
+    font-size: 2.2rem;
+}
+
+.fs-25{
+    font-size: 2.5rem;
+}
+
+body {
+    margin: 0px;
+    padding:0px;
+}
+
+.stop-visible{
+    display:none;
+}
+
+.admin-container {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    position: relative;
+}
+
+.admin-navbar {
+    overflow: hidden;  
+    margin: 3.5vh 0;
+}
+
+.admin-navbar a {
+    float: left;
+    color: #000000;
+    text-align: center;
+    padding: 1vw 4vw;
+    text-decoration: none;
+    border-bottom: 0.3vw solid #DBDBDB;
+    overflow: auto;
+    font-weight:500;
+    font-family:'Poppins';
+}
+
+.admin-navbar a:hover {
+    cursor: pointer;
+}
+
+.admin-navbar a.active {
+    border-bottom: 0.3vw solid #006BB6;
+    color: #006BB6;
+}
+
+.description-bar {
+    border-bottom:0.2rem solid #DBDBDB;
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 3vh;
+    margin-bottom: 3.5vh;
+}
+
+.description {
+    font-family: 'Poppins';
+    color:#4D4D4D;
+    font-weight:500;
+}
+
+#right-description-bar select{
+    border-radius:50px;
+    width:15vw;
+    border:0.1rem solid #5FBEF0;
+    padding: 1rem 1.6rem;
+    color: black;
+    outline: none;
+    background: #fff;
+}
+
+.search-input{
+    border: none;
+    outline: none;
+    width:11vw;
+    margin-left:1.6rem;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+}
+
+#right-description-bar {
+    display: flex;
+    gap: 1.6rem;
+}
+
+.searchIcon{
+    overflow: hidden;
+    width: 4rem;
+    padding: 0;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background: transparent url("https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_search.png") no-repeat center;
+    opacity: 0.7;
+}
+
+.search-container{
+    display: flex;
+    justify-content: space-between;
+    border: 0.2rem solid #5FBEF0;
+    border-radius:50px;
+    padding:1rem 0rem;
+    width:16vw;
+    border:0.1rem solid #5FBEF0;
+}
+
+#learnersSearch{
+    width:20vw;
+}
+
+.learner-search{
+    width: 22vw;
+}
+
+.add-btn {
+    border:none;
+    font-family: 'Poppins';
+    background-color: #5FBEF0;
+    border-radius: 2.5rem;
+    color: white;
+    font-weight: 500;
+    display: inline-block;
+    padding: 0.5rem 1.6rem;
+    text-align: center;
+    cursor: pointer;
+} 
+
+.map-btn{
+    display:none;
+    background: #FFFFFF;
+    border: 0.1rem solid #5FBEF0;
+    border-radius: 2.5rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.5rem 1.6rem;
+    color: #5FBEF0;
+}
+
+#trainerDetails, #learnerDetails{
+    display:none;
+}
+
+.courseDetails, .trainerDetails{
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.courseCard,.trainerCard{
+    display: flex;
+    background: linear-gradient(108.02deg, rgba(246, 251, 254, 0) 64.53%, #D6F0FF 122.73%), linear-gradient(179.46deg, rgba(246, 251, 254, 0) 1.56%, #DBF2FF 127.02%);
+    border-radius: 1rem;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
+    margin-bottom: 1.5vh;
+    width:24%;
+}
+
+
+
+.trainer-course-card{
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(108.02deg, rgba(246, 251, 254, 0) 64.53%, #D6F0FF 122.73%), linear-gradient(179.46deg, rgba(246, 251, 254, 0) 1.56%, #DBF2FF 127.02%);
+    border-radius: 1rem;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 1.5vh;
+    width:46%;
+}
+
+.course-card-left,.trainer-card-left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0rem 1.2rem 1.6rem;
+    font-family: 'Gothic A1';
+    width: 100%;
+}
+
+.course-title,.trainer-title{
+    color: #006BB6;
+    font-weight: 600;
+    max-width: 16vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.learner-count-title{
+    color:#999;
+    font-weight: 400;
+}
+
+.learner-count{
+    font-weight: 500;
+    font-weight: 500;
+    max-width: 12vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.arrange-row{
+    display: flex;
+}
+
+.arrange-col{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.arrange-col-first{
+    width:35%;
+}
+
+/* .arrange-row-first{
+    justify-content: space-between;
+} */
+
+.delete-icon img{
+    width:1.6rem;
+}
+
+.eye-icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(230, 244, 255, 0) -6.12%, #C2E6FF 106.76%);
+    border-radius: 0px 10px 10px 0px;
+    padding: 0.8rem;
+    cursor: pointer;
+}
+
+#learner-table {
+    margin-bottom: 20px;
+    background: #FFFFFF;
+    /* border: 2px solid #5FBEF0; */
+    border-collapse: inherit;
+    border-spacing: 0px;
+    border-radius: 1.4rem 1.4rem 0px 0px;
+    table-layout: fixed;
+    overflow: hidden;
+    width: 100%;
+    border: 0.1px solid #C6E7FB;
+}
+
+#learner-thead {
+    background: #D2EDFB;;
+    border-collapse: inherit;
+    border-radius: 1.2rem 1.2rem 0px 0px; 
+}
+
+tbody tr td:last-child{
+    text-align: right;
+    padding: 0.8rem 5rem;
+}
+
+tbody tr td:first-child{
+    padding: 0.8rem 2.4rem; 
+}
+
+tr th:first-child{
+    text-align: left;
+    width:80%;
+}
+
+tr th:last-child{
+    text-align: right;
+}
+
+tr th:nth-child(2){
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color:#FAFDFF;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #F1F9FE;
+}
+
+tr td:nth-child(2){
+    text-align: center;
+    
+}
+
+th{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    color:#006BB6;
+    padding: 0.8rem 2.5rem;
+}
+
+.bg-model{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0,0,0, .2);
+}
+
+.course-model{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background:#FFFFFF;
+    box-shadow: 0px 0.2rem 1.3rem rgba(170, 170, 170, 0.27);
+    border-radius: 1.6rem;
+    width:45rem;
+    height:20rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: animatemodal .3s;
+}
+@keyframes animatemodal {
+    0% {
+        top: -30rem;
+        opacity: 0;
+    }
+
+    100% {
+        top: -50%;
+        opacity: 1;
+    }
+}
+
+.learner-course-add-model{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background:#FFFFFF;
+    box-shadow: 0px 0.2rem 1.3rem rgba(170, 170, 170, 0.27);
+    border-radius: 1.6rem;
+    width:45rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: animatemodal .3s;
+    height:32rem;
+}
+@keyframes animatemodal {
+    0% {
+        top: -30rem;
+        opacity: 0;
+    }
+
+    100% {
+        top: -50%;
+        opacity: 1;
+    }
+}
+
+.delete-icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(254, 245, 245, 0.2) -6.12%, #FCEAE8 106.76%);
+    border-radius: 0px 10px 10px 0px;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.delete-course-model-top-first{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FEEBEC;
+    box-shadow: 0px 0.3rem 0.5rem rgba(0, 0, 0, 0.08);
+    border-radius: 1.2rem 1.2rem 0rem 0rem;
+    padding-left:2rem;
+    padding-right: 2rem;
+    height: 4rem;
+}
+
+.delete-course-model-top-first h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    color: #F63C46;
+    padding-bottom: 0.2rem;
+    font-size: 1.6rem;
+}
+
+.delete-course-model-top-first span{
+    font-size: 2.2rem;
+    color: #F7545D;
+    font-weight: 400;
+    background: #FDCED1;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+    padding: 0rem 0.4rem;
+}
+
+.delete-title{
+    text-align: center;
+    font-family: 'Gothic A1';
+    font-style: Medium;
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.delete-course-model-bottom{
+    text-align: center;
+}
+
+.delete-course-model-bottom p{
+    color: #AAAAAA;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    padding: 0.8rem;
+    font-size:1.4rem;
+}
+
+.delete-button{
+    border:none;
+    background: #F7545D;
+    border-radius: 1.4rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-align: center;
+    color: #FFFFFF;
+    height:2.8rem;
+    width: 8rem;
+    margin-right: 1rem;
+}
+
+.cancel-button{
+    background: #FFFFFF;
+    border: 0.1rem solid #5FBEF0;
+    border-radius:  1.4rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: #5FBEF0;
+    height:2.8rem;
+    width: 8rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.add-course-model-height,.add-learner-model-height{
+    height:26rem;
+}
+
+.add-trainer-model-height{
+    height:23rem;
+}
+
+.add-course-model-top-first,.add-learner-model-top-first{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 2rem;
+    border-radius: 12px 12px 0px 0px;
+    background: #F6FBFE;
+    box-shadow: 0px 0.3rem 0.5rem rgba(0, 0, 0, 0.08);
+    border-radius: 1.6rem 1.6rem 0px 0px;
+}
+
+.choose-option{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    color: #263238;
+}
+
+.add-course-model-top-first h1,.add-learner-model-top-first h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    color: #5FBEF0;
+    font-size: 1.6rem;
+}
+
+.add-course-model-top-first span,.add-learner-model-top-first span{
+    font-size: 2.5rem;
+    color: #5FBEF0;
+    font-weight: 400;
+    background: #E8F6FD;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+    padding: 0 0.5rem;
+}
+
+.add-course-name,.choose-trainer-name,.add-learner{
+    padding-left:2rem;
+    padding-top:2rem;
+    display: flex;
+    align-items: center;
+}
+
+.add-trainer-top-arr{
+    padding-top: 1.5rem;
+}
+
+.add-course-name p{
+    font-family: 'Gothic A1';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: #000000;
+    width:12.5rem;
+}
+
+.course-name-warn{
+    color: #c51306;
+    padding-left:15rem;
+    display: none;
+    font-size: 1.2rem;
+}
+
+.add-course-name input,.choose-trainer-name select,.add-learner input{
+    border-radius:5rem;
+    height:3rem;
+    border:1px solid #5FBEF0;
+    padding: 0rem 1.6rem;
+    font-weight: 400;
+    width:28rem;
+    color: #263238;;
+    outline: none;
+    background-color: #fff;
+    font-size: 1.2rem;
+}
+
+.add-course-name input::placeholder{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    color: #A6A6A6;
+    font-size: 1.4rem;
+}
+
+.choose-trainer-arrange,.choose-learner-arrange{
+    display: flex;
+    flex-direction: column;
+}
+
+.choose-trainer-arrange p{
+    margin-top: -0.45rem;
+    font-family: 'Gothic A1';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: #000000;
+    width:12.5rem;
+}
+
+.choose-course-name{
+    font-family: 'Gothic A1';
+    font-style: normal;
+    font-weight: 400;
+    color: #000000;
+    width:12.5rem;
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.choose-trainer-arrange span{
+    font-family: 'Gothic A1';
+    font-style: normal;
+    font-weight: 400;
+    color: #A6A6A6;
+    margin-top: -0.8rem;
+    width:12.5rem;
+    font-size: 1.2rem;
+}
+.choose-select{
+    font-size: 1.2rem;
+}
+
+.add-course-model-bottom{
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 0.2rem 1.3rem rgba(170, 170, 170, 0.27);
+    border-top: 0.1rem solid #DBDBDB;
+    border-bottom-left-radius: 1.6rem;
+    border-bottom-right-radius: 1.6rem;
+    padding: 2.4rem;
+}
+
+.add-success-img-arrange{
+    text-align: center;
+    margin-top: 2.4rem;
+    margin-bottom: 2.5rem;
+}
+
+.add-success-img{
+ height: 5rem;
+ width: 5rem;
+ text-align: center;
+}
+
+.delete-success-img-arrange{
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.delete-success-img{
+    height: 4rem;
+    width: 4rem;
+}
+
+.add-success-text{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    color: #263238;
+}
+
+.add-success-model-bottom{
+    text-align: center;
+    background: #FFFFFF;
+    border-bottom-left-radius: 1.6rem;
+    border-bottom-right-radius: 1.6rem;
+    margin-bottom: 3rem;
+}
+
+.add-button{
+    border:none;
+    background: #5FBEF0;
+    border-radius:  1.4rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-align: center;
+    color: #FFFFFF;
+    height:2.8rem;
+    width: 8rem;
+    margin-right: 1.6rem;
+}
+
+.trainer-model{
+    background:#FFFFFF;
+    box-shadow: 0px 0.2rem 1.3rem rgba(170, 170, 170, 0.27);
+    border-radius: 1.2rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    /* animation: animatemodal .3s; */
+    inset:50% -5% -8% 50%;
+}
+
+.delete-trainer-model-top-first{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 1.2rem 1.2rem 0px 0px;
+    background: #F6FBFE;
+    box-shadow: 0px 0.3rem 0.5rem rgba(0, 0, 0, 0.08);
+}
+
+.delete-trainer-title{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    color: #999999;
+    font-size: 1.6rem;
+    max-width: 40vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.delete-trainer-name{
+    color: #006BB6;
+}
+
+.arrange-title-row{
+    display:flex;
+    align-items: center;
+}
+
+#deleteTrainerCancel{
+    font-size: 2.5rem;
+    text-align: center;
+    color: #006BB6;
+    font-weight: 400;
+    background: #D2EDFB;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+    padding: 0 0.5rem;
+}
+
+.trainerCourseDetails{
+    display: flex;
+    flex-wrap: wrap; 
+    overflow: auto;
+    max-height: 80%;
+    padding: 1.6rem; 
+    margin-top: 1rem;
+}
+
+.eye-action{
+    cursor: pointer;
+    width:2.2rem;
+}
+.learner-all-course-remove{
+    width:1.5rem;
+    cursor: pointer;
+}
+
+.change-learner{
+    padding-top: -0.5rem;
+    padding-left: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.learner-inactive{
+    font-size: 1.3rem;
+    border-radius: 1.4rem;
+    padding: 0.5rem 3.2rem;
+    background: #FFFFFF;
+    border: 1px solid #5FBEF0;
+    color: #5FBEF0;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.learner-active{
+    color: #fff;
+    background: #5FBEF0;
+    border: 1px solid #5FBEF0;
+}
+
+.upload-btn{
+    border-radius:1.5rem;
+    height:3rem;
+    border:0.1rem dashed #5FBEF0;
+    width:14rem;
+    padding-top: 0.2rem;
+    color: #A6A6A6;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+#file-chosen {
+    margin-left: 0.5rem;
+    font-family: 'Gothic A1';
+}
+
+body.loading {
+  overflow: hidden;
+}
+
+.loader {
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  animation: spin 2s linear infinite;
+  overflow: hidden;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.learner-coursecard-height{
+    height:7rem;
+}
+
+.alert {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    background-color: #f5aeba; 
+    color: #c51306; /* Red */
+    margin-bottom: 1.5rem;
+    position: fixed;
+    top:2rem;
+    right:2rem;
+    min-width:30%;
+    height:4rem;
+    z-index: 1;
+    font-size: 1.4rem;
+}
+
+#alertMsgCont{
+    display: none;
+}
+
+.alert-closebtn {
+    margin-left: 1.5rem;
+    color: #c51306;
+    font-weight: bold;
+    float: right;
+    font-size: 2.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alert-closebtn:hover {
+    color: black;
+}
+
+#actual-btn{
+    display: none;
+}
+@media(min-width:2500px){
+    
+    .fs-16{
+        font-size: 2.2rem;
+    }
+
+    .fs-14{
+        font-size: 2rem;
+    }
+
+    .fs-13{
+        font-size: 1.8rem;
+    }
+
+    .fs-12{
+        font-size: 1.9rem;
+    }   
+}
+@media(max-width:2500px){
+    
+    .fs-16{
+        font-size: 2.1rem;
+    }
+
+    .fs-14{
+        font-size: 1.9rem;
+    }
+
+    .fs-13{
+        font-size: 1.7rem;
+    }
+
+    .fs-12{
+        font-size: 1.8rem;
+    }   
+}
+
+
+@media(max-width:2300px){
+    
+    .fs-16{
+        font-size: 1.9rem;
+    }
+
+    .fs-14{
+        font-size: 1.7rem;
+    }
+
+    .fs-13{
+        font-size: 1.6rem;
+    }
+
+    .fs-12{
+        font-size: 1.6rem;
+    }   
+}
+
+@media(max-width:2200px){
+    
+    .fs-16{
+        font-size: 1.8rem;
+    }
+
+    .fs-14{
+        font-size: 1.6rem;
+    }
+
+    .fs-13{
+        font-size: 1.5rem;
+    }
+
+    .fs-12{
+        font-size: 1.4rem;
+    }   
+}
+
+@media(max-width:2100px){
+  
+    .fs-16{
+    font-size: 1.7rem;
+    }
+
+    .fs-14{
+        font-size: 1.5rem;
+    }
+
+    .fs-13{
+        font-size: 1.4rem;
+    }
+
+    .fs-12{
+        font-size: 1.3rem;
+    }   
+}
+
+
+@media(max-width:1900px){
+    .courseCard{
+        width: 32%;
+    }
+    .trainerCard{
+        width: 32%;
+    }
+
+    .fs-16{
+    font-size: 1.9rem;
+    }
+
+    .fs-14{
+        font-size: 1.7rem;
+    }
+
+    .fs-13{
+        font-size: 1.6rem;
+    }
+
+    .fs-12{
+        font-size: 1.6rem;
+    }   
+    .learner-count{
+        max-width: 15vw;
+    }
+    .course-title{
+        max-width: 21vw;
+    }
+
+}
+
+@media(max-width:1500px){
+    .fs-16{
+    font-size: 1.6rem;
+    }
+
+    .fs-14{
+        font-size: 1.4rem;
+    }
+
+    .fs-13{
+        font-size: 1.3rem;
+    }
+
+    .fs-12{
+        font-size: 1.2rem;
+    }   
+    .learner-count{
+        max-width: 15vw;
+    }
+    .course-title{
+        max-width: 21vw;
+    }
+
+}
+
+
+@media(max-width:1600px){
+    .fs-16{
+    font-size: 1.7rem;
+    }
+
+    .fs-14{
+        font-size: 1.5rem;
+    }
+
+    .fs-13{
+        font-size: 1.4rem;
+    }
+
+    .fs-12{
+        font-size: 1.3rem;
+    }   
+    .learner-count{
+        max-width: 15vw;
+    }
+    .course-title{
+        max-width: 21vw;
+    }
+
+}
+
+@media(max-width:1420px){
+    .fs-16{
+        font-size: 1.5rem;
+    }
+    .fs-14{
+        font-size: 1.3rem;
+    }
+    .learner-count{
+        max-width: 14vw;
+    }
+    .course-title{
+        max-width: 21vw;
+    }
+
+}
+
+
+@media(max-width:1340px){
+
+    .courseCard{
+        width: 47%;
+    }
+    .trainerCard{
+        width: 47%;
+    }
+    .fs-16{
+        font-size: 1.4rem;
+    }
+    .fs-14{
+        font-size: 1.3rem;
+    }
+    .learner-count{
+        max-width: 22vw;
+    }
+    .course-title{
+        max-width: 32vw;
+    }
+
+}
+
+@media(max-width:1190px){
+    
+    .fs-16{
+        font-size: 1.3rem;
+    }
+    .fs-14{
+        font-size: 1.2rem;
+    }
+    .learner-count{
+        max-width: 22vw;
+    }
+    .course-title{
+        max-width: 32vw;
+    }
+
+
+}
+@media(max-width:1080px){
+    
+    .search-input{
+        font-size: 1.1rem;
+    }
+    .learner-count{
+        max-width: 22vw;
+    }
+    .course-title{
+        max-width: 31vw;
+    }
+
+}
+.trainer-select-container {
+    position: relative;
+    width: 14.5vw;
+    border-radius: 15px;
+    display:none;
+    cursor: pointer;
+}
+
+
+#trainersFilter {
+    appearance: none;
+    background-color: #fff;
+    border-radius: 50px;
+    width: 15vw;
+    border: 0.1rem solid #5FBEF0;
+    padding: 1rem 1.6rem;
+    color: black;
+    outline: none;
+    cursor: pointer;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 5px;
+    top: 53%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #000;
+}
+.overflow-show{
+    display:none;
+    position: fixed;
+    z-index: 1;
+    min-width:40%;
+    overflow:visible;
+}
+
+</style>
+{% endblock %}
+{% block main %}
+<div id="react-admin-hook">
+    <script id="jupyterhub-admin-config">
+    window.api_page_limit = parseInt("{{ api_page_limit|safe }}")
+    window.base_url = "{{ base_url|safe }}"
+    </script>
+    <script src={{ static_url("js/admin.js") }}></script>
+    <div class="fs-16">
+        <div id="alertMsgCont">
+            <div class="alert" >
+                <p id="alertMsg"></p>
+                <span class="alert-closebtn" id="alertMsgClose">&times;</span>
+            </div>
+        </div>
+        <div class="admin-container">
+            <div class="admin-navbar">
+                    <a class="course-nav active" id="courseNav">Courses</a>
+                    <a class="instructor-nav" id="trainerNav">Trainers</a>
+                    <a class="learner-nav" id="learnerNav">Learners</a>
+            </div>
+            <div class="description-bar">
+                    <p class="description" id="description">You can manage Course details here.</p>
+                    <div id="right-description-bar" >
+                        <div id="courseSearchCont">
+                            <div  class="search-container">
+                                <input type="search" placeholder="Search..." id="coursesSearch" class="search-input fs-14">
+                                <span class="searchIcon"></span>
+                            </div>
+                        </div>
+                        <div id="trainerSearchCont" class="stop-visible">
+                            <div class="search-container">
+                                <input type="search" placeholder="Search..." id="trainersSearch" class="search-input fs-14">
+                                <span class="searchIcon"></span>
+                            </div>
+                        </div>
+                        
+                        <div id="learnerSearchCont" class="stop-visible">
+                            <div class="search-container learner-search">
+                                <input type="search" placeholder="Search Learner or Course Name" id="learnersSearch" class="search-input fs-14">
+                                <span class="searchIcon"></span>
+                            </div>
+                        </div>
+
+                        <div class="trainer-select-container" id="trainersFilterCont" >
+                            <select id="trainersFilter"  class="trainer-select">
+                                <option default  value="all" class="fs-16">All</option>
+                                <option value="mapped" class="fs-16">Mapped</option>
+                                <option value="unmapped" class="fs-16">Unmapped</option>
+                            </select>
+                            <div class="select-arrow"></div>
+                        </div>
+                        <button class="map-btn" id="mapBtn">Map Learners</button>
+                        <button class="add-btn" id="addBtn">Add Course</button>
+                    </div>
+            </div>    
+            <div id="courseDetails">
+                <div class="loader" id="coursesLoader"></div>
+                <div class="courseDetails" id="courseCardCont">
+                </div>
+            </div>
+            <div id="trainerDetails">
+                <div class="loader" id="trainersLoader"></div>
+                <div class="trainerDetails" id="trainerCardCont">
+                </div>
+            </div>
+            <div id="learnerDetails">     
+                <table id="learner-table">
+                    <tr id="learner-thead">
+                        <th>Learners Name</th>
+                        <th>Actions</th>
+                        <th>Remove</th>
+                    </tr>
+                    <tbody id="learnerRowsBody">
+                    </tbody>
+                </table>
+                <div class="loader" id="learnersLoader"></div>
+            </div>
+        </div>
+        <div class="bg-model" id="deleteCourseModal">
+            <div class="course-model">
+                <div>
+                    <div class="delete-course-model-top-first">
+                        <h1 id="deleteModalTitle"></h1>
+                        <div id="deleteModalClose">
+                            <span> &times;</span>
+                        </div>
+                    </div>
+                        <h1 class="delete-title" id="deleteItemText"></h1>
+                </div>
+                    <div class="delete-course-model-bottom">
+                        <button id="deleteCourseBtn" class="delete-button">Delete</button>
+                        <button id="deleteCancelBtn" class="cancel-button">Cancel</button>
+                        <p id="deleteCourseCaution" >once deleted can't be restore again</p>  
+                    </div>  
+            </div>
+        
+        </div>
+        <div class="bg-model" id="removeLearnerCourseModal">
+            <div class="course-model">
+                <div>
+                    <div class="delete-course-model-top-first">
+                        <h1 id="removeLearnerModalTitle">Remove Learner</h1>
+                        <div id="removeLearnerCourseModalClose">
+                            <span> &times;</span>
+                        </div>
+                    </div>
+                        <h1 class="delete-title" id="removeLearnerModalItemText"></h1>
+                </div>
+                    <div class="delete-course-model-bottom">
+                        <button id="removeLearnerCourseBtn" class="delete-button">Remove</button>
+                        <button id="removeLearnerCourseCancel" class="cancel-button">Cancel</button>
+                        <p id="removeLearnerCourseCaution">once removed can't be restore again</p>  
+                    </div>  
+            </div>
+        
+        </div>
+        <div class="bg-model" id="addCourseModal">
+            <div class="course-model add-course-model-height">
+                <div>
+                    <div class="add-course-model-top-first">
+                        <h1 id="modelTitle">Add Course</h1>
+                        <div id="addCourseClose">
+                            <span> &times;</span>
+                        </div>
+                    </div>
+                        <div class="add-course-name">
+                            <p>Course Name</p>
+                            <input type="text" placeholder="Enter course name" id="courseNameText">
+                        </div>
+                        <span class="course-name-warn" id="courseNameWarn">* course name should not contain spaces</span>
+                        <div class="choose-trainer-name">
+                            <div class="choose-trainer-arrange">
+                                <p>Choose Trainer</p>
+                                <span>Existing Trainer</span>
+                            </div> 
+                            <select placeholder="Enter course name" id="chooseTrainerSelect" class="choose-select">
+                            </select>
+                        </div>
+                </div>
+                    <div class="add-course-model-bottom">
+                        <button id="addCourseBtn" class="add-button">Add</button>
+                        <button id="addCourseCancel" class="cancel-button">Cancel</button>
+                    </div>  
+            </div>
+        
+        </div>
+        <div class="bg-model" id="addSuccessModal">
+            <div class="course-model add-course-model-height">
+                <div>
+                    <div class="add-course-model-top-first">
+                        <h1 id="successModelTitle">Add Course</h1>
+                        <div id="addSuccessClose">
+                            <span> &times;</span>
+                        </div>
+                    </div>
+                    <div class="add-success-img-arrange">
+                        <img src="https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_confirm.png" alt="success" class="add-success-img">  
+                    </div>
+                    
+                    <p class="add-success-text" id="addSuccessMsg">Selected course added successfully</p> 
+                </div>
+                    <div class="add-success-model-bottom">
+                        <button id="successDone" class="add-button">Done</button>
+                        <button id="successAddMore" class="cancel-button">Add more</button>
+                    </div>  
+            </div>
+        
+        </div>
+        <div class="bg-model" id="deleteSuccessModal">
+            <div class="course-model">
+                <div>
+                    <div class="delete-course-model-top-first">
+                        <h1 id="DeleteSuccessModelTitle">Delete Course</h1>
+                        <div id="deleteSuccessClose">
+                            <span> &times;</span>
+                        </div>
+                    </div>
+                    <div class="delete-success-img-arrange">
+                        <img src="https://datalab-static-images.s3.ap-south-1.amazonaws.com/remove_confirm.png" alt="success" class="delete-success-img">  
+                    </div>
+                    
+                    <p class="add-success-text" id="deletedItemMsg">Removed successfully</p> 
+                </div>
+                    <div class="add-success-model-bottom">
+                        <button id="deleteDoneBtn" class="add-button">Done</button>
+                    </div>  
+            </div>
+        
+        </div>
+        <div class="bg-model" id="addTrainerModal">
+            <div class="course-model add-trainer-model-height">
+                <div>
+                    <div class="add-course-model-top-first">
+                        <h1 id="modelTitle">Add Trainer</h1>
+                        <div id="addTrainerCancel">
+                            <span> &times;</span>
+                        </div>
+                    </div>
+                        <div class="add-course-name">
+                            <div class="choose-trainer-arrange">
+                                <p>User Name</p>
+                                <span>New trainer</span>
+                            </div> 
+                            <input type="text" placeholder="Enter user name" id="trainerUsername">
+                        </div>
+                        <span class="course-name-warn" id="trainerNameWarn">* user name should not contain spaces</span>
+                </div>
+                    <div class="add-course-model-bottom">
+                        <button id="addTrainerBtn" class="add-button">Add</button>
+                        <button id="cancelAddTrainer" class="cancel-button">Cancel</button>
+                    </div>  
+            </div>
+        </div>
+        <div class="bg-model" id="deleteTrainerModal">
+            <div class="trainer-model">
+                <div>
+                    <div class="delete-trainer-model-top-first">
+                        <div class="arrange-title-row">
+                        <span class="delete-trainer-title" id="actionTitle"></span>
+                        <span class="delete-trainer-title delete-trainer-name" id="deleteTrainer"></span>
+                        </div>
+                        <div >
+                            <span id="deleteTrainerCancel">&times;</span>
+                        </div>
+                    </div>
+                </div> 
+                <div class="trainerCourseDetails" id="trainerCourseCardCont">
+
+                </div>
+            </div>
+        </div>
+        <div class="bg-model" id="mapLearnerModal">
+            <div class="course-model add-learner-model-height">
+                <div>
+                    <div class="add-learner-model-top-first">
+                        <h1>Map Learners</h1>
+                        <div id="mapLearnerClose">
+                            <span> &times;</span>
+                        </div>
+                    </div>
+                        <div>
+                            <div class="add-learner">
+                                <div class="choose-trainer-arrange">
+                                    <p>Upload CSV file</p>
+                                    <span>Multiple learners</span>
+                                </div> 
+                                <div class="stop-visible">
+                                <input type="file" id="mapUploadBtn" accept=".csv"/>
+                                </div>
+                                <label for="mapUploadBtn" class="upload-btn"><img src="https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_upload.png" alt=""></label>
+                                <span id="mapFileChosen">No file chosen</span>
+                            </div>
+                        </div>
+                        <div class="choose-trainer-name">
+                            <p class="choose-course-name">Choose Course</p>
+                            <select id="mapLearnerCourseSelect" class="choose-select">
+                            </select>
+                        </div>
+                </div>
+                    <div class="add-course-model-bottom">
+                        <button id="mapLearnerAdd" class="add-button">Add</button>
+                        <button id="mapLearnerCancel" class="cancel-button">Cancel</button>
+                    </div>  
+            </div>
+        </div>
+        <div class="bg-model" id="addLearnerModal">
+            <div class="learner-course-add-model">
+                    <div class="add-learner-model-top-first">
+                        <h1>Add Learners</h1>
+                        <div id="addLearnerClose">
+                            <span> &times;</span>
+                        </div>
+                    </div>
+                    <div>
+                    <div class="change-learner">
+                            <button id="singleUserBtn" class="learner-inactive learner-active">Single User</button>
+                            <button id="multipleUserBtn" class="learner-inactive">Bulk Users</button>
+                        </div>
+                        <div id="singleLearner">
+                            <div class="add-learner">
+                                <div class="choose-trainer-arrange">
+                                    <p>User ID</p>
+                                    <span>Single learner</span>
+                                </div> 
+                                <input type="text" placeholder="Enter user ID" id="singleLearnerName">
+                            </div>
+                            <span class="course-name-warn" id="singleLearnerNameWarn">* user name should not contain spaces</span>
+                        </div>
+                        <div id="multipleLearners" class="stop-visible">
+                        <div class="add-learner">
+                                <div class="choose-trainer-arrange">
+                                    <p>Upload CSV file</p>
+                                    <span>Multiple learners</span>
+                                </div> 
+                                <div class="stop-visible">
+                                <input type="file" id="addUploadBtn" accept=".csv" />
+                                </div>
+                                <label for="addUploadBtn" class="upload-btn"><img src="https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_upload.png" alt=""></label>
+                                <span id="addFileChosen">No file chosen</span>
+                        </div>
+                        </div>
+                        <div class="choose-trainer-name">
+                            <p class="choose-course-name">Choose Course</p>
+                            <select id="addLearnerCourseSelect" class="choose-select">
+                            </select>
+                        </div>
+                    </div>
+                <div class="add-course-model-bottom">
+                    <button id="addLearnerCourseBtn" class="add-button">Add</button>
+                    <button id="addLearnerCancel" class="cancel-button">Cancel</button>
+                </div>  
+            </div>
+        
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+<script type="text/javascript">
+  // custom script
+  // url for hub and ngshare
+const hub_url = `/hub/api/`;
+const ngshare_url = `/services/ngshare/`;
+
+// To change the color for active link in top left navbar items
+    const currentUrl = window.location.pathname.split('/');
+    const currentAnchorTagText = currentUrl[currentUrl.length - 1];
+    $('.navbar-nav a').each(function () {
+        if ($(this).text().toLowerCase() == currentAnchorTagText) {
+            $(this).css({
+                'color': '#006BB6',
+                'border-bottom': '4px solid #006BB6'
+            });
+        }
+    });
+
+  // To hide left navbar items - 'Token' and 'services'
+const navbarLeftList = document.getElementsByClassName('nav navbar-nav')[0].getElementsByTagName('li');
+navbarLeftList[1].style.display = 'none';
+navbarLeftList[3].style.display = 'none';
+
+const courseCard = document.getElementById('courseCard');
+const deleteIcon = document.getElementById('delete-icon');
+const addLearnerModal = document.getElementById('addLearnerModal');
+const mapLearnerModal = document.getElementById('mapLearnerModal');
+const courseCardCont = document.getElementById('courseCardCont');
+const trainerCardCont = document.getElementById('trainerCardCont');
+const trainerEyeIcon = document.getElementById('trainer-eye-icon');
+const modelTitle = document.getElementById('modelTitle');
+const trainerCourseCardCont = document.getElementById('trainerCourseCardCont');
+const chooseLearnerSelect = document.getElementById('chooseLearnerSelect');
+const learnerRowsBody = document.getElementById('learnerRowsBody');
+const mapUploadBtn = document.getElementById('mapUploadBtn');
+const addUploadBtn = document.getElementById('addUploadBtn');
+const mapFileChosen = document.getElementById('mapFileChosen');
+const mapLearnerAdd = document.getElementById("mapLearnerAdd");
+const loaderDisplay = document.getElementsByClassName('loader')[0];
+const deleteIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_delete.png';
+const actionIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_eye.png';
+let deleteItem = null;
+let deleteCourseName = null;
+let presentUser = 'singleUser';
+let coursesRemoveLearner = null;
+let coursesRemoveList = null;
+let addmorePressed = false;
+
+mapUploadBtn.addEventListener('change', function() {
+    if (this.files[0].name){
+    $('#mapFileChosen').text(this.files[0].name);
+    }
+    else{
+        $('#mapFileChosen').text('No file chosen'); 
+    }
+})
+
+addUploadBtn.addEventListener('change', function() {
+    if (this.files[0].name){
+    $('#addFileChosen').text(this.files[0].name);
+    }
+    else{
+        $('#addFileChosen').text('No file chosen'); 
+    }
+})
+
+$('#courseNameText').keyup(function(){
+    if($('#courseNameText').val().includes(" ")){
+        $('#courseNameWarn').show();
+    }
+    else{
+        $('#courseNameWarn').hide();
+    }
+});
+
+$('#singleLearnerName').keyup(function(){
+    if($('#singleLearnerName').val().includes(" ")){
+        $('#singleLearnerNameWarn').show();
+    }
+    else{
+        $('#singleLearnerNameWarn').hide();
+    }
+});
+
+$('#trainerUsername').keyup(function(){
+    if($('#trainerUsername').val().includes(" ")){
+        $('#trainerNameWarn').show();
+    }
+    else{
+        $('#trainerNameWarn').hide();
+    }
+});
+
+mapLearnerAdd.addEventListener("click", async function(e) {
+    if (mapUploadBtn.files[0].name.toLowerCase().includes('.csv') && $('#mapLearnerCourseSelect').find(":selected").val() !==''){
+        const hubLearnerGroupFetch = await fetch(`${hub_url}groups/learner`);
+        const hubLearnerGroupJson = await hubLearnerGroupFetch.json();
+        const hubLearnerGroupList = hubLearnerGroupJson.users;
+        e.preventDefault();
+        const input = mapUploadBtn.files[0];
+        const reader = new FileReader();
+        reader.readAsText(input);
+        reader.onload = async function(e) {
+        const fileData =await e.target.result;
+        const titles = fileData.slice(0, fileData.indexOf('\n')).split(',');
+        const titleValues = fileData.slice(fileData.indexOf('\n') + 1).split('\n');
+        const reqArray=[];
+        const learnerArray=[];
+        titleValues.map(function(v) {
+            if (v !== "") {
+                const values = v.split(',');
+                learnerArray.push(values[0]);
+                const obj = {};
+                for (const each of titles) {
+                    const index = titles.indexOf(each);
+                    obj[each] = values[index];
+                }
+                reqArray.push(obj);
+            }
+        });
+        const checker = (arr, target) => target.every(v => arr.includes(v));
+        if(checker(hubLearnerGroupList, learnerArray)){
+            const studentData=JSON.stringify(reqArray);
+            const selectedCourse = $('#mapLearnerCourseSelect').find(":selected").val();
+            const response =await fetch(`${ngshare_url}students/${selectedCourse}?students=${studentData}`, {
+        			method: 'POST',
+        			headers: {
+    			    'Accept': 'application/json, text/plain, */*',
+    			    'Content-Type': 'application/json',
+      			}
+      		});
+            if (response.status == 200 && response.ok){
+                $('#mapLearnerModal').hide();
+                $('#successModelTitle').text('Map Learners');
+                $('#addSuccessMsg').text('Learners mapped successfully');
+                $("#addSuccessModal").show();
+            }
+            else{
+                const responseMessage = await response.json();
+                $('#alertMsgCont').show();
+                $('#alertMsg').text(responseMessage.message);
+                $('#mapLearnerModal').hide();
+            }
+        }
+        else{
+            $('#alertMsgCont').show();
+            $('#alertMsg').text('Some of the students does not exist');
+            $('#mapLearnerModal').hide();
+        }
+        }
+    }
+    else{
+        $('#alertMsgCont').show();
+        $('#alertMsg').text('Choose valid csv file and course');
+        $('#mapLearnerModal').hide();
+    }
+
+});
+
+$('#addCourseBtn').click(async () => {
+    const courseName = $('#courseNameText').val();
+    const instructorUserName = $('#chooseTrainerSelect').find(":selected").val();
+    if (courseName.includes(' ')){
+        $('#alertMsgCont').show();
+        $('#alertMsg').text('Please remove spaces in course name');
+        $('#addCourseModal').hide();
+    }
+    else if (courseName.length > 0 && instructorUserName.length > 0) {
+        const coursePromise = await fetch(`${ngshare_url}course/${courseName}`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application.json',
+            'Content-Type': 'application/json'
+          }
+        });
+        if (coursePromise.status == 200 && coursePromise.ok){
+            const instructorAddPromise = await fetch(`${ngshare_url}instructor/${courseName}/${instructorUserName}?first_name=&last_name=&email=`, {
+                method: 'POST',
+                headers: {
+                  Accept: 'application.json',
+                  'Content-Type': 'application/json'
+                }
+              });
+              if (instructorAddPromise.status == 200 && instructorAddPromise.ok) {
+                $('#addCourseModal').hide();
+                $('#successModelTitle').text('Add Course');
+                $('#addSuccessMsg').text('Course added successfully');
+                $("#addSuccessModal").show();
+                $('#courseNameText').val('');
+
+              }
+              else {
+                const instructorAddResponse = await instructorAddPromise.json();
+                $('#alertMsgCont').show();
+                $('#alertMsg').text(instructorAddResponse.message);
+                $('#addCourseModal').hide();
+              }
+        }
+        else {
+            const courseResponse = await coursePromise.json();
+            $('#alertMsgCont').show();
+            $('#alertMsg').text(courseResponse.message);
+            $('#addCourseModal').hide();
+        }
+    
+    }
+    else {
+        $('#alertMsgCont').show();
+        $('#alertMsg').text('Please provide valid course name and trainer username');
+        $('#addCourseModal').hide();
+      }
+});
+
+$('#addTrainerBtn').click(async () =>{
+    const  instructorUserName = $('#trainerUsername').val();
+    if (instructorUserName.includes(' ')){
+        $('#alertMsgCont').show();
+        $('#alertMsg').text('Please remove spaces in trainer name');
+        $('#addTrainerModal').hide();
+    }
+    else if (instructorUserName.length > 0){
+        const hubAddUserPromise = await fetch(`${hub_url}users/${instructorUserName}`, {
+            method: 'POST',
+            headers: {
+              Accept: 'application.json',
+              'Content-Type': 'application/json'
+            }
+          });
+        if (hubAddUserPromise.status == 201 && hubAddUserPromise.ok) {
+            const data = {
+              "users": [
+                instructorUserName
+              ]
+            };
+            const hubAddUserGroupPromise = await fetch(`${hub_url}groups/instructor/users`, {
+              method: 'POST',
+              headers: {
+                Accept: 'application.json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            });
+            if (hubAddUserGroupPromise.status == 200 && hubAddUserGroupPromise.ok) {
+                $('#addTrainerModal').hide();
+                $('#successModelTitle').text('Add Trainer');
+                $('#addSuccessMsg').text('Trainer added successfully');
+                $("#addSuccessModal").show();
+                $('#trainerUsername').val('');
+            }
+            
+            else{
+                const hubAddUserGroupResp = await hubAddUserGroupPromise.json();
+                $('#alertMsgCont').show();
+                $('#alertMsg').text(hubAddUserGroupResp.message);
+                $('#addTrainerModal').hide();
+            }
+        }
+           
+        else{
+            const hubAddUserResp = await hubAddUserPromise.json();
+            $('#alertMsgCont').show();
+            $('#alertMsg').text(hubAddUserResp.message);
+            $('#addTrainerModal').hide();
+        }
+    
+    }
+    else{
+        $('#alertMsgCont').show();
+        $('#alertMsg').text('Please provide valide trainer name');
+        $('#addTrainerModal').hide();
+    }
+    
+});
+
+$('#addLearnerCourseBtn').click(async ()=>{
+    if (presentUser === 'singleUser'){
+        if($('#singleLearnerName').val().includes(' ')){
+            $('#alertMsgCont').show();
+            $('#alertMsg').text('Avoid spaces in username');
+            $('#addLearnerModal').hide();
+        }
+        else if($('#singleLearnerName').val() === ''){
+            $('#alertMsgCont').show();
+            $('#alertMsg').text('Enter valid username');
+            $('#addLearnerModal').hide();
+        }
+        else if( $('#singleLearnerName').val().length > 0){
+            const courseName = $('#addLearnerCourseSelect').find(":selected").val();
+            const learnerName = $('#singleLearnerName').val();
+            const hubAddUserPromise = await fetch(`${hub_url}users/${learnerName}`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application.json',
+                'Content-Type': 'application/json'
+            }
+            });
+            if (hubAddUserPromise.status == 201 && hubAddUserPromise.ok) {
+                const data = {
+                "users": [
+                    learnerName
+                ]};
+            const hubAddUserGroupPromise = await fetch(`${hub_url}groups/learner/users`, {
+              method: 'POST',
+              headers: {
+                Accept: 'application.json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            });
+                if (hubAddUserGroupPromise.status == 200 && hubAddUserGroupPromise.ok) {
+                    if($('#addLearnerCourseSelect').find(":selected").val().length > 0){
+                        const learnerAddPromise = await fetch(`${ngshare_url}student/${courseName}/${learnerName}?first_name=&last_name=&email=`, {
+                        method: 'POST',
+                        headers: {
+                        Accept: 'application.json',
+                        'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                        if (learnerAddPromise.status == 200 && learnerAddPromise.ok) {
+                            $('#addLearnerModal').hide();
+                            $('#successModelTitle').text('Add Learners');
+                            $('#addSuccessMsg').text('Learner and course added successfully');
+                            $("#addSuccessModal").show();
+                        }
+                        else {
+                            const learnerAddResponse = await learnerAddPromise.json();
+                            $('#alertMsgCont').show();
+                            $('#alertMsg').text(learnerAddResponse.message);
+                            $('#addLearnerModal').hide();
+                        }
+                    }
+                    else{
+                        $('#addLearnerModal').hide();
+                        $('#successModelTitle').text('Add Learners');
+                        $('#addSuccessMsg').text('Learner added successfully');
+                        $("#addSuccessModal").show();
+                    }
+                }
+                else{
+                    const hubAddUserGroupResp = await hubAddUserGroupPromise.json();
+                    $('#alertMsgCont').show();
+                    $('#alertMsg').text(hubAddUserGroupResp.message);
+                    $('#addLearnerModal').hide();
+                }
+            }
+            else{
+                const hubAddUserResp = await hubAddUserPromise.json();
+                $('#alertMsgCont').show();
+                $('#alertMsg').text(hubAddUserResp.message);
+                $('#addLearnerModal').hide();
+            }
+        }
+    }
+    else if(presentUser === 'multipleUsers'){
+        if (addUploadBtn.files[0].name.toLowerCase().includes('.csv')){
+            const input = addUploadBtn.files[0];
+            const reader = new FileReader();
+            reader.readAsText(input);                
+            reader.onload = async function(e) {
+            const fileData =await e.target.result;
+            const titles = fileData.slice(0, fileData.indexOf('\n')).split(',');
+            const titleValues = fileData.slice(fileData.indexOf('\n') + 1).split('\n');
+            const reqArray=[];
+            const learnerArray=[];
+            titleValues.map(function(v) {
+                if (v !== "") {
+                    const values = v.split(',');
+                    learnerArray.push(values[0]);
+                    const obj = {};
+                    for (const each of titles) {
+                        const index = titles.indexOf(each);
+                        obj[each] = values[index];
+                    }
+                    reqArray.push(obj);
+                }
+            });
+            const data = {
+                "usernames":learnerArray
+            };
+            const hubAddUserPromise = await fetch(`${hub_url}users`, {
+              method: 'POST',
+              headers: {
+                Accept: 'application.json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            });
+            if (hubAddUserPromise.status == 201 && hubAddUserPromise.ok) {
+                const data = {
+                "users": learnerArray
+                 };
+            const hubAddUserGroupPromise = await fetch(`${hub_url}groups/learner/users`, {
+              method: 'POST',
+              headers: {
+                Accept: 'application.json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            });
+                if (hubAddUserGroupPromise.status == 200 && hubAddUserGroupPromise.ok) {
+                    if($('#addLearnerCourseSelect').find(":selected").val().length > 0){
+                        const courseName = $('#addLearnerCourseSelect').find(":selected").val();
+                        const studentData=JSON.stringify(reqArray);
+                        const learnerAddPromise = await await fetch(`${ngshare_url}students/${courseName}?students=${studentData}`, {
+                        method: 'POST',
+                        headers: {
+                        Accept: 'application.json',
+                        'Content-Type': 'application/json'
+                        }
+                        });
+                        
+                        if (learnerAddPromise.status == 200 && learnerAddPromise.ok) {
+                            $('#addLearnerModal').hide();
+                            $('#successModelTitle').text('Add Learners');
+                            $('#addSuccessMsg').text('Learners and course added successfully');
+                            $("#addSuccessModal").show();
+                        }
+                        else {
+                            const learnerAddResponse = await learnerAddPromise.json();
+                        $('#alertMsgCont').show();
+                        $('#alertMsg').text(learnerAddResponse.message);
+                        $('#addLearnerModal').hide();
+                        }
+                    }
+                    else{
+                        $('#addLearnerModal').hide();
+                        $('#successModelTitle').text('Add Learner');
+                        $('#addSuccessMsg').text('Learners added successfully');
+                        $("#addSuccessModal").show();
+                    }
+                }
+                else{
+                    const hubAddUserGroupResp = await hubAddUserGroupPromise.json();
+                    $('#alertMsgCont').show();
+                    $('#alertMsg').text(hubAddUserGroupResp.message);
+                    $('#addLearnerModal').hide();
+                }
+            }
+            
+            else{
+                const hubAddUserResp = await hubAddUserPromise.json();
+                $('#alertMsgCont').show();
+                $('#alertMsg').text(hubAddUserResp.message);
+                $('#addLearnerModal').hide();
+            }
+    }
+
+        }
+        else{
+            $('#alertMsgCont').show();
+            $('#alertMsg').text('Select valid CSV file');
+            $('#addLearnerModal').hide();
+        }
+
+    }
+});
+
+async function  removeLearnerFromAllCourse (learnerName,coursesList){
+    if(coursesList.length > 0){
+        let k=0;
+         for (let course of coursesList){
+            const removeLearnerPromise = await fetch(`${ngshare_url}student/${course}/${learnerName}`, {
+            method: 'DELETE',
+            headers: {
+            Accept: 'application.json',
+            'Content-Type': 'application/json'
+            }
+        });
+        const response = await removeLearnerPromise.json();
+        if (response.success) {
+            k+=1;
+        }
+        else {
+            $('#removeLearnerCourseModal').hide();
+            $('#alertMsgCont').show();
+            $('#alertMsg').text(response.message);
+        };
+
+
+         }
+         if (k === coursesList.length){
+            $('#removeLearnerCourseModal').hide();
+            $('#deleteSuccessModal').show();
+            $('#DeleteSuccessModelTitle').text('Remove Learner');
+            $('#deletedItemMsg').text('Removed successfully');
+         }
+         else{
+            $('#removeLearnerCourseModal').hide();
+            $('#alertMsgCont').show();
+            $('#alertMsg').text('Please check learner not removed from some courses');
+         }
+    }
+    else{
+        $('#removeLearnerCourseModal').hide();
+        $('#alertMsgCont').show();
+        $('#alertMsg').text('Learner not enrolled in any course');
+    }
+    
+   
+}
+
+$('#removeLearnerCourseBtn').click(() =>{
+    removeLearnerFromAllCourse(coursesRemoveLearner,coursesRemoveList);
+});
+
+async function deleteItemNext  (deleteItem,deleteCourseName) {
+    if ($('#deleteModalTitle').text() ==='Delete Course'){
+        const courseDeletePromise = await fetch(`${ngshare_url}course/${deleteItem}`,{
+            method: 'DELETE',
+            headers: {
+            Accept: 'application.json',
+            'Content-Type': 'application/json'
+            }
+        });
+        const response = await courseDeletePromise.json();
+        if (response.success) {
+            $('#deleteCourseModal').hide();
+            $('#deleteSuccessModal').show();
+            $('#DeleteSuccessModelTitle').text('Delete Course');
+            $('#deletedItemMsg').text('Deleted successfully');
+            deleteItem=null;
+            deleteCourseName=null;
+        }
+        else {
+            $('#deleteCourseModal').hide();
+            $('#alertMsgCont').show();
+            $('#alertMsg').text(response.message);
+            deleteItem=null;
+            deleteCourseName=null;
+        };
+    }
+    else if($('#deleteModalTitle').text() ==='Remove Trainer'){
+        const removeTrainerPromise = await fetch(`${ngshare_url}instructor/${deleteCourseName}/${deleteItem}`, {
+            method: 'DELETE',
+            headers: {
+            Accept: 'application.json',
+            'Content-Type': 'application/json'
+            }
+        });
+        const response = await removeTrainerPromise.json();
+        if (response.success) {
+            $('#deleteCourseModal').hide();
+            $('#deleteSuccessModal').show();
+            $('#DeleteSuccessModelTitle').text('Remove Trainer');
+            $('#deletedItemMsg').text('Removed successfully');
+            deleteItem=null;
+            deleteCourseName=null;
+        }
+        else {
+            $('#deleteCourseModal').hide();
+            $('#alertMsgCont').show();
+            $('#alertMsg').text(response.message);
+            deleteItem=null;
+            deleteCourseName=null;
+        };
+    }
+    else if($('#deleteModalTitle').text() ==='Remove Learner'){
+        const removeLearnerPromise = await fetch(`${ngshare_url}student/${deleteCourseName}/${deleteItem}`, {
+            method: 'DELETE',
+            headers: {
+            Accept: 'application.json',
+            'Content-Type': 'application/json'
+            }
+        });
+        const response = await removeLearnerPromise.json();
+        if (response.success) {
+            $('#deleteCourseModal').hide();
+            $('#deleteSuccessModal').show();
+            $('#DeleteSuccessModelTitle').text('Remove Learner');
+            $('#deletedItemMsg').text('Removed successfully');
+            deleteItem=null;
+            deleteCourseName=null;
+        }
+        else {
+            $('#deleteCourseModal').hide();
+            $('#alertMsgCont').show();
+            $('#alertMsg').text(response.message);
+            deleteItem=null;
+            deleteCourseName=null;
+        };
+    };  
+};
+
+$('#deleteCourseBtn').click(() =>{
+    deleteItemNext (deleteItem,deleteCourseName);
+});
+
+const getAllDetails = async () => {
+    const courseFetch = await fetch(`${ngshare_url}courses`);
+    const courseJson = await courseFetch.json();
+    const coursesList = await courseJson.courses;
+    const details = coursesList.map(async (courseName) => {
+        const instructorsPromise = await fetch(`${ngshare_url}instructors/${courseName}`);
+        let instructorName = '';
+        const instructorsJson = await instructorsPromise.json()
+        .then( instructorsJson=> {
+            if (instructorsJson.instructors.length === 0){
+            instructorName = '-';
+            }
+            else{
+            instructorName = instructorsJson.instructors[0].username;
+            };
+        });
+        const studentsPromise = await fetch(`${ngshare_url}students/${courseName}`);
+        const studentsJson = await studentsPromise.json();
+        const studentsUserNameList = studentsJson.students.map((studentDet)=> {return studentDet.username});
+        return { 'courseName': courseName, 'trainer': instructorName, 'students': studentsUserNameList};
+    });
+    return Promise.all(details);
+};
+
+function createEl(el,cls,text){
+    const elem= document.createElement(el);
+    if (typeof(text) === 'string' || typeof(text) === 'number'){
+        elem.textContent = text;
+    }
+    if (typeof(cls) === 'string' && cls !== ''){
+         elem.classList.add(cls);
+    }
+    else if(typeof(cls) === 'object'){
+        for(let each of cls){
+            elem.classList.add(each);
+        }
+    }
+    else{
+        return elem;
+    }
+    return elem;
+}
+
+function creatingCard(displayObj,classesObj, onclickAction, iconImg){
+    const cardCont = createEl('div', classesObj.card);
+    const cardLeft = createEl('div','course-card-left');
+    cardCont.appendChild(cardLeft);
+    const cardTitle = createEl('p','course-title',displayObj.name);
+    cardLeft.appendChild(cardTitle);
+    const cardTitleDisplay = createEl('p',['course-title','overflow-show'],displayObj.name);
+    $(cardTitle).click(function(){
+            $(cardTitleDisplay).show().fadeOut(5000);
+    });
+    cardLeft.appendChild(cardTitleDisplay);
+    const arrangeRow = createEl('div','arrange-row');
+    cardLeft.appendChild(arrangeRow);
+    if(displayObj.display1){
+        const arrangeCol = createEl('div',['arrange-col','arrange-col-first']);
+        arrangeRow.appendChild(arrangeCol);
+        const countTitle = createEl('span',['learner-count-title','fs-12'],displayObj.display1);
+        arrangeCol.appendChild(countTitle);
+        let count = createEl('span',['learner-count','fs-14'], displayObj.display1_c);
+        arrangeCol.appendChild(count);
+    }
+    if(displayObj.display2){
+        const arrangeColTrain = createEl('div','arrange-col');
+        arrangeRow.appendChild(arrangeColTrain);
+        const trainTitle = createEl('span',['learner-count-title','fs-12'],displayObj.display2);
+        arrangeColTrain.appendChild(trainTitle);
+        const trainName = createEl('span',['learner-count','fs-14'],displayObj.display2_c);
+        arrangeColTrain.appendChild(trainName);
+        const trainNameDisplay = createEl('span',['learner-count','fs-14','overflow-show'],displayObj.display2_c);
+        $(trainName).click(function(){
+            $(trainNameDisplay).show().fadeOut(5000);
+    });
+        arrangeColTrain.appendChild(trainNameDisplay);
+    }
+
+    const iconCont = createEl('div',classesObj.icon);
+    iconCont.onclick = () =>{
+        onclickAction();
+    }
+    const iconImgEl = createEl('img');
+    iconImgEl.src =  iconImg;
+    iconCont.appendChild(iconImgEl);
+    cardCont.appendChild(iconCont);
+
+    return cardCont;
+};
+
+function addAndAppendCourse(course) {
+    const displayObj = {name:course.courseName,display1:'Learner count',display1_c:course.students.length,display2:'Trainer name',display2_c:course.trainer}
+    const classesObj = {card:'courseCard',icon:'delete-icon'}
+    const deleteCourse = () =>{
+        $('#deleteCourseModal').show();
+        $('#deleteModalTitle').text('Delete Course');
+        $('#deleteItemText').text(`Delete ${course.courseName} course?`);
+        $('#deleteCourseBtn').text('Delete');
+        $('#deleteCourseCaution').text("once deleted can't be restored again");
+        deleteItem = course.courseName;
+    }
+    const courseCont=creatingCard(displayObj,classesObj,deleteCourse, deleteIconImg);
+    courseCardCont.appendChild(courseCont);
+   
+};
+
+function addAndAppendTrainer(trainer) {
+    const displayObj = {name:trainer.name,display1:'Course count',display1_c:trainer.course.length,display2:'Status',display2_c:trainer.status}
+    const classesObj = {card:'trainerCard',icon:'eye-icon'}
+    const removeTrainer = () =>{
+        trainerCourseCardCont.innerHTML = "";
+        $('#deleteTrainerModal').show();
+        $('#actionTitle').text('Trainer - ');
+        $('#deleteTrainer').text(trainer.name);
+        for (let each of trainer.course){
+            const displayObjCourse = {name:Object.keys(each)[0],display2:'Learner count',display2_c:Object.values(each)[0]}
+            const classesObjCourse = {card:'trainer-course-card',icon:'delete-icon'}
+            const deleteTrainerCourse = () =>{
+                deleteTrainerModal.style.display = 'none';
+                $('#deleteCourseModal').show();
+                $('#deleteModalTitle').text('Remove Trainer');
+                $('#deleteItemText').text(`Remove ${trainer.name} from ${Object.keys(each)[0]} course?`);
+                $('#deleteCourseBtn').text('Remove');
+                $('#deleteCourseCaution').text("once removed can't be restored again");
+                deleteItem = trainer.name;
+                deleteCourseName = Object.keys(each)[0];
+                trainerCourseCardCont.innerHTML = "";
+            }
+            const trainerCourseCard=creatingCard(displayObjCourse,classesObjCourse,deleteTrainerCourse, deleteIconImg);
+            trainerCourseCardCont.appendChild(trainerCourseCard);
+        };
+    }
+    const trainerCard=creatingCard(displayObj,classesObj,removeTrainer, actionIconImg);
+    trainerCardCont.appendChild(trainerCard)
+};
+
+function addAndAppendLearner(learner){
+    const learnerRow = createEl('tr');
+    learnerRowsBody.appendChild(learnerRow);
+    const learnerDet = createEl('td','',Object.keys(learner)[0]);
+    learnerRow.appendChild(learnerDet);
+    const learnerEye = createEl('td');
+    const learnerEyeImg = createEl('img','eye-action');
+    learnerEyeImg.onclick = function(){
+        trainerCourseCardCont.innerHTML = "";
+        $('#deleteTrainerModal').show();
+        $('#actionTitle').text('Learner - ');
+        $('#deleteTrainer').text(Object.keys(learner)[0]);
+        for (let each of Object.values(learner)[0]){
+            const learnerCourseCard = createEl('div',['trainer-course-card','learner-coursecard-height']);
+            trainerCourseCardCont.appendChild(learnerCourseCard);
+            const learnerCourseCardLeft = createEl('div','course-card-left');
+            learnerCourseCard.appendChild(learnerCourseCardLeft);
+            const learnerCourseTitle = createEl('p','course-title',each);
+            learnerCourseCardLeft.appendChild(learnerCourseTitle);
+            const learnerCourseCardDelete = createEl('div','delete-icon');
+            learnerCourseCardDelete.onclick=function(){
+                deleteTrainerModal.style.display = 'none';
+                $('#deleteCourseModal').show();
+                $('#deleteModalTitle').text('Remove Learner');
+                $('#deleteCourseCaution').text("once removed can't be restored again");
+                $('#deleteCourseBtn').text('Remove');
+                $('#deleteItemText').text(`Remove ${Object.keys(learner)[0]} from ${each} course?`);
+                deleteItem = Object.keys(learner)[0];
+                deleteCourseName = each;
+                trainerCourseCardCont.innerHTML = ""; 
+           };
+            learnerCourseCard.appendChild(learnerCourseCardDelete);
+            const learnerCourseCardDeleteImg = createEl('img');
+            learnerCourseCardDeleteImg.src=deleteIconImg;
+            learnerCourseCardDelete.appendChild(learnerCourseCardDeleteImg);
+         };
+    }
+    learnerEye.appendChild(learnerEyeImg);
+    learnerEyeImg.src = actionIconImg;
+    learnerRow.appendChild(learnerEye);
+    const learnerDelete = createEl('td');
+    const learnerDeleteImg = createEl('img','learner-all-course-remove');
+    learnerDeleteImg.onclick = function(){
+        coursesRemoveLearner = Object.keys(learner)[0];
+        coursesRemoveList = Object.values(learner)[0];
+        $('#removeLearnerCourseModal').show();
+        $('#removeLearnerModalItemText').text(`Remove ${Object.keys(learner)[0]} from all courses?`);
+    }
+    learnerDeleteImg.src = deleteIconImg;
+    learnerDelete.appendChild(learnerDeleteImg);
+    learnerRow.appendChild(learnerDelete);
+};
+
+getAllDetails().then(async (resp)=>{
+    const allDetails = resp;
+
+    //course tab
+    $('#coursesLoader').hide();
+    $('#coursesSearch').keyup(()=>{
+        courseCardCont.innerHTML='';
+        const searchValue=$('#coursesSearch').val();
+        const searchList = allDetails.filter((course)=>{
+            return course.courseName.toLowerCase().includes(searchValue.toLowerCase());
+        });
+        for (const course of searchList) {
+            addAndAppendCourse(course);
+        }; 
+    });
+
+    for (const course of allDetails) {
+        addAndAppendCourse(course);
+    };
+
+    //trainer tab
+    const hubTrainerGroupFetch = await fetch(`${hub_url}groups/instructor`);
+    const hubTrainerGroupJson = await hubTrainerGroupFetch.json();
+    const hubTrainerGroupList = hubTrainerGroupJson.users.sort();
+    const trainerCourses = {};
+    
+    for (const trainer of hubTrainerGroupList){
+        trainerCourses[trainer]=[];
+    }
+    
+    for (const det of allDetails){
+        if(det.trainer in trainerCourses){
+            const obj ={};
+            obj[det.courseName] = det.students.length
+            trainerCourses[det.trainer].push(obj);
+        }
+    }
+
+    $('#trainersLoader').hide();
+    const instructorDetailsAll=[];
+    const instructorDetailsMapped = [];
+    const instructorDetailsUnMapped = [];
+    let reqList =instructorDetailsAll;
+
+    for (const key in trainerCourses){
+        let status = null;
+        if (trainerCourses[key].length > 0){
+            status='Mapped';
+            instructorDetailsMapped.push({'name':key,'course':trainerCourses[key],'status':status});
+        }
+        else if(trainerCourses[key].length === 0) {
+            status='Unmapped';
+            instructorDetailsUnMapped.push({'name':key,'course':trainerCourses[key],'status':status});
+        }
+        instructorDetailsAll.push({'name':key,'course':trainerCourses[key],'status':status});
+    };
+    
+    for (const trainer of instructorDetailsAll) {
+        addAndAppendTrainer(trainer);
+    }
+
+    $('#trainersFilter').change(()=>{
+        $('#trainersSearch').val('');
+        trainerCardCont.innerHTML='';
+        if ($('#trainersFilter').find(":selected").val() === 'mapped'){
+           reqList = instructorDetailsMapped;
+        }
+        else if($('#trainersFilter').find(":selected").val() === 'unmapped'){
+           reqList = instructorDetailsUnMapped;
+        }
+        else if ($('#trainersFilter').find(":selected").val() === 'all'){
+           reqList = instructorDetailsAll;
+        }
+
+        for (const trainer of reqList) {
+            addAndAppendTrainer(trainer);
+        }
+
+    });
+    
+    $('#trainersSearch').keyup(()=>{
+        trainerCardCont.innerHTML='';
+        const searchValue=$('#trainersSearch').val();
+        const searchList = reqList.filter((trainer)=>{
+            return trainer.name.toLowerCase().includes(searchValue.toLowerCase());
+        });
+        for (const trainer of searchList) {
+            addAndAppendTrainer(trainer);
+        }     
+    })
+
+    //learner tab
+    const hubLearnerGroupFetch = await fetch(`${hub_url}groups/learner`);
+    const hubLearnerGroupJson = await hubLearnerGroupFetch.json();
+    const hubLearnerGroupList = hubLearnerGroupJson.users.sort();
+    const learnerCourses = {};
+    
+    for (const learner of hubLearnerGroupList){
+        learnerCourses[learner]=[];
+    }
+    for(const key in learnerCourses){
+        for (const det of allDetails){
+            if(det.students.includes(key)){
+                learnerCourses[key].push(det.courseName);
+            }
+        }
+    }
+    $('#learnersLoader').hide();
+    for (key in learnerCourses){
+        const obj ={};
+        obj[key]=learnerCourses[key]
+        addAndAppendLearner(obj);
+    };
+
+    $('#learnersSearch').keyup(()=>{
+        learnerRowsBody.innerHTML='';
+        const searchValue=$('#learnersSearch').val();
+        const searchObj={};
+        for (const key in learnerCourses){
+            if (key.toLowerCase().includes(searchValue.toLowerCase())){
+                searchObj[key] = learnerCourses[key];
+            }
+            else if (learnerCourses[key].join('|').toLowerCase().includes(searchValue.toLowerCase())){
+                searchObj[key] = learnerCourses[key];
+            }
+        }
+        for (key in searchObj){
+            const obj ={};
+            obj[key]=learnerCourses[key]
+            addAndAppendLearner(obj);
+        };
+    });
+});
+
+$('#courseNav').click(function(){
+    $('#trainerSearchCont, #learnerSearchCont, #trainersFilterCont, #mapBtn, #trainerDetails, #learnerDetails').hide();
+    $('#courseSearchCont, #courseDetails').show();
+    $('#addBtn').text('Add Course');
+    $('#description').text('You can manage Course details here.');
+    $('#courseNav').addClass('active');
+    $('#trainerNav, #learnerNav').removeClass('active');
+});
+
+$('#trainerNav').click(function(){
+    $('#courseSearchCont, #learnerSearchCont, #mapBtn, #courseDetails, #learnerDetails ').hide();
+    $('#trainerSearchCont, #trainersFilterCont, #trainerDetails').show();
+    $('#addBtn').text('Add Trainer');
+    $('#description').text('You can manage Trainer details here.');
+    $('#courseNav,#learnerNav').removeClass('active');
+    $('#trainerNav').addClass('active');
+});
+
+$('#learnerNav').click(function(){
+    $('#trainerSearchCont,#courseSearchCont,#trainersFilterCont,#courseDetails,#trainerDetails').hide();
+    $('#learnerSearchCont,#mapBtn, #learnerDetails').show();
+    $('#addBtn').text('Add Learners');
+    $('#description').text('You can manage Learners details here.');
+    $('#courseNav, #trainerNav').removeClass('active');
+    $('#learnerNav').addClass('active');
+});
+
+$('#addBtn').click (()=> {
+    if ($('#addBtn').text() === "Add Course") {
+        $('#courseNameText').val('');
+        $('#addCourseModal').show();
+    }
+    else if($('#addBtn').text()  === "Add Trainer"){
+        $('#trainerUsername').val('');
+        $('#addTrainerModal').show();
+    }
+    else if ($('#addBtn').text()  === "Add Learners") {
+        $('#addLearnerModal').show();
+        $('#singleLearnerName').val('');
+    };
+});
+
+$('#successAddMore').click(() =>{
+    addmorePressed=true;
+    if ($('#successModelTitle').text() === 'Add Course' ){
+        $('#addSuccessModal').hide();
+        $('#addCourseModal').show();
+        $('#courseNameText').val('');
+        }
+    else if ($('#successModelTitle').text() === 'Add Trainer' ){
+        $('#addSuccessModal').hide();
+        $('#addTrainerModal').show();
+    }
+    else if ($('#successModelTitle').text() === 'Map Learners' ){
+        $('#addSuccessModal').hide();
+        $('#mapLearnerModal').show();
+    }
+    else if ($('#successModelTitle').text() === 'Add Learners' ){
+        $('#addSuccessModal').hide();
+        $('#addLearnerModal').show();
+        $('#singleLearnerName').val('');
+    }
+});
+
+
+
+$('#addSuccessClose').click(() =>{
+    $('#addSuccessModal').hide();
+    location.reload();
+});
+
+$('#mapBtn').click (() =>$('#mapLearnerModal').show());
+$('#successDone').click(() =>location.reload());
+$('#addCourseClose, #addCourseCancel').click(() =>{
+    if(addmorePressed){
+        location.reload();
+    }
+    else{
+        $('#addCourseModal').hide()
+    }
+});
+$('#addTrainerCancel, #cancelAddTrainer').click(() => {
+    if(addmorePressed){
+        location.reload();
+    }
+    else{
+    $('#addTrainerModal').hide()
+    }
+});
+$("#alertMsgClose").click(() =>$('#alertMsgCont').hide());
+$('#deleteModalClose,#deleteCancelBtn').click(()=>$('#deleteCourseModal').hide());
+
+$('#deleteTrainerCancel').click(()=>{
+    trainerCourseCardCont.innerHTML = "";
+    $('#deleteTrainerModal').hide();
+});
+
+$('#deleteDoneBtn').click(()=>{
+    $('#deleteSuccessModal').hide();
+    location.reload();
+});
+
+$('#deleteSuccessClose').click(()=>{
+    $('#deleteSuccessModal').hide();
+    location.reload();
+});
+
+$('#mapLearnerClose,#mapLearnerCancel').click(()=>{
+    if(addmorePressed){
+        location.reload();
+    }
+    else{
+    $('#mapLearnerModal').hide()
+    }
+
+});
+$('#addLearnerCancel, #addLearnerClose').click(() =>{
+    if(addmorePressed){
+        location.reload();
+    }
+    else{
+    $('#addLearnerModal').hide()
+    }
+});
+$('#removeLearnerCourseModalClose,#removeLearnerCourseCancel').click(()=>$('#removeLearnerCourseModal').hide());
+
+$('#singleUserBtn').click(function () {
+    $('#singleUserBtn').addClass('learner-active');
+    $('#multipleUserBtn').removeClass('learner-active');
+    $('#singleLearner').show();
+    $('#multipleLearners').hide();
+    presentUser = 'singleUser';
+});
+  
+$('#multipleUserBtn').click (function () {
+    $('#singleUserBtn').removeClass('learner-active');
+    $('#multipleUserBtn').addClass('learner-active');
+    $('#singleLearner').hide();
+    $('#multipleLearners').show();
+    presentUser = 'multipleUsers';
+});
+
+window.onload = async () =>{
+    getAllDetails();
+    const hubTrainerGroupFetch = await fetch(`${hub_url}groups/instructor`);
+    const hubTrainerGroupJson = await hubTrainerGroupFetch.json();
+    const hubTrainerGroupList = hubTrainerGroupJson.users.sort();
+    const trainDefaultOption = document.createElement('option');
+    trainDefaultOption.text = 'Choose trainer';
+    trainDefaultOption.value = '';
+    trainDefaultOption.selected = true;
+    trainDefaultOption.disabled = true;
+    chooseTrainerSelect.add(trainDefaultOption);
+    for (const option of hubTrainerGroupList){
+        const newOption = document.createElement('option');
+        newOption.text = option;
+        newOption.value = option;
+        newOption.classList.add('choose-option','fs-12');
+        chooseTrainerSelect.add(newOption);
+    };
+
+    const courseFetch = await fetch(`${ngshare_url}courses`);
+    const courseJson = await courseFetch.json();
+    const coursesList = await courseJson.courses;
+    const courseDefaultOption = document.createElement('option');
+    courseDefaultOption.text = 'Choose course';
+    courseDefaultOption.value = '';
+    courseDefaultOption.selected = true;
+    courseDefaultOption.disabled = true;
+    mapLearnerCourseSelect.add(courseDefaultOption);
+    for (const option of coursesList){
+        const newOption = document.createElement('option');
+        newOption.text = option;
+        newOption.value = option;
+        newOption.classList.add('choose-option','fs-12');
+        mapLearnerCourseSelect.add(newOption);
+    }
+   
+    const addCourseDefaultOption = document.createElement('option');
+    addCourseDefaultOption.text = 'Choose course';
+    addCourseDefaultOption.value = '';
+    addCourseDefaultOption.selected = true;
+    addCourseDefaultOption.disabled = true;
+    addLearnerCourseSelect.add(addCourseDefaultOption);
+    for (const option of coursesList){
+        const newOption = document.createElement('option');
+        newOption.text = option;
+        newOption.value = option;
+        newOption.classList.add('choose-option','fs-12');
+        addLearnerCourseSelect.add(newOption);
+    }
+};
+
+</script>
+{% endblock %}

@@ -1,0 +1,775 @@
+{% extends 'templates/page.html' %} 
+{% block stylesheet %}
+{{ super() }}
+<style>
+    html {
+        font-family: 'Poppins';
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -ms-overflow-style: inherit;
+        height: 100vh;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .container {
+        padding-left: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding-right: 0;
+        width: webkit-fill-available;
+        height: 100vh;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .btn.btn-jupyter.btn-lg {
+        background-color: #006bb6;
+        border-color: #006bb6;
+        border-radius: 3rem;
+        font-weight: 500;
+        align-self: center;
+        width: calc(25vw + 2rem);
+        font-size: 2.2rem;
+        padding: 6px 12px;
+    }
+
+    .btn.btn-jupyter.btn-lg:hover {
+        background-color: #006bb6;
+        border: 1px solid #5fbef0;
+        padding: 6px 12px;
+    }
+
+    .d-flex {
+        display: flex;
+        height: 100%;
+    }
+
+    .flex-column {
+        flex-direction: column;
+    }
+
+    .flex-row {
+        flex-direction: row;
+    }
+
+    .flex-wrap {
+        flex-wrap: wrap;
+        height: 100vh;
+    }
+
+    .align-items-center {
+        align-items: center;
+    }
+
+    h3 {
+        font-size: 2.88rem;
+    }
+
+    .font-poppins {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .font-gothic {
+        font-family: 'Gothic A1', sans-serif;
+    }
+
+    .color-fff {
+        color: #fff;
+    }
+
+    .overflow-y-hidden {
+        overflow-y: hidden;
+    }
+
+    html,
+    body,
+    .page-wrapper {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    img {
+        max-width: 100%;
+        height: 100%
+    }
+
+    a {
+        color: #5FBEF0;
+        text-decoration: none !important;
+    }
+
+    a:hover {
+        color: #006BB6
+    }
+
+    .left-section {
+        width: 40%;
+        position: relative;
+        background: #006cb7;
+        position: relative;
+    }
+
+    .left-section::before {
+        position: absolute;
+        top: 0rem;
+        left: 0rem;
+        right: -8rem;
+        bottom: 0rem;
+        margin: auto;
+        content: '';
+        background: linear-gradient(134.19deg, #006BB6 17.15%, #006BB6 17.15%, #FFFFFF 167.6%);
+        transform: rotate(-180deg);
+    }
+
+    .left-section::after {
+        position: absolute;
+        top: auto;
+        left: auto;
+        right: 0rem;
+        bottom: 0rem;
+        margin: auto;
+        content: '';
+        width: 8rem;
+        height: 8rem;
+        background-image: url(https://ik.imagekit.io/iwwbj9so6/shape-1_aTPghNqcM.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1658898386582);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .left-content-wrapper {
+        width: 70%;
+        margin: 0rem auto;
+        position: relative;
+    }
+
+    .left-content-wrapper h3 {
+        line-height: 4rem;
+        text-align: left;
+        padding-top: calc(12vh - 2rem);
+    }
+
+    .student-img {
+        height: 100%;
+    }
+
+    .student-img-wrapper {
+        left: 51rem;
+        bottom: 13rem;
+        width: 33rem;
+        height: calc(65vh - 1rem);
+        overflow: hidden;
+        z-index: 1;
+        position: absolute;
+    }
+
+    .plant {
+        width: 10rem;
+        bottom: 12rem;
+        left: 22rem;
+        position: absolute;
+        right: 0rem;
+        margin: auto;
+        top: auto;
+        z-index: 100;
+    }
+
+    .circle {
+        position: absolute;
+        width: 27rem;
+        height: 11rem;
+        left: 0rem;
+        right: 0rem;
+        margin: auto;
+        content: '';
+        bottom: 6rem;
+    }
+
+    .right-section {
+        width: 60%;
+        border-radius: 80px 0px 0px 0px;
+        position: relative;
+        background: #fff;
+    }
+
+    .section-header {
+        padding: 2rem 2rem 2rem 2rem;
+        height: 12rem;
+    }
+
+    .org-logo {
+        width: 15rem;
+    }
+
+    .login-form-wrapper {
+        width: 60%;
+        align-items: center;
+        text-align: center;
+        margin: 0rem auto;
+    }
+
+    .login-form-wrapper h3 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        padding-top: calc(10vh - 3rem);
+    }
+
+    .form-group {
+        padding-top: 2rem;
+    }
+
+    .login-form-wrapper h3 span {
+        color: #76ba62;
+        margin-left: 0rem;
+    }
+
+    .login-form-wrapper-p {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 2.2rem;
+        line-height: 5rem;
+        color: #60BC57;
+    }
+
+    .login-img {
+        height: 100%;
+    }
+
+    .login-form-wrapper-img {
+        width: 65rem;
+        height: calc(42vh - 2rem);
+    }
+
+    .sign-flex {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (max-width: 2560px) {
+        .left-content-wrapper h3 {
+            font-size: 3.8rem;
+        }
+
+        .circle {
+            width: 45rem;
+            height: 27rem;
+            left: 0rem;
+            bottom: 1rem;
+        }
+
+        .plant {
+            bottom: 20rem;
+            left: 42rem;
+            width: 15rem;
+        }
+
+        .student-img-wrapper {
+            left: 75rem;
+            bottom: 20rem;
+            width: 45rem;
+        }
+
+        .org-logo {
+            width: 25rem;
+        }
+
+        .login-form-wrapper h3 {
+            font-size: 3.8rem;
+        }
+
+        .login-form-wrapper-p {
+            font-size: 3.2rem;
+        }
+
+        .login-form-wrapper-img {
+            width: calc(35vw - 2rem);
+            height: calc(45vh - 2rem);
+        }
+
+        .btn.btn-jupyter.btn-lg {
+            font-size: 3.2rem;
+            width: calc(28vw + 2rem);
+        }
+    }
+
+    @media (max-width: 2300px) {
+        .student-img-wrapper {
+            left: 65rem;
+        }
+
+        .org-logo {
+            width: 20rem;
+        }
+
+        .login-form-wrapper h3 {
+            padding-top: calc(6vh - 3rem);
+        }
+
+        .btn.btn-jupyter.btn-lg {
+            font-size: 2.8rem;
+        }
+    }
+
+    @media (max-width: 2125px) {
+        .left-content-wrapper h3 {
+            font-size: 3.6rem;
+        }
+
+        .plant {
+            left: 40rem;
+            width: 11rem;
+        }
+
+        .student-img-wrapper {
+            left: 62rem;
+            width: 40rem;
+            height: calc(60vh - 1rem);
+        }
+
+        .login-form-wrapper h3 {
+            font-size: 3rem;
+        }
+
+        .login-form-wrapper-p {
+            font-size: 2.5rem;
+        }
+
+        .login-form-wrapper-img {
+            width: calc(35vw - 2rem);
+        }
+    }
+
+    @media (max-width: 2013px) {
+        .left-content-wrapper h3 {
+            font-size: 3.4rem;
+        }
+
+        .circle {
+            width: 40rem;
+            height: 24rem;
+            bottom: 0rem;
+        }
+
+        .login-form-wrapper h3 {
+            font-size: 3rem;
+        }
+
+        .login-form-wrapper-p {
+            font-size: 2.8rem;
+        }
+
+        .btn.btn-jupyter.btn-lg {
+            font-size: 2.2rem;
+        }
+
+        .student-img-wrapper {
+            left: 53rem;
+        }
+
+        .login-form-wrapper h3 {
+            padding-top: calc(4vh - 3rem);
+        }
+
+        .plant {
+            left: 30rem;
+        }
+    }
+
+    @media (max-width: 1920px) {
+        .login-form-wrapper-img {
+            height: calc(38vh - 2rem);
+        }
+
+        .login-form-wrapper h3 {
+            padding-top: calc(6vh - 3rem);
+        }
+
+        .org-logo {
+            width: 16rem;
+        }
+
+        .circle {
+            height: 22rem;
+            width: 45rem;
+
+        }
+
+        .left-content-wrapper h3 {
+            font-size: 3rem;
+        }
+    }
+
+    @media (max-width: 1868px) {
+        .login-form-wrapper h3 {
+            padding-top: calc(10vh - 3rem);
+        }
+
+        .login-form-wrapper-img {
+            height: calc(40vh - 2rem);
+        }
+
+        .btn.btn-jupyter.btn-lg {
+            font-size: 2.8rem;
+        }
+    }
+
+    @media (max-width: 1867px) {
+        .btn.btn-jupyter.btn-lg {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media (max-width: 1800px) {
+        .circle {
+            height: 20rem;
+            width: 33rem;
+        }
+
+        .plant {
+            bottom: 15rem;
+        }
+
+        .student-img-wrapper {
+            bottom: 15rem;
+        }
+
+        .login-form-wrapper h3 {
+            padding-top: calc(6vh - 3rem);
+        }
+    }
+
+    @media (max-width: 1860px) {
+        .student-img-wrapper {
+            left: 50rem;
+        }
+
+        .left-content-wrapper h3 {
+            font-size: 2.5rem;
+        }
+
+        .login-form-wrapper h3 {
+            font-size: 2.5rem;
+        }
+
+        .login-form-wrapper-p {
+            font-size: 2.4rem;
+        }
+    }
+
+    @media (max-width: 1680px) {
+        .student-img-wrapper {
+            height: calc(64vh - 1rem);
+        }
+
+        .login-form-wrapper h3 {
+            padding-top: calc(10vh - 3rem);
+        }
+    }
+
+    @media (max-width: 1800px) {
+        .circle {
+            height: 18rem;
+            width: 35rem;
+        }
+
+        .plant {
+            left: 25rem;
+            bottom: 14rem;
+        }
+
+        .student-img-wrapper {
+            left: 40rem;
+        }
+    }
+
+    @media (max-width: 1400px) {
+        .circle {
+            right: 10rem;
+            width: 35rem;
+        }
+
+        .plant {
+            left: 15rem;
+            width: 10rem;
+        }
+
+        .student-img-wrapper {
+            left: 32rem;
+        }
+
+        .login-form-wrapper h3 {
+            padding-top: calc(6vh - 3rem);
+        }
+    }
+
+    @media (max-width: 1398px) {
+        .left-content-wrapper h3 {
+            font-size: 2.3rem;
+        }
+    }
+
+    @media (max-width: 1300px) {
+        .student-img-wrapper {
+            height: calc(60vh - 1rem);
+            width: 35rem;
+        }
+    }
+
+    @media (max-width: 1204px) {
+        .circle {
+            height: 16rem;
+            width: 27rem;
+        }
+
+        .plant {
+            left: 11rem;
+            width: 10rem;
+        }
+
+        .student-img-wrapper {
+            height: calc(60vh - 1rem);
+            width: 27rem;
+        }
+
+        .left-content-wrapper h3 {
+            font-size: 2rem;
+        }
+
+        .btn.btn-jupyter.btn-lg {
+            width: calc(35vw + 2rem);
+        }
+    }
+
+    @media (max-width: 1130px) {
+        .plant {
+            left: 8rem;
+            width: 9rem;
+        }
+
+        .student-img-wrapper {
+            left: 28rem;
+            height: calc(60vh - 1rem);
+            width: 27rem;
+        }
+
+    }
+
+    @media (max-width: 1118px) {
+        .left-content-wrapper h3 {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media (max-width: 1086px) {
+        .login-form-wrapper h3 {
+            font-size: 2.2rem;
+        }
+    }
+
+    @media (max-width: 1050px) {
+        .student-img-wrapper {
+            left: 25rem;
+            height: calc(58vh - 1rem);
+            width: 27rem;
+        }
+
+        .login-form-wrapper-img {
+            width: calc(38vw - 2rem);
+            height: calc(35vh - 2rem);
+        }
+    }
+
+    @media (max-width: 956px) {
+        .left-content-wrapper h3 {
+            font-size: 1.7rem;
+        }
+
+        .login-form-wrapper h3 {
+            font-size: 2rem;
+        }
+        .org-logo {
+            width: 12rem;
+        }
+    }
+    @media (max-width: 930px){
+        .circle {
+            height: 13rem;
+        }
+        .plant {
+            left: 5rem;
+            bottom: 11rem;
+        }
+        .student-img-wrapper {
+            bottom: 11rem;
+            left: 20rem; 
+        }
+        .left-content-wrapper h3 {
+            font-size: 1.6rem;
+        }
+    }
+    @media (max-width: 768px) {
+        .left-section {
+            display: none;
+        }
+
+        .right-section {
+            width: 100%;
+        }
+        .login-form-wrapper h3 {
+            font-size: 2.3rem;
+        }
+        .form-group {
+            padding-top: 0;
+        }
+        .login-form-wrapper-p {
+            font-size: 2rem;
+        }
+        .login-form-wrapper-img {
+            width: calc(64vw - 2rem);
+            height: calc(38vh - 2rem);
+        }
+        .btn.btn-jupyter.btn-lg {
+            width: calc(50vw + 2rem);
+            font-size: 1.6rem;
+        }
+        
+    }
+    @media (max-width: 600px){
+        .login-form-wrapper h3 {
+            font-size: 2rem;
+        }
+    }
+    @media (max-width: 521px){
+        .login-form-wrapper h3 {
+            font-size: 1.8rem;
+        }
+        .btn.btn-jupyter.btn-lg {
+            width: calc(70vw + 2rem);
+        }
+    }
+    @media (max-width: 469px){
+        .login-form-wrapper h3 {
+            font-size: 1.7rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% if announcement_login %}
+{% set announcement = announcement_login %} {% endif %}
+{% block login_widget %}
+{% endblock %}
+{% block nav_bar %} 
+{% endblock %}
+{% block main %}
+{% block login %}
+<div id='login-main' class='container'>
+    {% block login_container %}
+    {% if custom_html %}
+    {{ custom_html | safe }}
+    {% elif login_service %}
+    <div class='service-login'>
+        <div class='page-wrapper'>
+            <div class='d-flex flex-wrap h-100'>
+                <div class='left-section'>
+                    <div class='left-content-wrapper'>
+                        <h3 class='color-fff font-poppins'>Your differentiated learning journey, begins here.</h3>
+                    </div>
+                    <div class='student-img-wrapper'>
+                        <img class='student-img' id='student-img'/>
+                    </div>
+                    <div class='plant'>
+                        <img id='plant'/>
+                    </div>
+                    <div class='circle'>
+                        <img id='ellipse'/>
+                    </div>
+                </div>
+                <div class='right-section d-flex flex-column'>
+                    <div class='section-header'>
+                        <div class='section-header '>
+                            <div class='org-logo'>
+                                <img id='logo'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='login-form-wrapper .flex-column'>
+                        <h3 class='font-poppins'>Welcome to Data Science Labs <span>:)</span></h3>
+                        <div class='form-group floating-label mb-5'>
+                            <span class='login-form-wrapper-p font-poppins'>Learn. Code. Act. </p>
+                        </div>
+                        <div class='login-form-wrapper-img'>
+                            <img class='login-img' id='data-extraction-img'/>
+                        </div>
+                        <div class='sign-flex align-items-center flex-row mt-2 '>
+                            <a role='button' class='btn btn-jupyter btn-lg font-poppins'
+                                href='{{authenticator_login_url}}'>
+                                Login with organization ID
+                                <!-- Sign in with {{login_service}} -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <form action='{{authenticator_login_url}}' method='post' role='form'>
+        <div class='auth-form-header'>Sign in</div>
+        <div class='auth-form-body'>
+            {% if login_error %}
+            <p class='login_error'>{{login_error}}</p>
+            {% endif %}
+            <label for='username_input'>Username:</label>
+            <input id='username_input' type='text' autocapitalize='off' autocorrect='off' class='form-control'
+                name='username' val='{{username}}' tabindex='1' autofocus='autofocus' />
+            <label for='password_input'>Password:</label>
+            <input type='password' class='form-control' name='password' id='password_input' tabindex='2' />
+
+            <div class='feedback-container'>
+                <input id='login_submit' type='submit' class='btn btn-jupyter' value='Sign in' tabindex='3' />
+                <div class='feedback-widget hidden'>
+                    <i class='fa fa-spinner'></i>
+                </div>
+            </div>
+
+            {% block login_terms %} {% if login_term_url %}
+            <div id='login_terms' class='login_terms'>
+                <input type='checkbox' id='login_terms_checkbox' name='login_terms_checkbox' required />
+                {% block login_terms_text %} {# allow overriding the text #} By logging
+                into the platform you accept the
+                <a href='{{ login_term_url }}'>terms and conditions</a>. {% endblock
+                login_terms_text %}
+            </div>
+            {% endif %} {% endblock login_terms %}
+        </div>
+    </form>
+    {% endif %} {% endblock login_container %}
+</div>
+{% endblock login %} {% block footer %} {% endblock %} {% endblock %} {% block
+script %}
+{{ super() }}
+<script>
+    if (window.location.protocol === 'http:') {
+        // unhide http warning
+        var warning = document.getElementById('insecure-login-warning');
+        warning.className = warning.className.replace(/\bhidden\b/, '');
+    }
+    // setup onSubmit feedback
+    $('form').submit((e) => {
+        var form = $(e.target);
+        form.find('.feedback-container>input').attr('disabled', true);
+        form.find('.feedback-container>*').toggleClass('hidden');
+        form.find('.feedback-widget>*').toggleClass('fa-pulse');
+    });   
+    
+    //custom script
+
+    const s3_bucket_url='https://datalab-static-images.s3.ap-south-1.amazonaws.com/';
+    $('#student-img').attr('src',`${s3_bucket_url}jordy-1.png`);
+    $('#plant').attr('src',`${s3_bucket_url}plant.png`);
+    $('#ellipse').attr('src',`${s3_bucket_url}ellipse.png`);
+    $('#logo').attr('src',`${s3_bucket_url}career_shaper_logo.png`);
+    $('#data-extraction-img').attr('src',`${s3_bucket_url}data_extraction.svg`);    
+
+</script>
+{% endblock %}

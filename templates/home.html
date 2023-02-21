@@ -1,0 +1,161 @@
+{% extends 'templates/page.html' %}
+{% block stylesheet %}
+{{ super() }}
+<style>
+    .navbar-default {
+        height: 6rem;
+        background-color: #F6FBFE;
+        border-color: #e7e7e7;
+        box-shadow: 0px 3px 5px rgb(0 0 0 / 12%);
+    }
+
+    .navbar-header,.navbar-collapse{
+        padding: 1.5rem;
+    }
+
+    .navbar-nav {
+        font-family: poppins;
+        font-size: 16px;
+        color: #006BB6;
+        font-weight: 500;
+    }
+
+    .navbar-nav li {
+        margin-left: 3rem;
+    }
+
+    .navbar-right li {
+        margin-left: 3rem;
+    }
+
+    #logout{
+        border:none;
+        font-size: 16px;
+        color: #006BB6;
+    }
+
+    #logout:hover{ 
+        background-color: transparent; 
+        text-decoration: none; 
+    }
+    
+    .jpy-logo {
+        height: 3rem;
+    }
+
+    .text-center {
+        padding-top: 12rem;
+    }
+
+    .server-info {
+        font-family: poppins;
+        font-weight: 400;
+        font-size: 22px;
+    }
+
+    #stop {
+        background-color: #F7545D;
+        font-weight: 600;
+        font-family: Poppins;
+        font-size: 18px;
+        border-radius: 25px;
+        width: 25rem;
+        border: none;
+        margin: 2rem;
+    }
+
+    #start {
+        background-color: #5FBEF0;
+        font-weight: 600;
+        font-family: Poppins;
+        font-size: 18px;
+        border-radius: 25px;
+        width: 25rem;
+        border: none;
+        margin: 2rem;
+    }
+
+    #img-div {
+        margin: 8rem;
+    }
+
+    img {
+        max-width: 100%;
+        height: 100%
+    }
+    
+</style>
+{% endblock %}
+{% if announcement_home %}
+{% set announcement = announcement_home %}
+{% endif %}
+{% block nav_bar_left_items%}
+{% if user.admin %}
+{{ super() }}
+{% endif %}
+{% endblock %}
+{% block main %}
+<div class='container'>
+    <div class='row'>
+        <div class='text-center' id='text-center'>
+            {% if default_server.active %}
+            {{named_spawners}}
+            <span class='server-info' id='server-info'>Your server is still running. You can stop or go back to your
+                server again.
+            </span>
+            <br />
+            <br />
+            <br />
+            <a id='stop' role='button' class='btn btn-lg btn-danger'>
+                Stop My Server
+            </a>
+            {% endif %}
+            <a id='start' role='button' class='btn btn-lg btn-primary' href='{{ url }}'>
+                {% if not default_server.active %}Start{% endif %} My Server
+            </a>
+            <br />
+            <div id='img-div'>
+                <img id='server-img'/>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}
+{% block script %}
+{{ super() }}
+<script type='text/javascript'>
+    require(['home']);
+
+    //custom script
+
+    const s3_bucket_url='https://datalab-static-images.s3.ap-south-1.amazonaws.com/';
+    $('#server-img').attr('src',`${s3_bucket_url}home_server.svg`);
+
+    // To hide left navbar items - 'Token' and 'services'
+
+    const navbarLeftList = document.getElementsByClassName('nav navbar-nav')[0].getElementsByTagName('li');
+    navbarLeftList[1].style.display = 'none';
+    navbarLeftList[3].style.display = 'none';
+
+    // To change the color for active link in top left navbar items
+
+    const currentUrl = window.location.pathname.split('/');
+    const currentAnchorTagText = currentUrl[currentUrl.length - 1];
+    $('.navbar-nav a').each(function () {
+        if ($(this).text().toLowerCase() == currentAnchorTagText) {
+            $(this).css({
+                'color': '#006BB6',
+                'border-bottom': '4px solid #006BB6'
+            });
+        }
+    });
+
+    //Remove server-info on click of stop server
+
+    $('#stop').click(function () {
+        console.log('clicked');
+            $('#server-info').remove();
+    });
+
+</script>
+{% endblock %}
