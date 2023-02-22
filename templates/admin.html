@@ -146,6 +146,11 @@ body {
     font-style: normal;
     color: black;
 }
+.search-input::placeholder {
+    color: #ccc;
+    font-family: 'Poppins';
+    font-weight: 400;
+}
 
 #right-description-bar {
     display: flex;
@@ -178,7 +183,7 @@ body {
 }
 
 .learner-search{
-    width: 22vw;
+    width: 23vw;
 }
 
 .add-btn {
@@ -463,9 +468,9 @@ th{
 }
 
 .delete-course-model-top-first span{
-    font-size: 2.2rem;
+    font-size: 1.85rem;
     color: #F7545D;
-    font-weight: 400;
+    font-weight: bold;
     background: #FDCED1;
     border-radius: 50%;
     cursor: pointer;
@@ -560,15 +565,15 @@ th{
 }
 
 .add-course-model-top-first span,.add-learner-model-top-first span{
-    font-size: 2.5rem;
+    font-size: 1.85rem;
     color: #5FBEF0;
-    font-weight: 400;
+    font-weight: bold;
     background: #E8F6FD;
     border-radius: 50%;
     cursor: pointer;
     height: 1rem;
     width: 1rem;
-    padding: 0 0.5rem;
+    padding: 0 0.4rem;
 }
 
 .add-course-name,.choose-trainer-name,.add-learner{
@@ -762,16 +767,16 @@ th{
 }
 
 #deleteTrainerCancel{
-    font-size: 2.5rem;
+    font-size: 1.85rem;
     text-align: center;
     color: #006BB6;
-    font-weight: 400;
+    font-weight: 600;
     background: #D2EDFB;
     border-radius: 50%;
     cursor: pointer;
     height: 1rem;
     width: 1rem;
-    padding: 0 0.5rem;
+    padding: 0 0.4rem;
 }
 
 .trainerCourseDetails{
@@ -1222,7 +1227,7 @@ body.loading {
                         
                         <div id="learnerSearchCont" class="stop-visible">
                             <div class="search-container learner-search">
-                                <input type="search" placeholder="Search Learner or Course Name" id="learnersSearch" class="search-input fs-14">
+                                <input type="search" placeholder="Search by Learner or Course Name" id="learnersSearch" class="search-input fs-14">
                                 <span class="searchIcon"></span>
                             </div>
                         </div>
@@ -1554,12 +1559,6 @@ let presentUser = 'singleUser';
 let coursesRemoveLearner = null;
 let coursesRemoveList = null;
 let addmorePressed = false;
-// const selectInput = document.getElementById("mySelect");
-// const dropdown = selectInput.nextElementSibling;
-
-// selectInput.addEventListener("click", function() {
-//   dropdown.classList.toggle("show");
-// });
 
 mapUploadBtn.addEventListener('change', function() {
     if (this.files[0].name){
