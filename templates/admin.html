@@ -2,6 +2,7 @@
 {% block stylesheet %}
 {{ super() }}
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap");
     .navbar-default {
         height: 6rem;
         background-color: #F6FBFE;
@@ -42,7 +43,6 @@
     .jpy-logo {
         height: 3rem;
     }
-@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap");
 *{
     box-sizing: border-box;
 }
@@ -1233,7 +1233,7 @@ body.loading {
                                 <option value="mapped" class="fs-16">Mapped</option>
                                 <option value="unmapped" class="fs-16">Unmapped</option>
                             </select>
-                            <div class="select-arrow"></div>
+                            <div class="select-arrow" id="select-arrow"></div>
                         </div>
                         <button class="map-btn" id="mapBtn">Map Learners</button>
                         <button class="add-btn" id="addBtn">Add Course</button>
@@ -1554,6 +1554,12 @@ let presentUser = 'singleUser';
 let coursesRemoveLearner = null;
 let coursesRemoveList = null;
 let addmorePressed = false;
+const selectInput = document.getElementById("mySelect");
+const dropdown = selectInput.nextElementSibling;
+
+selectInput.addEventListener("click", function() {
+  dropdown.classList.toggle("show");
+});
 
 mapUploadBtn.addEventListener('change', function() {
     if (this.files[0].name){
