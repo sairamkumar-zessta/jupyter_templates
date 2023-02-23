@@ -606,6 +606,9 @@ th{
     padding-left:15rem;
     font-size: 1.2rem;
 }
+.course-name-warn-space{
+    margin-bottom: -0.5rem;
+}
 
 .add-course-name input,.add-learner input{
     border-radius:5rem;
@@ -652,7 +655,7 @@ th{
 }
 
 .choose-trainer-arrange p{
-    margin-top: -0.45rem;
+    margin-top: 1.5rem;
     font-family: 'Gothic A1';
     font-style: normal;
     font-weight: 400;
@@ -1603,9 +1606,11 @@ addUploadBtn.addEventListener('change', function() {
 $('#courseNameText').keyup(function(){
     if($('#courseNameText').val().includes(" ")){
         $('#courseNameWarn').text('* course name should not contain spaces');
+        $('#courseNameWarn').addClass('course-name-warn-space');
     }
     else{
         $('#courseNameWarn').text('');
+        $('#courseNameWarn').removeClass('course-name-warn-space');
     }
 });
 
