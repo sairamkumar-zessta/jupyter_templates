@@ -1616,10 +1616,12 @@ addUploadBtn.addEventListener('change', function() {
 
 $('#courseNameText').keyup(function(){
     if($('#courseNameText').val().includes(" ")){
+        $('#courseNameWarn').show();
         $('#courseNameWarn').text('* course name should not contain spaces');
         $('#courseNameWarn').addClass('course-name-warn-space');
     }
     else{
+        $('#courseNameWarn').hide();
         $('#courseNameWarn').text('');
         $('#courseNameWarn').removeClass('course-name-warn-space');
     }
@@ -1719,9 +1721,9 @@ $('#addCourseBtn').click(async () => {
     const courseName = $('#courseNameText').val();
     const instructorUserName = $('#chooseTrainerSelect').find(":selected").val();
     if (courseName.includes(' ')){
-        $('#alertMsgCont').show();
-        $('#alertMsg').text('Please remove spaces in course name');
-        $('#addCourseModal').hide();
+        $('#courseNameWarn').show();
+        $('#courseNameWarn').text('* please enter course name');
+        $('#courseNameWarn').addClass('course-name-warn-space');
     }
     else if (courseName.length > 0 && instructorUserName.length > 0) {
         const coursePromise = await fetch(`${ngshare_url}course/${courseName}`, {
@@ -1763,6 +1765,7 @@ $('#addCourseBtn').click(async () => {
     
     }
     else if (courseName.length === 0){
+        $('#courseNameWarn').show();
         $('#courseNameWarn').text('* please enter course name');
         $('#courseNameWarn').addClass('course-name-warn-space');
       }
@@ -2500,6 +2503,7 @@ $('#addBtn').click (()=> {
     if ($('#addBtn').text() === "Add Course") {
         $('#courseNameText').val('');
         $('#addCourseModal').show();
+        $('#courseNameWarn').hide();
     }
     else if($('#addBtn').text()  === "Add Trainer"){
         $('#trainerUsername').val('');
