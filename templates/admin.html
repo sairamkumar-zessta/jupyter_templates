@@ -1341,7 +1341,7 @@ body.loading {
                             <p>Course Name</p>
                             <input type="text" placeholder="Enter course name" id="courseNameText">
                         </div>
-                        <span class="course-name-warn" id="courseNameWarn">* course name should not contain spaces</span>
+                        <p class="course-name-warn" id="courseNameWarn"></p>
                         <div class="choose-trainer-name">
                             <div class="choose-trainer-arrange">
                                 <p>Choose Trainer</p>
@@ -1603,10 +1603,10 @@ addUploadBtn.addEventListener('change', function() {
 
 $('#courseNameText').keyup(function(){
     if($('#courseNameText').val().includes(" ")){
-        $('#courseNameWarn').show();
+        $('#courseNameWarn').text('* course name should not contain spaces');
     }
     else{
-        $('#courseNameWarn').hide();
+        $('#courseNameWarn').hide('');
     }
 });
 
