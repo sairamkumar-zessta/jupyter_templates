@@ -2504,6 +2504,7 @@ $('#addBtn').click (()=> {
         $('#courseNameText').val('');
         $('#addCourseModal').show();
         $('#courseNameWarn').hide();
+        $('#chooseTrainerSelect').prop('selectedIndex', 0);
     }
     else if($('#addBtn').text()  === "Add Trainer"){
         $('#trainerUsername').val('');
