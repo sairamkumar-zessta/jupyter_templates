@@ -613,6 +613,7 @@ th{
     color: #c51306;
     font-size: 1.2rem;
     margin-left: 0.5rem;
+    display:none;
 }
 
 .add-course-name input,.add-learner input{
@@ -1357,7 +1358,7 @@ body.loading {
                             </div> 
                             <div>
                                 <select placeholder="Enter course name" id="chooseTrainerSelect" class="choose-select"></select>
-                                <span class="trainer-warn">*please select trainer</span>
+                                <span class="trainer-warn" id="trainerWarnMsg">* please select trainer</span>
                             </div>
                             
                         </div>
@@ -1754,10 +1755,13 @@ $('#addCourseBtn').click(async () => {
         }
     
     }
-    else {
+    else if (courseName.length === 0){
         $('#courseNameWarn').text('* please enter course name');
         $('#courseNameWarn').addClass('course-name-warn-space');
       }
+    else if(instructorUserName.length === 0){
+        $('#trainerWarnMsg').show();
+    }
 });
 
 $('#addTrainerBtn').click(async () =>{
