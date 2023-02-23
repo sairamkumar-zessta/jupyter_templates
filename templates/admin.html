@@ -1722,7 +1722,7 @@ $('#addCourseBtn').click(async () => {
     const instructorUserName = $('#chooseTrainerSelect').find(":selected").val();
     if (courseName.includes(' ')){
         $('#courseNameWarn').show();
-        $('#courseNameWarn').text('* please enter course name');
+        $('#courseNameWarn').text('* course name should not contain spaces');
         $('#courseNameWarn').addClass('course-name-warn-space');
     }
     else if (courseName.length > 0 && instructorUserName.length > 0) {
