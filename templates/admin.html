@@ -1755,9 +1755,8 @@ $('#addCourseBtn').click(async () => {
     
     }
     else {
-        $('#alertMsgCont').show();
-        $('#alertMsg').text('Please provide valid course name and trainer username');
-        $('#addCourseModal').hide();
+        $('#courseNameWarn').text('* please enter course name');
+        $('#courseNameWarn').addClass('course-name-warn-space');
       }
 });
 
