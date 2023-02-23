@@ -609,6 +609,10 @@ th{
 .course-name-warn-space{
     margin-bottom: -0.5rem;
 }
+.trainer-warn{
+    color: #c51306;
+    font-size: 1.2rem;
+}
 
 .add-course-name input,.add-learner input{
     border-radius:5rem;
@@ -1349,8 +1353,11 @@ body.loading {
                                 <p>Choose Trainer</p>
                                 <span>Existing Trainer</span>
                             </div> 
-                            <select placeholder="Enter course name" id="chooseTrainerSelect" class="choose-select">
-                            </select>
+                            <div>
+                                <select placeholder="Enter course name" id="chooseTrainerSelect" class="choose-select"></select>
+                                <span class="trainer-warn">*please select trainer</span>
+                            </div>
+                            
                         </div>
                 </div>
                     <div class="add-course-model-bottom">
