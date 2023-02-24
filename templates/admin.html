@@ -1347,9 +1347,9 @@
                         <th>Remove</th>
                     </tr>
                     <tbody id="learnerRowsBody">
-                        <h1 class="fs-16 text-center stop-visible" id="learnerSearchMsg">No results found</h1>
                     </tbody>
                 </table>
+                <h1 class="fs-16 text-center stop-visible" id="learnerSearchMsg">No results found</h1>
                 <div class="loader" id="learnersLoader"></div>
             </div>
         </div>
@@ -2535,7 +2535,6 @@ getAllDetails().then(async (resp) => {
                 searchObj[key] = learnerCourses[key];
             }
         }
-        console.log('object lenth', Object.keys(searchObj).length);
         if (Object.keys(searchObj).length === 0){
             $('#learnerSearchMsg').show();
         }
