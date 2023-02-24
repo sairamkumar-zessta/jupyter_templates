@@ -265,7 +265,7 @@
       max-width: 16vw;
       overflow: hidden;
       text-overflow: ellipsis;
-      cursor: default;
+      cursor: pointer;
       margin-top: 0.5rem;
   }
 
@@ -672,7 +672,7 @@
       font-style: normal;
       font-weight: 400;
       color: #A6A6A6;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
   }
 
   .choose-trainer-arrange,
@@ -1488,7 +1488,7 @@
                             </div> 
                             <input type="text" placeholder="Enter user name" id="trainerUsername" class="add-trainer-name">
                         </div>
-                        <p class="name-warn" id="trainerNameWarn"></p>
+                        <span class="name-warn" id="trainerNameWarn"></span>
                 </div>
                     <div class="add-course-model-bottom">
                         <button id="addTrainerBtn" class="add-button">Add</button>
@@ -1704,14 +1704,12 @@ $('#chooseTrainerSelect').change(()=>{
 
 $('#trainerUsername').keyup(function(){
     if($('#trainerUsername').val().includes(" ")){
-        console.log('inspace');
-        $('#tainerNameWarn').text('* user name should not contain spaces');
         $('#trainerNameWarn').show();
+        $('#tainerNameWarn').text('* user name should not contain spaces');
     }
     else {
-        console.log('without space');
-        $('#tainerNameWarn').text('');
         $('#trainerNameWarn').hide();
+        $('#tainerNameWarn').text('');
     }
 });
 
@@ -1841,8 +1839,8 @@ $('#addCourseBtn').click(async () => {
 $('#addTrainerBtn').click(async () => {
     const instructorUserName = $('#trainerUsername').val();
     if (instructorUserName.includes(' ')) { 
-        $('#tainerNameWarn').text('* user name should not contain spaces');
         $('#trainerNameWarn').show();
+        $('#tainerNameWarn').text('* user name should not contain spaces');
     }
     else if (instructorUserName.length > 0) {
         const hubAddUserPromise = await fetch(`${hub_url}users/${instructorUserName}`, {
@@ -1891,8 +1889,8 @@ $('#addTrainerBtn').click(async () => {
     
     }
     else {
-        $('#tainerNameWarn').text('* please provide username name');
         $('#trainerNameWarn').show();
+        $('#tainerNameWarn').text('* please provide username name');
     }
     
 });
