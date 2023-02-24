@@ -1705,6 +1705,7 @@ $('#chooseTrainerSelect').change(()=>{
 $('#trainerUsername').keyup(function(){
     console.log('value',$('#trainerUsername').val().includes(" "))
     if($('#trainerUsername').val().includes(" ")){
+        console.log('show text');
         $('#trainerNameWarn').show();
         $('#tainerNameWarn').text('* user name should not contain spaces');
     }
