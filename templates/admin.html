@@ -1707,12 +1707,12 @@ $('#trainerUsername').keyup(function(){
     if($('#trainerUsername').val().includes(" ")){
         console.log('show text');
         $('#trainerNameWarn').show();
-        $('#tainerNameWarn').innerHTML('* user name should not contain spaces');
-        console.log('warntext',$('#tainerNameWarn').text())
+        $('#trainerNameWarn').innerHTML('* user name should not contain spaces');
+        console.log('warntext',$('#trainerNameWarn').text())
     }
     else {
         $('#trainerNameWarn').hide();
-        $('#tainerNameWarn').text('');
+        $('#trainerNameWarn').text('');
     }
 });
 
@@ -1843,7 +1843,7 @@ $('#addTrainerBtn').click(async () => {
     const instructorUserName = $('#trainerUsername').val();
     if (instructorUserName.includes(' ')) { 
         $('#trainerNameWarn').show();
-        $('#tainerNameWarn').text('* user name should not contain spaces');
+        $('#trainerNameWarn').text('* user name should not contain spaces');
     }
     else if (instructorUserName.length > 0) {
         const hubAddUserPromise = await fetch(`${hub_url}users/${instructorUserName}`, {
@@ -1893,7 +1893,7 @@ $('#addTrainerBtn').click(async () => {
     }
     else {
         $('#trainerNameWarn').show();
-        $('#tainerNameWarn').text('* please provide username name');
+        $('#trainerNameWarn').text('* please provide username name');
     }
     
 });
