@@ -1328,11 +1328,13 @@
                     </div>
             </div>    
             <div id="courseDetails">
+                <h1 class="fs-16 text-center stop-visible" id="courseSearchMsg">No results found</h1>
                 <div class="loader" id="coursesLoader"></div>
                 <div class="courseDetails" id="courseCardCont">
                 </div>
             </div>
             <div id="trainerDetails">
+                <h1 class="fs-16 text-center stop-visible" id="trainerSearchMsg">No results found</h1>
                 <div class="loader" id="trainersLoader"></div>
                 <div class="trainerDetails" id="trainerCardCont">
                 </div>
@@ -1345,6 +1347,7 @@
                         <th>Remove</th>
                     </tr>
                     <tbody id="learnerRowsBody">
+                        <h1 class="fs-16 text-center stop-visible" id="learnerSearchMsg">No results found</h1>
                     </tbody>
                 </table>
                 <div class="loader" id="learnersLoader"></div>
@@ -2405,6 +2408,12 @@ getAllDetails().then(async (resp) => {
         const searchList = allDetails.filter((course) => {
             return course.courseName.toLowerCase().includes(searchValue.toLowerCase());
         });
+        if (searchList.length === 0){
+            $('#courseSearchMsg').show();
+        }
+        else{
+            $('#courseSearchMsg').hide();
+        }
         for (const course of searchList) {
             addAndAppendCourse(course);
         }; 
