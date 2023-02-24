@@ -2537,10 +2537,10 @@ getAllDetails().then(async (resp) => {
         }
         console.log('object lenth', Object.keys(searchObj).length);
         if (Object.keys(searchObj).length === 0){
-            $('#courseSearchMsg').show();
+            $('#learnerSearchMsg').show();
         }
         else{
-            $('#courseSearchMsg').hide();
+            $('#learnerSearchMsg').hide();
         }
         for (key in searchObj) {
             const obj = {};
