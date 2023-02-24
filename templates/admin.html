@@ -2489,6 +2489,12 @@ getAllDetails().then(async (resp) => {
         const searchList = reqList.filter((trainer) => {
             return trainer.name.toLowerCase().includes(searchValue.toLowerCase());
         });
+        if (searchList.length === 0){
+            $('#trainerSearchMsg').show();
+        }
+        else{
+            $('#trainerSearchMsg').hide();
+        }
         for (const trainer of searchList) {
             addAndAppendTrainer(trainer);
         }     
@@ -2528,6 +2534,12 @@ getAllDetails().then(async (resp) => {
             else if (learnerCourses[key].join('|').toLowerCase().includes(searchValue.toLowerCase())) {
                 searchObj[key] = learnerCourses[key];
             }
+        }
+        if (Object.keys(searchObj).length === 0){
+            $('#courseSearchMsg').show();
+        }
+        else{
+            $('#courseSearchMsg').hide();
         }
         for (key in searchObj) {
             const obj = {};
