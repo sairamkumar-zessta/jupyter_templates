@@ -1704,10 +1704,12 @@ $('#chooseTrainerSelect').change(()=>{
 
 $('#trainerUsername').keyup(function(){
     if($('#trainerUsername').val().includes(" ")){
+        console.log('inspace');
         $('#tainerNameWarn').text('* user name should not contain spaces');
         $('#trainerNameWarn').show();
     }
     else {
+        console.log('without space');
         $('#tainerNameWarn').text('');
         $('#trainerNameWarn').hide();
     }
