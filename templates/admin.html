@@ -614,10 +614,11 @@
       width: 12.5rem;
   }
 
-  .course-name-warn {
+  .name-warn {
       color: #c51306;
       padding-left: 15rem;
       font-size: 1.2rem;
+      display:none;
   }
   .course-name-warn-space {
       margin-bottom: -0.5rem;
@@ -1406,7 +1407,7 @@
                             <p>Course Name</p>
                             <input type="text" placeholder="Enter course name" id="courseNameText">
                         </div>
-                        <p class="course-name-warn" id="courseNameWarn"></p>
+                        <p class="name-warn" id="courseNameWarn"></p>
                         <div class="choose-trainer-name">
                             <div class="choose-trainer-arrange">
                                 <p>Choose Trainer</p>
@@ -1488,7 +1489,7 @@
                             </div> 
                             <input type="text" placeholder="Enter user name" id="trainerUsername" class="add-trainer-name">
                         </div>
-                        <span class="course-name-warn" id="trainerNameWarn">* user name should not contain spaces</span>
+                        <span class="name-warn" id="trainerNameWarn"></span>
                 </div>
                     <div class="add-course-model-bottom">
                         <button id="addTrainerBtn" class="add-button">Add</button>
@@ -1570,7 +1571,7 @@
                                 </div> 
                                 <input type="text" placeholder="Enter user ID" id="singleLearnerName">
                             </div>
-                            <span class="course-name-warn" id="singleLearnerNameWarn">* user name should not contain spaces</span>
+                            <span class="name-warn" id="singleLearnerNameWarn">* user name should not contain spaces</span>
                         </div>
                         <div id="multipleLearners" class="stop-visible">
                         <div class="add-learner">
@@ -1705,9 +1706,11 @@ $('#chooseTrainerSelect').change(()=>{
 $('#trainerUsername').keyup(function(){
     if($('#trainerUsername').val().includes(" ")){
         $('#trainerNameWarn').show();
+        $('#tainerNameWarn').text('* user name should not contain spaces');
     }
     else {
         $('#trainerNameWarn').hide();
+        $('#tainerNameWarn').text('');
     }
 });
 
@@ -1826,7 +1829,7 @@ $('#addCourseBtn').click(async () => {
     }
     else if (courseName.length === 0){
         $('#courseNameWarn').show();
-        $('#courseNameWarn').text('* please enter course name');
+        $('#courseNameWarn').text('* please provide course name');
         $('#courseNameWarn').addClass('course-name-warn-space');
       }
     else if(instructorUserName.length === 0){
@@ -1837,9 +1840,8 @@ $('#addCourseBtn').click(async () => {
 $('#addTrainerBtn').click(async () => {
     const instructorUserName = $('#trainerUsername').val();
     if (instructorUserName.includes(' ')) { 
-        $('#alertMsgCont').show();
-        $('#alertMsg').text('Please remove spaces in trainer name');
-        $('#addTrainerModal').hide();
+        $('#trainerNameWarn').show();
+        $('#tainerNameWarn').text('* user name should not contain spaces');
     }
     else if (instructorUserName.length > 0) {
         const hubAddUserPromise = await fetch(`${hub_url}users/${instructorUserName}`, {
@@ -1888,9 +1890,8 @@ $('#addTrainerBtn').click(async () => {
     
     }
     else {
-        $('#alertMsgCont').show();
-        $('#alertMsg').text('Please provide valide trainer name');
-        $('#addTrainerModal').hide();
+        $('#trainerNameWarn').show();
+        $('#tainerNameWarn').text('* please provide username name');
     }
     
 });
