@@ -1704,12 +1704,12 @@ $('#chooseTrainerSelect').change(()=>{
 
 $('#trainerUsername').keyup(function(){
     if($('#trainerUsername').val().includes(" ")){
-        $('#trainerNameWarn').show();
         $('#tainerNameWarn').text('* user name should not contain spaces');
+        $('#trainerNameWarn').show();
     }
     else {
-        $('#trainerNameWarn').hide();
         $('#tainerNameWarn').text('');
+        $('#trainerNameWarn').hide();
     }
 });
 
@@ -1839,8 +1839,8 @@ $('#addCourseBtn').click(async () => {
 $('#addTrainerBtn').click(async () => {
     const instructorUserName = $('#trainerUsername').val();
     if (instructorUserName.includes(' ')) { 
-        $('#trainerNameWarn').show();
         $('#tainerNameWarn').text('* user name should not contain spaces');
+        $('#trainerNameWarn').show();
     }
     else if (instructorUserName.length > 0) {
         const hubAddUserPromise = await fetch(`${hub_url}users/${instructorUserName}`, {
@@ -1889,8 +1889,8 @@ $('#addTrainerBtn').click(async () => {
     
     }
     else {
-        $('#trainerNameWarn').show();
         $('#tainerNameWarn').text('* please provide username name');
+        $('#trainerNameWarn').show();
     }
     
 });
