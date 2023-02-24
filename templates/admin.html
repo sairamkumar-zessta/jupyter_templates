@@ -1707,7 +1707,7 @@ $('#trainerUsername').keyup(function(){
     if($('#trainerUsername').val().includes(" ")){
         console.log('show text');
         $('#trainerNameWarn').show();
-        $('#tainerNameWarn').text('* user name should not contain spaces');
+        $('#tainerNameWarn').innerHTML('* user name should not contain spaces');
         console.log('warntext',$('#tainerNameWarn').text())
     }
     else {
