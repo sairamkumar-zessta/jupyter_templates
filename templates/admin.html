@@ -237,8 +237,6 @@
       width: 24%;
   }
 
-
-
   .trainer-course-card {
       display: flex;
       justify-content: space-between;
@@ -451,7 +449,7 @@
       align-items: center;
       background: linear-gradient(180deg, rgba(254, 245, 245, 0.2) -6.12%, #FCEAE8 106.76%);
       border-radius: 0px 10px 10px 0px;
-      padding: 0.5rem;
+      padding: 1rem;
       cursor: pointer;
   }
 
@@ -644,6 +642,10 @@
       outline: none;
       background-color: #fff;
       font-size: 1.2rem;
+  }
+
+  .add-trainer-name{
+    margin-top:1.5rem;
   }
   .choose-trainer-name select {
       margin-top: 1.5rem;
@@ -1484,7 +1486,7 @@
                                 <p>User Name</p>
                                 <span>New trainer</span>
                             </div> 
-                            <input type="text" placeholder="Enter user name" id="trainerUsername">
+                            <input type="text" placeholder="Enter user name" id="trainerUsername" class="add-trainer-name">
                         </div>
                         <span class="course-name-warn" id="trainerNameWarn">* user name should not contain spaces</span>
                 </div>
