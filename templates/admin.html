@@ -1756,6 +1756,7 @@ mapLearnerAdd.addEventListener("click", async function (e) {
         titleValues.map(function (v) {
             if (v !== "") {
                 const values = v.split(',');
+                console.log('finalval',values);
                 learnerArray.push(values[0]);
                 const obj = {};
                 for (const each of titlesArr) {
