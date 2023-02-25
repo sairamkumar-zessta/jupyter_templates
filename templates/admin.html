@@ -661,7 +661,6 @@
       font-size: 1.2rem;
       appearance: none;
       -webkit-appearance: none;
-      background-image: url('https://i.postimg.cc/tJX0kLnm/dropdown.png');
       background-repeat: no-repeat;
       background-position: 96%;
       cursor: pointer;
@@ -906,7 +905,7 @@
     overflow: hidden;
   }
   .after-select-input{
-    background-image: url("https://i.postimg.cc/nLyX4Gt7/dropdown-1.png");
+    background: url("https://i.postimg.cc/tJX0kLnm/dropdown.png");
   }
  
 
@@ -1417,7 +1416,7 @@
                                 <span>Existing Trainer</span>
                             </div> 
                             <div>
-                                <select id="chooseTrainerSelect" class="choose-select"></select>
+                                <select id="chooseTrainerSelect" class="choose-select after-select-input"></select>
                                 <br>
                                 <span class="trainer-warn" id="trainerWarnMsg">* please select trainer</span>
                             </div>
@@ -1703,12 +1702,11 @@ $('#singleLearnerName').keyup(function () {
 
 $('#chooseTrainerSelect').change(()=>{
         if ($('#chooseTrainerSelect').find(":selected").val().length > 0) {
-            $('#chooseTrainerSelect').toggleClass('after-select-input');
            $('#trainerWarnMsg').hide();
         }
 })
 $('#chooseTrainerSelect').click(()=>{
-    $('#chooseTrainerSelect').toggleClass('after-select-input');
+    $('.after-select-input').class("transform", "rotate(180deg)");
 }
 );
 
