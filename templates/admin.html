@@ -295,7 +295,10 @@
   .arrange-col-first {
       width: 35%;
   }
-  
+  .after-select-input{
+    background: url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png');
+  }
+ 
   /* .arrange-row-first{
       justify-content: space-between;
   } */
@@ -661,6 +664,7 @@
       font-size: 1.2rem;
       appearance: none;
       -webkit-appearance: none;
+      background-image: url('https://i.postimg.cc/tJX0kLnm/dropdown.png');
       background-repeat: no-repeat;
       background-position: 96%;
       cursor: pointer;
@@ -904,10 +908,6 @@
     animation: spin 2s linear infinite;
     overflow: hidden;
   }
-  .after-select-input{
-    background: url("https://i.postimg.cc/tJX0kLnm/dropdown.png");
-  }
- 
 
   @keyframes spin {
     0% {
@@ -1416,7 +1416,7 @@
                                 <span>Existing Trainer</span>
                             </div> 
                             <div>
-                                <select id="chooseTrainerSelect" class="choose-select after-select-input"></select>
+                                <select id="chooseTrainerSelect" class="choose-select"></select>
                                 <br>
                                 <span class="trainer-warn" id="trainerWarnMsg">* please select trainer</span>
                             </div>
@@ -1701,12 +1701,13 @@ $('#singleLearnerName').keyup(function () {
 });
 
 $('#chooseTrainerSelect').change(()=>{
+    $('#chooseTrainerSelect').toggleClass('after-select-input');
         if ($('#chooseTrainerSelect').find(":selected").val().length > 0) {
            $('#trainerWarnMsg').hide();
         }
 })
-$('#chooseTrainerSelect').click(()=>{
-    $('.after-select-input').class("transform", "rotate(180deg)");
+$('#chooseTrainerSelect').keyup(()=>{
+    $('#chooseTrainerSelect').toggleClass('after-select-input');
 }
 );
 
