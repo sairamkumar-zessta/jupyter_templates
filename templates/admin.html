@@ -1760,7 +1760,7 @@ mapLearnerAdd.addEventListener("click", async function (e) {
                 learnerArray.push(values[0]);
                 const obj = {};
                 for (const each of titlesArr) {
-                    const index = titles.indexOf(each);
+                    const index = titlesArr.indexOf(each);
                     obj[each] = values[index];
                 }
                 reqArray.push(obj);
