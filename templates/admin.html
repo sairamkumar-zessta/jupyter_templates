@@ -1757,6 +1757,7 @@ mapLearnerAdd.addEventListener("click", async function (e) {
                 reqArray.push(obj);
             }
         });
+        console.log('students','learnerArray');
         const checker = (arr, target) => target.every(v => arr.includes(v));
         if (checker(hubLearnerGroupList, learnerArray)) {
             const studentData = JSON.stringify(reqArray);
