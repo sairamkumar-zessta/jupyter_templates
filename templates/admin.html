@@ -1706,12 +1706,15 @@ $('#chooseTrainerSelect').change(()=>{
     $('#chooseTrainerSelect').toggleClass('after-select-input');
         if ($('#chooseTrainerSelect').find(":selected").val().length > 0) {
            $('#trainerWarnMsg').hide();
+           console.log('keychange');
         }
 })
 $("#chooseTrainerSelect").mousedown(function() {
+    console.log('keyup');
     $("#chooseTrainerSelect").toggleClass('after-select-input');
   }).mouseup(function() {
      $("#chooseTrainerSelect").toggleClass('after-select-input');
+     console.log('keydown');
   });
 
 $('#trainerUsername').keyup(function(){
