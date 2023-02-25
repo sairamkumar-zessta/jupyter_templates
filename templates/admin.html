@@ -1761,6 +1761,7 @@ mapLearnerAdd.addEventListener("click", async function (e) {
         const checker = (arr, target) => target.every(v => arr.includes(v));
         if (checker(hubLearnerGroupList, learnerArray)) {
             const studentData = JSON.stringify(reqArray);
+            console.log('studentsjson',studentData);
             const selectedCourse = $('#mapLearnerCourseSelect').find(":selected").val();
             const response = await fetch(`${ngshare_url}students/${selectedCourse}?students=${studentData}`, {
         			method: 'POST',
