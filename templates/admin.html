@@ -1742,7 +1742,9 @@ mapLearnerAdd.addEventListener("click", async function (e) {
         reader.onload = async function (e) {
         const fileData = await e.target.result;
         const titles = fileData.slice(0, fileData.indexOf('\n')).split(',');
+        console.log('titles',titles);
         const titlesArr = titles.map(str => str.replace(/\s/g, ""));
+        console.log('titles',titlesArr);
         const titleValues = fileData.slice(fileData.indexOf('\n') + 1).split('\n');
         for(const each of titleValues){
 
