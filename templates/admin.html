@@ -1710,10 +1710,11 @@ $('#chooseTrainerSelect').change(()=>{
 $("#chooseTrainerSelect").mousedown(function() {
     console.log('mousedown');
     $("#chooseTrainerSelect").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
-  }).mouseup(function() {
-     $("#chooseTrainerSelect").css("background-image", "url('https://i.postimg.cc/tJX0kLnm/dropdown.png')");
-     console.log('mouseup');
   });
+  $(document).on('click', function() {
+      console.log('out');
+  $('#chooseTrainerSelect').css("background-image", "url('https://i.postimg.cc/tJX0kLnm/dropdown.png')");
+});
 
 $('#trainerUsername').keyup(function(){
     console.log('value',$('#trainerUsername').val().includes(" "))
