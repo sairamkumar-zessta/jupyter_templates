@@ -1744,7 +1744,6 @@ mapLearnerAdd.addEventListener("click", async function (e) {
         titleValues.map(function (v) {
             if (v !== "") {
                 const values = v.split(',');
-                console.log('finalval',values);
                 learnerArray.push(values[0]);
                 const obj = {};
                 for (const each of titlesArr) {
@@ -1754,11 +1753,9 @@ mapLearnerAdd.addEventListener("click", async function (e) {
                 reqArray.push(obj);
             }
         });
-        console.log('students',reqArray);
         const checker = (arr, target) => target.every(v => arr.includes(v));
         if (checker(hubLearnerGroupList, learnerArray)) {
             const studentData = JSON.stringify(reqArray);
-            console.log('studentsjson',studentData);
             const selectedCourse = $('#mapLearnerCourseSelect').find(":selected").val();
             const response = await fetch(`${ngshare_url}students/${selectedCourse}?students=${studentData}`, {
         			method: 'POST',
