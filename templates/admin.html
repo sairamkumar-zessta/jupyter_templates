@@ -1741,8 +1741,8 @@ mapLearnerAdd.addEventListener("click", async function (e) {
         reader.readAsText(input);
         reader.onload = async function (e) {
         const fileData = await e.target.result;
-        console.log('file',fileData);
         const titles = fileData.slice(0, fileData.indexOf('\n')).split(',');
+        const titlesArr = titles.map(str => str.replace(/\s/g, ""));
         const titleValues = fileData.slice(fileData.indexOf('\n') + 1).split('\n');
         for(const each of titleValues){
 
@@ -1754,7 +1754,7 @@ mapLearnerAdd.addEventListener("click", async function (e) {
                 const values = v.split(',');
                 learnerArray.push(values[0]);
                 const obj = {};
-                for (const each of titles) {
+                for (const each of titlesArr) {
                     const index = titles.indexOf(each);
                     obj[each] = values[index];
                 }
