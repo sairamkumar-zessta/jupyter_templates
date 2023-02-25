@@ -295,7 +295,10 @@
   .arrange-col-first {
       width: 35%;
   }
-
+  .after-select-input{
+    background-image: url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png');
+  }
+ 
   /* .arrange-row-first{
       justify-content: space-between;
   } */
@@ -1698,11 +1701,14 @@ $('#singleLearnerName').keyup(function () {
 });
 
 $('#chooseTrainerSelect').change(()=>{
-    $('#chooseTrainerSelect').css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
         if ($('#chooseTrainerSelect').find(":selected").val().length > 0) {
            $('#trainerWarnMsg').hide();
         }
 })
+$('#chooseTrainerSelect').click(()=>{
+    $('#chooseTrainerSelect').toggleClass('after-select-input');
+}
+);
 
 $('#trainerUsername').keyup(function(){
     console.log('value',$('#trainerUsername').val().includes(" "))
