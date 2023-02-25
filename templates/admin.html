@@ -1708,21 +1708,16 @@ $('#chooseTrainerSelect').change(()=>{
     }
 })
 $("#chooseTrainerSelect").mousedown(function() {
-    console.log('mousedown');
     $("#chooseTrainerSelect").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
   });
   $(document).on('click', function() {
-      console.log('out');
   $('#chooseTrainerSelect').css("background-image", "url('https://i.postimg.cc/tJX0kLnm/dropdown.png')");
 });
 
 $('#trainerUsername').keyup(function(){
-    console.log('value',$('#trainerUsername').val().includes(" "))
     if($('#trainerUsername').val().includes(" ")){
-        console.log('show text');
         $('#trainerNameWarn').show();
         $('#trainerNameWarn').text('* user name should not contain spaces');
-        console.log('warntext',$('#trainerNameWarn').text())
     }
     else {
         $('#trainerNameWarn').hide();
@@ -1741,16 +1736,9 @@ mapLearnerAdd.addEventListener("click", async function (e) {
         reader.readAsText(input);
         reader.onload = async function (e) {
         const fileData = await e.target.result;
-        console.log('filedata',fileData)
         const titles = fileData.slice(0, fileData.indexOf('\n')).split(',');
-        console.log('titles',titles);
         const titlesArr = titles.map(str => str.replace(/\s/g, ""));
-        console.log('titles',titlesArr);
         const titleValues = fileData.slice(fileData.indexOf('\n') + 1).split('\n');
-        console.log('values',titleValues)
-        for(const each of titleValues){
-
-        }
         const reqArray = [];
         const learnerArray = [];
         titleValues.map(function (v) {
@@ -2012,6 +2000,7 @@ $('#addLearnerCourseBtn').click(async () => {
             reader.onload = async function (e) {
             const fileData = await e.target.result;
             const titles = fileData.slice(0, fileData.indexOf('\n')).split(',');
+            const titlesArr = titles.map(str => str.replace(/\s/g, ""));
             const titleValues = fileData.slice(fileData.indexOf('\n') + 1).split('\n');
             const reqArray = [];
             const learnerArray = [];
@@ -2020,8 +2009,8 @@ $('#addLearnerCourseBtn').click(async () => {
                     const values = v.split(',');
                     learnerArray.push(values[0]);
                     const obj = {};
-                    for (const each of titles) {
-                        const index = titles.indexOf(each);
+                    for (const each of titlesArr) {
+                        const index = titlesArr.indexOf(each);
                         obj[each] = values[index];
                     }
                     reqArray.push(obj);
