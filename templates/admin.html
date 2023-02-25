@@ -1703,18 +1703,16 @@ $('#singleLearnerName').keyup(function () {
 });
 
 $('#chooseTrainerSelect').change(()=>{
-    $('#chooseTrainerSelect').toggleClass('after-select-input');
-        if ($('#chooseTrainerSelect').find(":selected").val().length > 0) {
-           $('#trainerWarnMsg').hide();
-           console.log('keychange');
-        }
+    if ($('#chooseTrainerSelect').find(":selected").val().length > 0) {
+        $('#trainerWarnMsg').hide();
+    }
 })
 $("#chooseTrainerSelect").mousedown(function() {
-    console.log('keyup');
+    console.log('mousedown');
     $("#chooseTrainerSelect").toggleClass('after-select-input');
   }).mouseup(function() {
      $("#chooseTrainerSelect").toggleClass('after-select-input');
-     console.log('keydown');
+     console.log('mouseup');
   });
 
 $('#trainerUsername').keyup(function(){
