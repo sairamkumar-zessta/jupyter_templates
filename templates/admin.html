@@ -2647,12 +2647,13 @@ $('#addBtn').click(() => {
     if ($('#addBtn').text() === "Add Course") {
         $('#courseNameText').val('');
         $('#addCourseModal').show();
-        $('#courseNameWarn').hide();
+        $('#courseNameWarn,#trainerWarnMsg').hide();
         $('#chooseTrainerSelect').prop('selectedIndex', 0);
     }
     else if ($('#addBtn').text() === "Add Trainer") {
         $('#trainerUsername').val('');
         $('#addTrainerModal').show();
+        $('#trainerNameWarn').hide();
     }
     else if ($('#addBtn').text() === "Add Learners") {
         $('#addLearnerModal').show();
@@ -2694,6 +2695,8 @@ $('#mapBtn').click(() => {
     $('#mapLearnerCourseSelect').prop('selectedIndex', 0);
     $('#mapUploadBtn').val('');
     $('#mapFileChosen').text('No file chosen'); 
+    $('#mapFileSelectWarn').hide();
+    $('#mapCourseWarn').hide();
 
 });
 $('#successDone').click(() => location.reload());
