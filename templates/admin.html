@@ -1785,7 +1785,7 @@ mapLearnerAdd.addEventListener("click", async function (e) {
         }
     }
     else {
-        $('#alertMsgCont').show();
+        $('#alertMsgCont').show().fadeOut(7000);
         $('#alertMsg').text('Choose valid csv file and course');
         $('#mapLearnerModal').hide();
     }
@@ -1826,14 +1826,14 @@ $('#addCourseBtn').click(async () => {
               }
               else {
                 const instructorAddResponse = await instructorAddPromise.json();
-                $('#alertMsgCont').show();
+                $('#alertMsgCont').show().fadeOut(7000);
                 $('#alertMsg').text(instructorAddResponse.message);
                 $('#addCourseModal').hide();
               }
         }
         else {
             const courseResponse = await coursePromise.json();
-            $('#alertMsgCont').show();
+            $('#alertMsgCont').show().fadeOut(7000);
             $('#alertMsg').text(courseResponse.message);
             $('#addCourseModal').hide();
         }
@@ -1887,7 +1887,7 @@ $('#addTrainerBtn').click(async () => {
             
             else {
                 const hubAddUserGroupResp = await hubAddUserGroupPromise.json();
-                $('#alertMsgCont').show();
+                $('#alertMsgCont').show().fadeOut(7000);
                 $('#alertMsg').text(hubAddUserGroupResp.message);
                 $('#addTrainerModal').hide();
             }
@@ -1895,7 +1895,7 @@ $('#addTrainerBtn').click(async () => {
            
         else {
             const hubAddUserResp = await hubAddUserPromise.json();
-            $('#alertMsgCont').show();
+            $('#alertMsgCont').show().fadeOut(7000);
             $('#alertMsg').text(hubAddUserResp.message);
             $('#addTrainerModal').hide();
         }
@@ -1962,7 +1962,7 @@ $('#addLearnerCourseBtn').click(async () => {
                         }
                         else {
                             const learnerAddResponse = await learnerAddPromise.json();
-                            $('#alertMsgCont').show();
+                            $('#alertMsgCont').show().fadeOut(7000);
                             $('#alertMsg').text(learnerAddResponse.message);
                             $('#addLearnerModal').hide();
                         }
@@ -1976,14 +1976,14 @@ $('#addLearnerCourseBtn').click(async () => {
                 }
                 else {
                     const hubAddUserGroupResp = await hubAddUserGroupPromise.json();
-                    $('#alertMsgCont').show();
+                    $('#alertMsgCont').show().fadeOut(7000);
                     $('#alertMsg').text(hubAddUserGroupResp.message);
                     $('#addLearnerModal').hide();
                 }
             }
             else {
                 const hubAddUserResp = await hubAddUserPromise.json();
-                $('#alertMsgCont').show();
+                $('#alertMsgCont').show().fadeOut(7000);
                 $('#alertMsg').text(hubAddUserResp.message);
                 $('#addLearnerModal').hide();
             }
@@ -2056,7 +2056,7 @@ $('#addLearnerCourseBtn').click(async () => {
                         }
                         else {
                             const learnerAddResponse = await learnerAddPromise.json();
-                        $('#alertMsgCont').show();
+                        $('#alertMsgCont').show().fadeOut(7000);
                         $('#alertMsg').text(learnerAddResponse.message);
                         $('#addLearnerModal').hide();
                         }
@@ -2070,7 +2070,7 @@ $('#addLearnerCourseBtn').click(async () => {
                 }
                 else {
                     const hubAddUserGroupResp = await hubAddUserGroupPromise.json();
-                    $('#alertMsgCont').show();
+                    $('#alertMsgCont').show().fadeOut(7000);
                     $('#alertMsg').text(hubAddUserGroupResp.message);
                     $('#addLearnerModal').hide();
                 }
@@ -2078,7 +2078,7 @@ $('#addLearnerCourseBtn').click(async () => {
             
             else {
                 const hubAddUserResp = await hubAddUserPromise.json();
-                $('#alertMsgCont').show();
+                $('#alertMsgCont').show().fadeOut(7000);
                 $('#alertMsg').text(hubAddUserResp.message);
                 $('#addLearnerModal').hide();
             }
@@ -2111,7 +2111,7 @@ async function removeLearnerFromAllCourse(learnerName, coursesList) {
         }
         else {
             $('#removeLearnerCourseModal').hide();
-            $('#alertMsgCont').show();
+            $('#alertMsgCont').show().fadeOut(7000);
             $('#alertMsg').text(response.message);
         };
 
@@ -2125,13 +2125,13 @@ async function removeLearnerFromAllCourse(learnerName, coursesList) {
          }
          else {
             $('#removeLearnerCourseModal').hide();
-            $('#alertMsgCont').show();
+            $('#alertMsgCont').show().fadeOut(7000);
             $('#alertMsg').text('Please check learner not removed from some courses');
          }
     }
     else {
         $('#removeLearnerCourseModal').hide();
-        $('#alertMsgCont').show();
+        $('#alertMsgCont').show().fadeOut(7000);
         $('#alertMsg').text('Learner not enrolled in any course');
     }
     
@@ -2162,7 +2162,7 @@ async function deleteItemNext(deleteItem, deleteCourseName) {
         }
         else {
             $('#deleteCourseModal').hide();
-            $('#alertMsgCont').show();
+            $('#alertMsgCont').show().fadeOut(7000);
             $('#alertMsg').text(response.message);
             deleteItem = null;
             deleteCourseName = null;
@@ -2187,7 +2187,7 @@ async function deleteItemNext(deleteItem, deleteCourseName) {
         }
         else {
             $('#deleteCourseModal').hide();
-            $('#alertMsgCont').show();
+            $('#alertMsgCont').show().fadeOut(7000);
             $('#alertMsg').text(response.message);
             deleteItem = null;
             deleteCourseName = null;
@@ -2212,7 +2212,7 @@ async function deleteItemNext(deleteItem, deleteCourseName) {
         }
         else {
             $('#deleteCourseModal').hide();
-            $('#alertMsgCont').show();
+            $('#alertMsgCont').show().fadeOut(7000);
             $('#alertMsg').text(response.message);
             deleteItem = null;
             deleteCourseName = null;
