@@ -2380,6 +2380,14 @@ function addAndAppendLearner(learner) {
         $('#deleteTrainerModal').show();
         $('#actionTitle').text('Learner - ');
         $('#deleteTrainer').text(Object.keys(learner)[0]);
+        if (Object.values(learner)[0].length === 0){
+            $('#noCourseMsg').show();
+            $('#noCourseMsg').text('Learner not added to any course');
+        }
+        else{
+            $('#noCourseMsg').hide();
+            $('#noCourseMsg').text('');
+        }
         for (let each of Object.values(learner)[0]) {
             const learnerCourseCard = createEl('div', ['trainer-course-card', 'learner-coursecard-height']);
             trainerCourseCardCont.appendChild(learnerCourseCard);
