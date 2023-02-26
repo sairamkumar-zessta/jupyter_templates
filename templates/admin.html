@@ -1558,14 +1558,14 @@
                                   src="https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_upload.png" alt=""></label>
                                 <span id="mapFileChosen" class="upload-csv-file-name">No file chosen</span>
                             </div>
-                            <p class="name-warn" id="fileSelectWarn">* please upload CSV file</p>
+                            <p class="name-warn" id="mapFileSelectWarn">* please upload CSV file</p>
                         </div>
                         <div class="choose-trainer-name">
                             <p class="choose-course-name">Choose Course</p>
                             <select id="mapLearnerCourseSelect" class="choose-course-select">
                             </select>
                         </div>
-                        <span class="name-warn">* please choose course</span>
+                        <span class="name-warn" id="mapCourseWarn">* please choose course</span>
                 </div>
                     <div class="add-course-model-bottom">
                         <button id="mapLearnerAdd" class="add-button">Add</button>
@@ -1683,6 +1683,9 @@ let addmorePressed = false;
 mapUploadBtn.addEventListener('change', function () {
     if (this.files[0].name) {
     $('#mapFileChosen').text(this.files[0].name);
+    if(this.files[0].name.toLowerCase().includes('.csv')){
+        $('#mapFileSelectWarn').hide();
+    }
     }
     else {
         $('#mapFileChosen').text('No file chosen'); 
@@ -1722,7 +1725,12 @@ $('#chooseTrainerSelect').change(()=>{
     if ($('#chooseTrainerSelect').find(":selected").val().length > 0) {
         $('#trainerWarnMsg').hide();
     }
-})
+});
+$('#mapLearnerCourseSelect').change(()=>{
+    if ($('#mapLearnerCourseSelect').find(":selected").val().length > 0) {
+        $('#mapCourseWarn').hide();
+    }
+});
 $("#chooseTrainerSelect").mousedown(function() {
     $("#chooseTrainerSelect").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
   });
@@ -1743,7 +1751,10 @@ $('#trainerUsername').keyup(function(){
 
 mapLearnerAdd.addEventListener("click", async function (e) {
     if(!mapUploadBtn.value || !mapUploadBtn.files[0].name.toLowerCase().includes('.csv')){
-        $('#fileSelectWarn').show();
+        $('#mapFileSelectWarn').show();
+    }
+    else if($('#mapLearnerCourseSelect').find(":selected").val() == ''){
+        $('#mapCourseWarn').show();
     }
     else if (mapUploadBtn.files[0].name.toLowerCase().includes('.csv') && $('#mapLearnerCourseSelect').find(":selected").val() !== '') {
         const hubLearnerGroupFetch = await fetch(`${hub_url}groups/learner`);
