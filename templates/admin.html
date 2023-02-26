@@ -2654,7 +2654,12 @@ $('#addSuccessClose').click(() => {
     location.reload();
 });
 
-$('#mapBtn').click(() => $('#mapLearnerModal').show());
+$('#mapBtn').click(() => {
+    $('#mapLearnerModal').show();
+    $('#mapLearnerCourseSelect').prop('selectedIndex', 0);
+    $('#mapUploadBtn').val('');
+
+});
 $('#successDone').click(() => location.reload());
 $('#addCourseClose, #addCourseCancel').click(() => {
     if (addmorePressed) {
@@ -2681,7 +2686,7 @@ $('#deleteTrainerCancel').click(() => {
 });
 
 $('#deleteDoneBtn').click(() => {
-    $('#deleteSuccessModal').hide();
+    $('#deleteSuccessModal').hide();mapmapLearnerLearner
     location.reload();
 });
 
