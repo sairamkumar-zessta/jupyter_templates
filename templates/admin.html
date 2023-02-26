@@ -236,10 +236,10 @@
       width: 24%;
   }
 
-  .trainer-course-card {
+  .user-course-card {
       display: flex;
       justify-content: space-between;
-      background: linear-gradient(108.02deg, rgba(246, 251, 254, 0) 64.53%, #D6F0FF 122.73%), linear-gradient(179.46deg, rgba(246, 251, 254, 0) 1.56%, #DBF2FF 127.02%);
+      background: linear-gradient(108.02deg, rgba(246, 251, 254, 0) 64.53%, #D6F0FF 122.73%), linear-gradient(190.46deg, rgba(246, 251, 254, 0) 1.56%, #DBF2FF 127.02%);
       border-radius: 1rem;
       margin-right: 2%;
       margin-left: 2%;
@@ -2348,7 +2348,7 @@ function addAndAppendTrainer(trainer) {
         }
         for (let each of trainer.course) {
             const displayObjCourse = { name: Object.keys(each)[0], display2: 'Learner count', display2_c: Object.values(each)[0] }
-            const classesObjCourse = { card: 'trainer-course-card', icon: 'delete-icon' }
+            const classesObjCourse = { card: 'user-course-card', icon: 'delete-icon' }
             const deleteTrainerCourse = () => {
                 deleteTrainerModal.style.display = 'none';
                 $('#deleteCourseModal').show();
@@ -2389,7 +2389,7 @@ function addAndAppendLearner(learner) {
             $('#noCourseMsg').text('');
         }
         for (let each of Object.values(learner)[0]) {
-            const learnerCourseCard = createEl('div', ['trainer-course-card', 'learner-coursecard-height']);
+            const learnerCourseCard = createEl('div', ['user-course-card', 'learner-coursecard-height']);
             trainerCourseCardCont.appendChild(learnerCourseCard);
             const learnerCourseCardLeft = createEl('div', 'course-card-left');
             learnerCourseCard.appendChild(learnerCourseCardLeft);
