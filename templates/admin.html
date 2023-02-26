@@ -1731,11 +1731,18 @@ $('#mapLearnerCourseSelect').change(()=>{
         $('#mapCourseWarn').hide();
     }
 });
+
 $("#chooseTrainerSelect").mousedown(function() {
     $("#chooseTrainerSelect").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
-  });
-  $(document).on('click', function() {
+});
+
+$("#mapLearnerCourseSelect").mousedown(function() {
+    $("#mapLearnerCourseSelect").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
+});
+
+$(document).on('click', function() {
   $('#chooseTrainerSelect').css("background-image", "url('https://i.postimg.cc/tJX0kLnm/dropdown.png')");
+  $('#mapLearnerCourseSelect').css("background-image", "url('https://i.postimg.cc/tJX0kLnm/dropdown.png')");
 });
 
 $('#trainerUsername').keyup(function(){
