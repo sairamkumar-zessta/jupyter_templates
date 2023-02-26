@@ -590,7 +590,7 @@
   .add-course-name,
   .add-learner{
       padding-left: 2rem;
-      padding-top: 2rem;
+      padding-top: 2.5rem;
       display: flex;
       align-items: center;
   }
@@ -620,8 +620,8 @@
       font-size: 1.2rem;
       display:none;
   }
-  .course-name-warn-space {
-      margin-bottom: -0.5rem;
+  .name-warn-space {
+      margin-bottom: -1rem;
   }
 
   .trainer-warn {
@@ -648,7 +648,7 @@
     margin-top:1.5rem;
   }
   .choose-trainer-name select {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       border-radius:5rem;
       height:3rem;
       border:1px solid #5FBEF0;
@@ -682,7 +682,7 @@
   }
 
   .choose-trainer-arrange p {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       font-family: 'Gothic A1';
       font-style: normal;
       font-weight: 400;
@@ -1684,12 +1684,12 @@ $('#courseNameText').keyup(function () {
     if ($('#courseNameText').val().includes(" ")) {
         $('#courseNameWarn').show();
         $('#courseNameWarn').text('* course name should not contain spaces');
-        $('#courseNameWarn').addClass('course-name-warn-space');
+        $('#courseNameWarn').addClass('name-warn-space');
     }
     else {
         $('#courseNameWarn').hide();
         $('#courseNameWarn').text('');
-        $('#courseNameWarn').removeClass('course-name-warn-space');
+        $('#courseNameWarn').removeClass('name-warn-space');
     }
 });
 
@@ -1798,7 +1798,7 @@ $('#addCourseBtn').click(async () => {
     if (courseName.includes(' ')) {
         $('#courseNameWarn').show();
         $('#courseNameWarn').text('* course name should not contain spaces');
-        $('#courseNameWarn').addClass('course-name-warn-space');
+        $('#courseNameWarn').addClass('name-warn-space');
     }
     else if (courseName.length > 0 && instructorUserName.length > 0) {
         const coursePromise = await fetch(`${ngshare_url}course/${courseName}`, {
@@ -1842,7 +1842,7 @@ $('#addCourseBtn').click(async () => {
     else if (courseName.length === 0){
         $('#courseNameWarn').show();
         $('#courseNameWarn').text('* please provide course name');
-        $('#courseNameWarn').addClass('course-name-warn-space');
+        $('#courseNameWarn').addClass('name-warn-space');
       }
     else if(instructorUserName.length === 0){
         $('#trainerWarnMsg').show();
