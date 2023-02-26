@@ -786,7 +786,7 @@
       position: absolute;
       transform: translate(-50%, -50%);
       /* animation: animatemodal .3s; */
-      inset: 50% -5% -8% 50%;
+      inset: 50% -5% -22% 50%;
   }
 
   .delete-trainer-model-top-first {
@@ -1514,7 +1514,7 @@
                         </div>
                     </div>
                 </div> 
-                <h1 class="text-center fs-16 d-none">Trainer not added to any course</h1>
+                <h1 class="text-center fs-16 stop-visible" id="noCourseMsg"></h1>
                 <div class="trainerCourseDetails" id="trainerCourseCardCont">
 
                 </div>
@@ -2338,6 +2338,14 @@ function addAndAppendTrainer(trainer) {
         $('#deleteTrainerModal').show();
         $('#actionTitle').text('Trainer - ');
         $('#deleteTrainer').text(trainer.name);
+        if (trainer.course.length === 0){
+            $('#noCouseMsg').show();
+            $('#noCourseMsg').text('Trainer not added to any course');
+        }
+        else{
+            $('#noCouseMsg').hide();
+            $('#noCourseMsg').text('');
+        }
         for (let each of trainer.course) {
             const displayObjCourse = { name: Object.keys(each)[0], display2: 'Learner count', display2_c: Object.values(each)[0] }
             const classesObjCourse = { card: 'trainer-course-card', icon: 'delete-icon' }
