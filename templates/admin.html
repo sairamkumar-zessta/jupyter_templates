@@ -1296,7 +1296,7 @@
   .star-adjust{
     position: absolute;
     top: 4.5px;
-    color: red;
+    color: red !important;
     left: 49px;
   }
 </style>
@@ -1608,13 +1608,13 @@
                         <div id="multipleLearners" class="stop-visible">
                         <div class="add-learner">
                                 <div class="choose-trainer-arrange">
-                                    <p>Upload CSV file</p>
+                                    <p style="margin-top: 0px;">Upload CSV file</p>
                                     <span>Multiple learners</span>
                                 </div> 
                                 <div class="stop-visible">
                                 <input type="file" id="addUploadBtn" accept=".csv" />
                                 </div>
-                                <label for="addUploadBtn" class="upload-btn"><img 
+                                <label for="addUploadBtn" class="upload-btn" style="margin-top: 0.2rem;"><img 
                                   src="https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_upload.png" alt=""></label>
                                 <span id="addFileChosen">No file chosen</span>
                         </div>
