@@ -618,10 +618,8 @@
       color: #c51306;
       padding-left: 15rem;
       font-size: 1.2rem;
-      display:none;
-  }
-  .name-warn-space {
       margin-bottom: -1rem;
+      display:none;
   }
 
   .trainer-warn {
@@ -644,8 +642,8 @@
       background-color: #fff;
       font-size: 1.2rem;
   }
-  .add-trainer-name{
-    margin-top:1.5rem;
+  .add-trainer-name,.choose-course-select{
+    margin-top:1.5rem !important;
   }
   .choose-trainer-name select {
       margin-top: 2rem;
@@ -697,7 +695,7 @@
       font-weight: 400;
       color: #000000;
       width: 12.5rem;
-      margin-top: 0.5rem;
+      margin-top: 2rem;
       font-size: 1.4rem;
   }
 
@@ -724,8 +722,8 @@
       border-bottom-right-radius: 1.6rem;
       padding: 2.4rem;
   }
-  .trainer-username{
-    margin-top: 1rem;
+  .trainer-username,.upload-csv-file {
+    margin-top: 1rem !important;
   }
 
   .add-success-img-arrange {
@@ -887,8 +885,17 @@
       text-align: center;
       cursor: pointer;
       margin-right: 1rem;
+      margin-top:1.5rem;
   }
-
+  .upload-csv-file-name{
+    margin-top: 1rem;
+    font-family: 'Gothic A1';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: #000000;
+}
+  
   #file-chosen {
       margin-left: 0.5rem;
       font-family: 'Gothic A1';
@@ -1535,7 +1542,7 @@
                         <div>
                             <div class="add-learner">
                                 <div class="choose-trainer-arrange">
-                                    <p>Upload CSV file</p>
+                                    <p class="upload-csv-file">Upload CSV file</p>
                                     <span>Multiple learners</span>
                                 </div> 
                                 <div class="stop-visible">
@@ -1543,14 +1550,16 @@
                                 </div>
                                 <label for="mapUploadBtn" class="upload-btn"><img
                                   src="https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_upload.png" alt=""></label>
-                                <span id="mapFileChosen">No file chosen</span>
+                                <span id="mapFileChosen" class="upload-csv-file-name">No file chosen</span>
                             </div>
+                            <p class="name-warn">* please upload CSV file</p>
                         </div>
                         <div class="choose-trainer-name">
                             <p class="choose-course-name">Choose Course</p>
-                            <select id="mapLearnerCourseSelect" class="choose-select">
+                            <select id="mapLearnerCourseSelect" class="choose-course-select">
                             </select>
                         </div>
+                        <span class="name-warn">* please choose course</span>
                 </div>
                     <div class="add-course-model-bottom">
                         <button id="mapLearnerAdd" class="add-button">Add</button>
@@ -1687,12 +1696,10 @@ $('#courseNameText').keyup(function () {
     if ($('#courseNameText').val().includes(" ")) {
         $('#courseNameWarn').show();
         $('#courseNameWarn').text('* course name should not contain spaces');
-        $('#courseNameWarn').addClass('name-warn-space');
     }
     else {
         $('#courseNameWarn').hide();
         $('#courseNameWarn').text('');
-        $('#courseNameWarn').removeClass('name-warn-space');
     }
 });
 
@@ -1801,7 +1808,6 @@ $('#addCourseBtn').click(async () => {
     if (courseName.includes(' ')) {
         $('#courseNameWarn').show();
         $('#courseNameWarn').text('* course name should not contain spaces');
-        $('#courseNameWarn').addClass('name-warn-space');
     }
     else if (courseName.length > 0 && instructorUserName.length > 0) {
         const coursePromise = await fetch(`${ngshare_url}course/${courseName}`, {
@@ -1845,7 +1851,6 @@ $('#addCourseBtn').click(async () => {
     else if (courseName.length === 0){
         $('#courseNameWarn').show();
         $('#courseNameWarn').text('* please provide course name');
-        $('#courseNameWarn').addClass('name-warn-space');
       }
     else if(instructorUserName.length === 0){
         $('#trainerWarnMsg').show();
