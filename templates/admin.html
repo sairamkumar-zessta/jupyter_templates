@@ -1772,13 +1772,13 @@ mapLearnerAdd.addEventListener("click", async function (e) {
             }
             else {
                 const responseMessage = await response.json();
-                $('#alertMsgCont').show();
+                $('#alertMsgCont').show().fadeOut(5000);
                 $('#alertMsg').text(responseMessage.message);
                 $('#mapLearnerModal').hide();
             }
         }
         else {
-            $('#alertMsgCont').show();
+            $('#alertMsgCont').show().fadeout(5000);
             $('#alertMsg').text('Some of the students does not exist');
             $('#mapLearnerModal').hide();
         }
