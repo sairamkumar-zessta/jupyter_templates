@@ -786,7 +786,7 @@
       position: absolute;
       transform: translate(-50%, -50%);
       /* animation: animatemodal .3s; */
-      inset: 50% -5% -22% 50%;
+      inset: 50% -5% -10% 50%;
   }
 
   .delete-trainer-model-top-first {
@@ -2339,11 +2339,11 @@ function addAndAppendTrainer(trainer) {
         $('#actionTitle').text('Trainer - ');
         $('#deleteTrainer').text(trainer.name);
         if (trainer.course.length === 0){
-            $('#noCouseMsg').show();
+            $('#noCourseMsg').show();
             $('#noCourseMsg').text('Trainer not added to any course');
         }
         else{
-            $('#noCouseMsg').hide();
+            $('#noCourseMsg').hide();
             $('#noCourseMsg').text('');
         }
         for (let each of trainer.course) {
