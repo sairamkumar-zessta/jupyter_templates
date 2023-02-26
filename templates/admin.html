@@ -1292,6 +1292,13 @@
     background-repeat: no-repeat;
     background-position: 96%;
   }
+
+  .star-adjust{
+    position: absolute;
+    top: 4.5px;
+    color: red;
+    left: 49px;
+  }
 </style>
 {% endblock %}
 {% block main %}
@@ -1589,11 +1596,9 @@
                         <div id="singleLearner">
                             <div class="add-learner">
                                 <div class="choose-trainer-arrange">
-                                    <div style="display: flex;">
-                                        <p style="margin-top: 0rem;">User ID</p>
-                                        <span style="color:red;">*</span>
+                                    <div style="position:relative;">
+                                        <p style="margin-top: 0rem;">User ID<span class="star-adjust">*</span></p>
                                     </div>
-                                   
                                     <span>Single learner</span>
                                 </div> 
                                 <input type="text" placeholder="Enter user ID" id="singleLearnerName">
