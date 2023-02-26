@@ -1558,7 +1558,7 @@
                                   src="https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_upload.png" alt=""></label>
                                 <span id="mapFileChosen" class="upload-csv-file-name">No file chosen</span>
                             </div>
-                            <p class="name-warn">* please upload CSV file</p>
+                            <p class="name-warn" id="fileSelectWarn">* please upload CSV file</p>
                         </div>
                         <div class="choose-trainer-name">
                             <p class="choose-course-name">Choose Course</p>
@@ -1742,7 +1742,10 @@ $('#trainerUsername').keyup(function(){
 });
 
 mapLearnerAdd.addEventListener("click", async function (e) {
-    if (mapUploadBtn.files[0].name.toLowerCase().includes('.csv') && $('#mapLearnerCourseSelect').find(":selected").val() !== '') {
+    if(!mapUploadBtn.value || !mapUploadBtn.files[0].name.toLowerCase().includes('.csv')){
+        $('#fileSelectWarn').show();
+    }
+    else if (mapUploadBtn.files[0].name.toLowerCase().includes('.csv') && $('#mapLearnerCourseSelect').find(":selected").val() !== '') {
         const hubLearnerGroupFetch = await fetch(`${hub_url}groups/learner`);
         const hubLearnerGroupJson = await hubLearnerGroupFetch.json();
         const hubLearnerGroupList = hubLearnerGroupJson.users;
