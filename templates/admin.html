@@ -1620,12 +1620,14 @@
                                   src="https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_upload.png" alt=""></label>
                                 <span id="addFileChosen">No file chosen</span>
                         </div>
+                        <span class="name-warn" id="uploadCSVWarn">* please upload CSV file</span>
                         </div>
                         <div class="choose-trainer-name">
                             <p class="choose-course-name" style="margin-top:2.5rem;">Choose Course</p>
                             <select id="addLearnerCourseSelect" class="choose-select">
                             </select>
                         </div>
+    
                     </div>
                 <div class="add-course-model-bottom">
                     <button id="addLearnerCourseBtn" class="add-button">Add</button>
@@ -1705,7 +1707,10 @@ mapUploadBtn.addEventListener('change', function () {
 
 addUploadBtn.addEventListener('change', function () {
     if (this.files[0].name) {
-    $('#addFileChosen').text(this.files[0].name);
+        $('#addFileChosen').text(this.files[0].name);
+        if(this.files[0].name.toLowerCase().includes('.csv')) {
+            $('#mapFileSelectWarn').hide();
+        }
     }
     else {
         $('#addFileChosen').text('No file chosen'); 
@@ -2039,7 +2044,10 @@ $('#addLearnerCourseBtn').click(async () => {
         }
     }
     else if (presentUser === 'multipleUsers') {
-        if (addUploadBtn.files[0].name.toLowerCase().includes('.csv')) {
+        if(!addUploadBtn.value || !addUploadBtn.files[0].name.toLowerCase().includes('.csv')){
+            $('#uploadCSVWarn').show();
+        }
+        else if (addUploadBtn.files[0].name.toLowerCase().includes('.csv')) {
             const input = addUploadBtn.files[0];
             const reader = new FileReader();
             reader.readAsText(input);                
