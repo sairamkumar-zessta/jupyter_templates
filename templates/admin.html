@@ -1274,18 +1274,6 @@
       cursor: pointer;
   }
 
-  /* .select-arrow {
-      position: absolute;
-      right: 5px;
-      top: 53%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 6px solid #000;
-  } */
-
   .overflow-show {
       display: none;
       position: fixed;
@@ -1766,8 +1754,11 @@ $("#mapLearnerCourseSelect").mousedown(function() {
 $("#addLearnerCourseSelect").mousedown(function() {
     $("#addLearnerCourseSelect").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
 });
+$("#trainersFilter").mousedown(function() {
+    $("#trainersFilter").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
+});
 $(document).on('click', function() {
-    $('#chooseTrainerSelect,#mapLearnerCourseSelect,#addLearnerCourseSelect').css("background-image", `url(${selectDown})`);
+    $('#chooseTrainerSelect,#mapLearnerCourseSelect,#addLearnerCourseSelect,#trainersFilter').css("background-image", `url(${selectDown})`);
 });
 
 $('#trainerUsername').keyup(function(){
