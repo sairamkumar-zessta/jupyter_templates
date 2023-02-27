@@ -1832,7 +1832,7 @@ mapLearnerAdd.addEventListener("click", async function (e) {
         }
         else {
             $('#alertMsgCont').show().hide(7000);
-            $('#alertMsg').text('Some of the students does not exist');
+            $('#alertMsg').text('Some students not found');
             $('#mapLearnerModal').hide();
         }
         }
@@ -2006,7 +2006,7 @@ $('#addLearnerCourseBtn').click(async () => {
                         if (learnerAddPromise.status == 200 && learnerAddPromise.ok) {
                             $('#addLearnerModal').hide();
                             $('#successModelTitle').text('Add Learners');
-                            $('#addSuccessMsg').text('Learner and course added successfully');
+                            $('#addSuccessMsg').text('Learner added and course mapped successfully');
                             $("#addSuccessModal").show();
                         }
                         else {
@@ -2103,7 +2103,7 @@ $('#addLearnerCourseBtn').click(async () => {
                         if (learnerAddPromise.status == 200 && learnerAddPromise.ok) {
                             $('#addLearnerModal').hide();
                             $('#successModelTitle').text('Add Learners');
-                            $('#addSuccessMsg').text('Learners and course added successfully');
+                            $('#addSuccessMsg').text('Learners added and courses mapped successfully');
                             $("#addSuccessModal").show();
                         }
                         else {
