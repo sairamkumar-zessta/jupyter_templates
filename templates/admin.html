@@ -1768,20 +1768,20 @@ $('#mapLearnerCourseSelect').change(()=>{
     }
 });
 
-$("#chooseTrainerSelect").mousedown(function() {
+$("#chooseTrainerSelect").mousedown(()=> {
     $("#chooseTrainerSelect").css("background-image", `url(${selectUp})`);
 });
 
-$("#mapLearnerCourseSelect").mousedown(function() {
+$("#mapLearnerCourseSelect").mousedown(()=> {
     $("#mapLearnerCourseSelect").css("background-image", `url(${selectUp})`);
 });
-$("#addLearnerCourseSelect").mousedown(function() {
+$("#addLearnerCourseSelect").mousedown(()=> {
     $("#addLearnerCourseSelect").css("background-image", `url(${selectUp})`);
 });
-$("#trainersFilter").mousedown(function() {
+$("#trainersFilter").mousedown(()=> {
     $("#trainersFilter").css("background-image", `url(${selectUp})`);
 });
-$(document).on('click', function() {
+$(document).on('click', ()=> {
     $('#chooseTrainerSelect,#mapLearnerCourseSelect,#addLearnerCourseSelect,#trainersFilter').css("background-image", `url(${selectDown})`);
 });
 
