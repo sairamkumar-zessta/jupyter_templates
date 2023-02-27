@@ -2670,6 +2670,8 @@ $('#addBtn').click(() => {
     else if ($('#addBtn').text() === "Add Learners") {
         $('#addLearnerModal').show();
         $('#singleLearnerName').val('');
+        $('#addLearnerCourseSelect').prop('selectedIndex', 0);
+        
     };
 });
 
