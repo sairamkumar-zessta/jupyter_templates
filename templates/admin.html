@@ -137,6 +137,12 @@
       color: black;
       outline: none;
       background: #fff;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url(https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_expand.png);
+      background-repeat: no-repeat;
+      background-position: 93%;
+      cursor: pointer;
   }
 
   .search-input {
@@ -1268,7 +1274,7 @@
       cursor: pointer;
   }
 
-  .select-arrow {
+  /* .select-arrow {
       position: absolute;
       right: 5px;
       top: 53%;
@@ -1278,7 +1284,7 @@
       border-left: 6px solid transparent;
       border-right: 6px solid transparent;
       border-top: 6px solid #000;
-  }
+  } */
 
   .overflow-show {
       display: none;
@@ -1351,7 +1357,6 @@
                                 <option value="mapped" class="fs-16">Mapped</option>
                                 <option value="unmapped" class="fs-16">Unmapped</option>
                             </select>
-                            <div class="select-arrow" id="select-arrow"></div>
                         </div>
                         <button class="map-btn" id="mapBtn">Map Learners</button>
                         <button class="add-btn" id="addBtn">Add Course</button>
