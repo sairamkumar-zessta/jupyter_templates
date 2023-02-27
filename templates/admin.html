@@ -273,6 +273,15 @@
       cursor: default;
       margin-top: 0.5rem;
   }
+  .user-course-title{
+    color: #006BB6;
+    font-weight: 600;
+    max-width: 16vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: default;
+    margin-top: 0.5rem;
+  }
 
   .learner-count-title {
       color: #999;
@@ -2323,9 +2332,9 @@ function creatingCard(displayObj, classesObj, onclickAction, iconImg) {
     const cardCont = createEl('div', classesObj.card);
     const cardLeft = createEl('div', 'course-card-left');
     cardCont.appendChild(cardLeft);
-    const cardTitle = createEl('p', 'course-title', displayObj.name);
+    const cardTitle = createEl('p', classesObj.title, displayObj.name);
     cardLeft.appendChild(cardTitle);
-    const cardTitleDisplay = createEl('p', ['course-title', 'overflow-show'], displayObj.name);
+    const cardTitleDisplay = createEl('p', [classesObj.title, 'overflow-show'], displayObj.name);
     $(cardTitle).click(function () {
             $(cardTitleDisplay).show().fadeOut(5000);
     });
@@ -2368,7 +2377,7 @@ function creatingCard(displayObj, classesObj, onclickAction, iconImg) {
 
 function addAndAppendCourse(course) {
     const displayObj = { name: course.courseName, display1: 'Learner count', display1_c: course.students.length, display2: 'Trainer name', display2_c: course.trainer }
-    const classesObj = { card: 'courseCard', icon: 'delete-icon' }
+    const classesObj = { card: 'courseCard', icon: 'delete-icon',title:'course-title' }
     const deleteCourse = () => {
         $('#deleteCourseModal').show();
         $('#deleteModalTitle').text('Delete Course');
@@ -2384,7 +2393,7 @@ function addAndAppendCourse(course) {
 
 function addAndAppendTrainer(trainer) {
     const displayObj = { name: trainer.name, display1: 'Course count', display1_c: trainer.course.length, display2: 'Status', display2_c: trainer.status }
-    const classesObj = { card: 'trainerCard', icon: 'eye-icon' }
+    const classesObj = { card: 'trainerCard', icon: 'eye-icon',title:'course-title' }
     const removeTrainer = () => {
         trainerCourseCardCont.innerHTML = "";
         $('#deleteTrainerModal').show();
@@ -2400,7 +2409,7 @@ function addAndAppendTrainer(trainer) {
         }
         for (let each of trainer.course) {
             const displayObjCourse = { name: Object.keys(each)[0], display2: 'Learner count', display2_c: Object.values(each)[0] }
-            const classesObjCourse = { card: 'user-course-card', icon: 'delete-icon' }
+            const classesObjCourse = { card: 'user-course-card', icon: 'delete-icon',title:'user-course-title' }
             const deleteTrainerCourse = () => {
                 deleteTrainerModal.style.display = 'none';
                 $('#deleteCourseModal').show();
@@ -2445,7 +2454,7 @@ function addAndAppendLearner(learner) {
             trainerCourseCardCont.appendChild(learnerCourseCard);
             const learnerCourseCardLeft = createEl('div', 'course-card-left');
             learnerCourseCard.appendChild(learnerCourseCardLeft);
-            const learnerCourseTitle = createEl('p', 'course-title', each);
+            const learnerCourseTitle = createEl('p', 'user-course-title', each);
             learnerCourseCardLeft.appendChild(learnerCourseTitle);
             const learnerCourseCardDelete = createEl('div', 'delete-icon');
             learnerCourseCardDelete.onclick = function () {
