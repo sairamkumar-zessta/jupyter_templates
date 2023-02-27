@@ -2676,7 +2676,15 @@ $('#addBtn').click(() => {
         $('#addLearnerModal').show();
         $('#singleLearnerName').val('');
         $('#addLearnerCourseSelect').prop('selectedIndex', 0);
-        $('#singleLearnerNameWarn').hide().text('');
+        $('#singleLearnerNameWarn,uploadCSVWarn').hide().text('');
+        $('#addUploadBtn').val('');
+        $('#addFileChosen').text('No file chosen'); 
+        $('#singleUserBtn').addClass('learner-active');
+        $('#multipleUserBtn').removeClass('learner-active');
+        $('#singleLearner').show();
+        $('#multipleLearners').hide();
+        presentUser = 'singleUser';
+        
         
     };
 });
