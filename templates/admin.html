@@ -1703,6 +1703,7 @@ const loaderDisplay = document.getElementsByClassName('loader')[0];
 const deleteIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_delete.png';
 const actionIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_eye.png';
 const selectDown = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_expand.png';
+const selectUp = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/dropdown_close.png';
 let deleteItem = null;
 let deleteCourseName = null;
 let presentUser = 'singleUser';
@@ -1768,17 +1769,17 @@ $('#mapLearnerCourseSelect').change(()=>{
 });
 
 $("#chooseTrainerSelect").mousedown(function() {
-    $("#chooseTrainerSelect").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
+    $("#chooseTrainerSelect").css("background-image", `url(${selectUp})`);
 });
 
 $("#mapLearnerCourseSelect").mousedown(function() {
-    $("#mapLearnerCourseSelect").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
+    $("#mapLearnerCourseSelect").css("background-image", `url(${selectUp})`);
 });
 $("#addLearnerCourseSelect").mousedown(function() {
-    $("#addLearnerCourseSelect").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
+    $("#addLearnerCourseSelect").css("background-image", `url(${selectUp})`);
 });
 $("#trainersFilter").mousedown(function() {
-    $("#trainersFilter").css("background-image", "url('https://i.postimg.cc/nLyX4Gt7/dropdown-1.png')");
+    $("#trainersFilter").css("background-image", `url(${selectUp})`);
 });
 $(document).on('click', function() {
     $('#chooseTrainerSelect,#mapLearnerCourseSelect,#addLearnerCourseSelect,#trainersFilter').css("background-image", `url(${selectDown})`);
