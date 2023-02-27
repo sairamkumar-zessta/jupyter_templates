@@ -1709,7 +1709,7 @@ addUploadBtn.addEventListener('change', function () {
     if (this.files[0].name) {
         $('#addFileChosen').text(this.files[0].name);
         if(this.files[0].name.toLowerCase().includes('.csv')) {
-            $('#mapFileSelectWarn').hide();
+            $('#uploadCSVWarn').hide();
         }
     }
     else {
