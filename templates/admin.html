@@ -1603,7 +1603,7 @@
                                 </div> 
                                 <input type="text" placeholder="Enter user ID" id="singleLearnerName">
                             </div>
-                            <span class="name-warn" id="singleLearnerNameWarn">* user name should not contain spaces</span>
+                            <span class="name-warn" id="singleLearnerNameWarn"></span>
                         </div>
                         <div id="multipleLearners" class="stop-visible">
                         <div class="add-learner">
@@ -1724,9 +1724,11 @@ $('#courseNameText').keyup(function () {
 $('#singleLearnerName').keyup(function () {
     if ($('#singleLearnerName').val().includes(" ")) {
         $('#singleLearnerNameWarn').show();
+        $('#singleLearnerNameWarn').text('* user name should not contain spaces');
     }
     else {
         $('#singleLearnerNameWarn').hide();
+        $('#singleLearnerNameWarn').text('');
     }
 });
 
@@ -1958,14 +1960,12 @@ $('#addTrainerBtn').click(async () => {
 $('#addLearnerCourseBtn').click(async () => {
     if (presentUser === 'singleUser') {
         if ($('#singleLearnerName').val().includes(' ')) {
-            $('#alertMsgCont').show();
-            $('#alertMsg').text('Avoid spaces in username');
-            $('#addLearnerModal').hide();
+           $('#singleLearnerNameWarn').show();
+           $('#singleLearnerNameWarn').text('* user name should not contain spaces')
         }
-        else if ($('#singleLearnerName').val() === '') {
-            $('#alertMsgCont').show();
-            $('#alertMsg').text('Enter valid username');
-            $('#addLearnerModal').hide();
+        else if ($('#singleLearnerName').val().length === 0) {
+            $('#singleLearnerNameWarn').show();
+            $('#singleLearnerNameWarn').text('* please provide user name')
         }
         else if ($('#singleLearnerName').val().length > 0) {
             const courseName = $('#addLearnerCourseSelect').find(":selected").val();
@@ -2659,18 +2659,19 @@ $('#addBtn').click(() => {
     if ($('#addBtn').text() === "Add Course") {
         $('#courseNameText').val('');
         $('#addCourseModal').show();
-        $('#courseNameWarn,#trainerWarnMsg').hide();
+        $('#courseNameWarn,#trainerWarnMsg').hide().text('');
         $('#chooseTrainerSelect').prop('selectedIndex', 0);
     }
     else if ($('#addBtn').text() === "Add Trainer") {
         $('#trainerUsername').val('');
         $('#addTrainerModal').show();
-        $('#trainerNameWarn').hide();
+        $('#trainerNameWarn').hide().text('');
     }
     else if ($('#addBtn').text() === "Add Learners") {
         $('#addLearnerModal').show();
         $('#singleLearnerName').val('');
         $('#addLearnerCourseSelect').prop('selectedIndex', 0);
+        $('#singleLearnerNameWarn').hide().text('');
         
     };
 });
