@@ -1672,6 +1672,11 @@
 </div>
 {% endblock %}
 {% block title %}Ds lab{% endblock %}
+{% block logo %}
+        <span id="jupyterhub-logo" class="pull-left">
+            <a href="{{logo_url or base_url}}"><img src='jupyter_templates/career-shaper_logo.png' alt='JupyterHub logo' class='jpy-logo' title='Home'/></a>
+        </span>
+        {% endblock %}
 {% block footer %}
 {% endblock %}
 
