@@ -3,6 +3,7 @@
 {{ super() }}
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap");
+
   .navbar-default {
     height: 6rem;
     background-color: #F6FBFE;
@@ -312,11 +313,6 @@
     width: 35%;
   }
 
-
-  /* .arrange-row-first{
-      justify-content: space-between;
-  } */
-
   .delete-icon img {
     width: 1.6rem;
   }
@@ -335,7 +331,6 @@
   #learner-table {
     margin-bottom: 20px;
     background: #FFFFFF;
-    /* border: 2px solid #5FBEF0; */
     border-collapse: inherit;
     border-spacing: 0px;
     border-radius: 1.4rem 1.4rem 0px 0px;
@@ -819,7 +814,6 @@
     border-radius: 1.2rem;
     position: absolute;
     transform: translate(-50%, -50%);
-    /* animation: animatemodal .3s; */
     inset: 50% -5% -10% 50%;
   }
 
@@ -1672,6 +1666,9 @@
 </div>
 {% endblock %}
 {% block title %}Ds lab{% endblock %}
+{% block favicon %}
+    <link rel="icon" href="{{ static_url("/home/zadmin/Documents/snippets_enable/jupyter_templates/career-shaper_logo.png") }}" type="image/x-icon">
+{% endblock %}
 {% block footer %}
 {% endblock %}
 
@@ -2143,7 +2140,7 @@
                 if (learnerAddPromise.status == 200 && learnerAddPromise.ok) {
                   $('#addLearnerModal').hide();
                   $('#successModelTitle').text('Add Learners');
-                  $('#addSuccessMsg').text('Learners added and courses mapped successfully');
+                  $('#addSuccessMsg').text('Learners added and course mapped successfully');
                   $("#addSuccessModal").show();
                 }
                 else {
@@ -2704,7 +2701,7 @@
     if ($('#addBtn').text() === "Add Course") {
       $('#courseNameText').val('');
       $('#addCourseModal').show();
-      $('#courseNameWarn,#trainerWarnMsg').hide().text('');
+      $('#courseNameWarn,#trainerWarnMsg').hide();
       $('#chooseTrainerSelect').prop('selectedIndex', 0);
     }
     else if ($('#addBtn').text() === "Add Trainer") {
@@ -2733,19 +2730,36 @@
       $('#addSuccessModal').hide();
       $('#addCourseModal').show();
       $('#courseNameText').val('');
+			$('#courseNameWarn,#trainerWarnMsg').hide();
+      $('#chooseTrainerSelect').prop('selectedIndex', 0);
     }
     else if ($('#successModelTitle').text() === 'Add Trainer') {
       $('#addSuccessModal').hide();
       $('#addTrainerModal').show();
+			$('#trainerNameWarn').hide().text('');
     }
     else if ($('#successModelTitle').text() === 'Map Learners') {
       $('#addSuccessModal').hide();
       $('#mapLearnerModal').show();
+			$('#mapLearnerCourseSelect').prop('selectedIndex', 0);
+			$('#mapUploadBtn').val('');
+			$('#mapFileChosen').text('No file chosen');
+			$('#mapFileSelectWarn').hide();
+			$('#mapCourseWarn').hide();
     }
     else if ($('#successModelTitle').text() === 'Add Learners') {
       $('#addSuccessModal').hide();
       $('#addLearnerModal').show();
       $('#singleLearnerName').val('');
+			$('#addLearnerCourseSelect').prop('selectedIndex', 0);
+      $('#singleLearnerNameWarn,#uploadCSVWarn').hide();
+      $('#addUploadBtn').val('');
+      $('#addFileChosen').text('No file chosen');
+      $('#singleUserBtn').addClass('learner-active');
+      $('#multipleUserBtn').removeClass('learner-active');
+      $('#singleLearner').show();
+      $('#multipleLearners').hide();
+      presentUser = 'singleUser';
     }
   });
 
@@ -2771,7 +2785,7 @@
       location.reload();
     }
     else {
-      $('#addCourseModal').hide()
+      $('#addCourseModal').hide();
     }
   });
   $('#addTrainerCancel, #cancelAddTrainer').click(() => {
@@ -2779,7 +2793,7 @@
       location.reload();
     }
     else {
-      $('#addTrainerModal').hide()
+      $('#addTrainerModal').hide();
     }
   });
   $("#alertMsgClose").click(() => $('#alertMsgCont').hide());
