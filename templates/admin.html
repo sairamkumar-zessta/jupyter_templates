@@ -1667,7 +1667,8 @@
 {% endblock %}
 {% block title %}Ds lab{% endblock %}
 {% block favicon %}
-    <link rel="icon" href="https://datalab-static-images.s3.ap-south-1.amazonaws.com/career_shaper_logo.png" type="image/x-icon">
+<link rel="icon" href="https://datalab-static-images.s3.ap-south-1.amazonaws.com/career_shaper_logo.png"
+  type="image/x-icon">
 {% endblock %}
 {% block footer %}
 {% endblock %}
@@ -2730,28 +2731,28 @@
       $('#addSuccessModal').hide();
       $('#addCourseModal').show();
       $('#courseNameText').val('');
-			$('#courseNameWarn,#trainerWarnMsg').hide();
+      $('#courseNameWarn,#trainerWarnMsg').hide();
       $('#chooseTrainerSelect').prop('selectedIndex', 0);
     }
     else if ($('#successModelTitle').text() === 'Add Trainer') {
       $('#addSuccessModal').hide();
       $('#addTrainerModal').show();
-			$('#trainerNameWarn').hide().text('');
+      $('#trainerNameWarn').hide().text('');
     }
     else if ($('#successModelTitle').text() === 'Map Learners') {
       $('#addSuccessModal').hide();
       $('#mapLearnerModal').show();
-			$('#mapLearnerCourseSelect').prop('selectedIndex', 0);
-			$('#mapUploadBtn').val('');
-			$('#mapFileChosen').text('No file chosen');
-			$('#mapFileSelectWarn').hide();
-			$('#mapCourseWarn').hide();
+      $('#mapLearnerCourseSelect').prop('selectedIndex', 0);
+      $('#mapUploadBtn').val('');
+      $('#mapFileChosen').text('No file chosen');
+      $('#mapFileSelectWarn').hide();
+      $('#mapCourseWarn').hide();
     }
     else if ($('#successModelTitle').text() === 'Add Learners') {
       $('#addSuccessModal').hide();
       $('#addLearnerModal').show();
       $('#singleLearnerName').val('');
-			$('#addLearnerCourseSelect').prop('selectedIndex', 0);
+      $('#addLearnerCourseSelect').prop('selectedIndex', 0);
       $('#singleLearnerNameWarn,#uploadCSVWarn').hide();
       $('#addUploadBtn').val('');
       $('#addFileChosen').text('No file chosen');
