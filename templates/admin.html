@@ -1991,7 +1991,7 @@
     }
     else {
       $('#trainerNameWarn').show();
-      $('#trainerNameWarn').text('* please provide username name');
+      $('#trainerNameWarn').text('* please provide username');
     }
 
   });
@@ -2004,7 +2004,7 @@
       }
       else if ($('#singleLearnerName').val().length === 0) {
         $('#singleLearnerNameWarn').show();
-        $('#singleLearnerNameWarn').text('* please provide user name')
+        $('#singleLearnerNameWarn').text('* please provide username')
       }
       else if ($('#singleLearnerName').val().length > 0) {
         const courseName = $('#addLearnerCourseSelect').find(":selected").val();
