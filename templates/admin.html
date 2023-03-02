@@ -876,7 +876,6 @@
 
   .learner-all-course-remove {
     width: 1.5rem;
-    cursor: pointer;
   }
 
   .change-learner {
@@ -2508,11 +2507,19 @@
     learnerRow.appendChild(learnerEye);
     const learnerDelete = createEl('td');
     const learnerDeleteImg = createEl('img', 'learner-all-course-remove');
+		if(Object.values(learner)[0].length === 0){
+			learnerDeleteImg.style.cursor = "not-allowed";
+		}
+		else{
+			learnerDeleteImg.style.cursor = "pointer";
+		}
     learnerDeleteImg.onclick = function () {
       coursesRemoveLearner = Object.keys(learner)[0];
       coursesRemoveList = Object.values(learner)[0];
-      $('#removeLearnerCourseModal').show();
-      $('#removeLearnerModalItemText').text(`Remove ${Object.keys(learner)[0]} from all courses?`);
+			if (coursesRemoveList.length !== 0){
+				$('#removeLearnerCourseModal').show();
+      	$('#removeLearnerModalItemText').text(`Remove ${Object.keys(learner)[0]} from all courses?`);
+			}
     }
     learnerDeleteImg.src = deleteIconImg;
     learnerDelete.appendChild(learnerDeleteImg);
