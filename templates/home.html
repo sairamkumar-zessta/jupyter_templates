@@ -103,11 +103,14 @@
 <div class='container'>
     <div class='row'>
         <div class='text-center' id='text-center'>
-            {% if default_server.active %}
-            {{named_spawners}}
             <span class='server-info' id='server-info'>Your server is still running. You can stop or go back to your
                 server again.
             </span>
+            {% if default_server.active %}
+            {{named_spawners}}
+            <!-- <span class='server-info' id='server-info'>Your server is still running. You can stop or go back to your
+                server again.
+            </span> -->
             <br />
             <br />
             <a id='stop' role='button' class='btn btn-lg btn-danger'>
