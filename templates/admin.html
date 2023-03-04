@@ -2597,9 +2597,16 @@
       instructorDetailsAll.push({ 'name': key, 'course': trainerCourses[key], 'status': status });
     };
 
-    for (const trainer of instructorDetailsAll) {
-      addAndAppendTrainer(trainer);
+    if (instructorDetailsAll.length === 0) {
+        $('#trainerSearchMsg').show();
     }
+    else {
+      $('#trainerSearchMsg').hide();
+      for (const trainer of instructorDetailsAll) {
+        addAndAppendTrainer(trainer);
+      }
+    }
+    
 
     $('#trainersFilter').change(() => {
       $('#trainersSearch').val('');
@@ -2654,11 +2661,18 @@
       }
     }
     $('#learnersLoader').hide();
-    for (key in learnerCourses) {
-      const obj = {};
-      obj[key] = learnerCourses[key]
-      addAndAppendLearner(obj);
-    };
+
+    if (Object.keys(learnerCourses).length === 0) {
+      $('#learnerSearchMsg').show();
+    }
+    else {
+      $('#learnerSearchMsg').hide();
+      for (key in learnerCourses) {
+        const obj = {};
+        obj[key] = learnerCourses[key]
+        addAndAppendLearner(obj);
+      };
+    }
 
     $('#learnersSearch').keyup(() => {
       learnerRowsBody.innerHTML = '';
