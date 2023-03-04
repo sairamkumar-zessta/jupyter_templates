@@ -2548,9 +2548,17 @@
       };
     });
 
-    for (const course of allDetails) {
-      addAndAppendCourse(course);
-    };
+    if (allDetails.length === 0) {
+      $('#courseSearchMsg').show();
+    }
+
+    else {
+      $('#courseSearchMsg').hide();
+      for (const course of allDetails) {
+        addAndAppendCourse(course);
+      };
+    }
+   
 
     //trainer tab
     const hubTrainerGroupFetch = await fetch(`${hub_url}groups/instructor`);
@@ -2770,8 +2778,6 @@
       presentUser = 'singleUser';
     }
   });
-
-
 
   $('#addSuccessClose').click(() => {
     $('#addSuccessModal').hide();
