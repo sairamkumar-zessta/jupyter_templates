@@ -1285,9 +1285,7 @@
   }
 
   .trainer-select-container {
-    position: relative;
-    width: 14.5vw;
-    border-radius: 15px;
+    width: 20rem;
     display: none;
     cursor: pointer;
   }
@@ -1327,71 +1325,54 @@
     font-size: 14px !important;
   }
 
-  .select-outer {
-			width: 200px;
-		}
+  .placeholder-div{
+    color: #AAAAAA;
+  }
+  .select-arrange {
+    background-image: url(https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_expand.png);
+    background-repeat: no-repeat;
+    background-position: 98%;
+    margin-bottom: -2.1rem;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .options-list li:hover{
+    color: #5FBEF0;
+    font-weight: 500;
+  }
 
-		/* .arrange-row-select {
-			display: flex;
-			padding: 1.6rem 3rem;
-		} */
+  .select-input {
+    position: fixed;
+    z-index: 1;
+    width: 20rem;
+    background-color: #fff;
+    border: 1px solid #5FBEF0;
+    backdrop-filter: blur(15px);
+    border-radius: 19px;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+  }
 
-		/* .course-title {
-			margin-top: 0.6rem;
-			padding-right: 3rem;
-			font-family: 'Poppins';
-			font-style: normal;
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 24px;
-			color: #263238;
-		} */
-		.placeholder-div{
-			color: #AAAAAA;
-		}
-		.select-arrange {
-			background-image: url(https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_expand.png);
-			background-repeat: no-repeat;
-			background-position: 98%;
-			margin-bottom: -2.1rem;
-			font-family: 'Poppins';
-			font-style: normal;
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 24px;
-			overflow: hidden;
-    	text-overflow: ellipsis;
-		}
-		.options-list li:hover{
-			color: #5FBEF0;
-			font-weight: 500;
-		}
+  .options-list {
+    display: none;
+    list-style-type: none;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #000;
+    overflow: hidden;
+  }
 
-
-		.select-input {
-			position: fixed;
-			z-index: 1;
-			width: 24rem;
-			border-radius: 1.4rem;
-			background-color: #fff;
-			padding-left: 1rem;
-			border: 1px solid #5FBEF0;
-			backdrop-filter: blur(15px);
-			border-radius: 19px;
-			padding: 0.7rem 1rem;
-			cursor: pointer;
-		}
-
-		.options-list {
-			/* display: none; */
-			list-style-type: none;
-			font-family: 'Poppins';
-			font-style: normal;
-			font-weight: 400;
-			font-size: 14px;
-			line-height: 18px;
-			color: #000;
-			overflow: hidden;
+  .after-trainer-select {
+			display: block;
+			margin-top: 1rem;
 		}
 </style>
 {% endblock %}
@@ -1440,14 +1421,8 @@
           </div>
 
           <div class="trainer-select-container" id="trainersFilterCont">
-            <!-- <select id="trainersFilter" class="trainer-select">
-              <option default value="all" class="fs-16">All</option>
-              <option value="mapped" class="fs-16">Mapped</option>
-              <option value="unmapped" class="fs-16">Unmapped</option>
-            </select> -->
-            <div id='selectouter'>
 							<div class="select-input" id="selectInput">
-								<p id="selectedListSelect" class="placeholder-div select-arrange">CourseName</p>
+								<p id="selectedListSelect" class="placeholder-div select-arrange">All</p>
 								<br>
 								<div class="options-list">
 									<li id="all">All</li>
@@ -1456,7 +1431,6 @@
 								</div>
 							</div>
 						</div>
-          </div>
           <button class="map-btn" id="mapBtn">Map Learners</button>
           <button class="add-btn" id="addBtn">Add Course</button>
         </div>
@@ -2928,6 +2902,10 @@
   $('#deleteTrainerCancel').click(() => {
     trainerCourseCardCont.innerHTML = "";
     $('#deleteTrainerModal').hide();
+  });
+
+  $('#trainersFilterCont').click(()=>{
+    $('.options-list').toggleClass('after-trainer-select ');
   });
 
   $('#deleteDoneBtn').click(() => {
