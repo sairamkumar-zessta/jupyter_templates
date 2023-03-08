@@ -1290,19 +1290,6 @@
     cursor: pointer;
   }
 
-
-  #trainersFilter {
-    appearance: none;
-    background-color: #fff;
-    border-radius: 50px;
-    width: 15vw;
-    border: 0.1rem solid #5FBEF0;
-    padding: 1rem 1.6rem;
-    color: black;
-    outline: none;
-    cursor: pointer;
-  }
-
   .overflow-show {
     display: none;
     position: fixed;
@@ -2685,16 +2672,16 @@
     }
     
 
-    $('#trainersFilter').change(() => {
+    $('#selectedListSelect').change(() => {
       $('#trainersSearch').val('');
       trainerCardCont.innerHTML = '';
-      if ($('#trainersFilter').find(":selected").val() === 'mapped') {
+      if ($('#selectedListSelect').text === 'Mapped') {
         reqList = instructorDetailsMapped;
       }
-      else if ($('#trainersFilter').find(":selected").val() === 'unmapped') {
+      else if ($('#selectedListSelect').text() === 'Unmapped') {
         reqList = instructorDetailsUnMapped;
       }
-      else if ($('#trainersFilter').find(":selected").val() === 'all') {
+      else if ($('#selectedListSelect').text() === 'All') {
         reqList = instructorDetailsAll;
       }
 
