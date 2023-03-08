@@ -1759,6 +1759,7 @@
   const mapLearnerAdd = document.getElementById("mapLearnerAdd");
   const loaderDisplay = document.getElementsByClassName('loader')[0];
   const deleteIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_delete.png';
+  const hideDeleteIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/hide_delete.png';
   const actionIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_eye.png';
   const selectDown = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_expand.png';
   const selectUp = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/dropdown_close.png';
@@ -2573,9 +2574,11 @@
     const learnerDeleteImg = createEl('img', 'learner-all-course-remove');
 		if(Object.values(learner)[0].length === 0){
 			learnerDeleteImg.style.cursor = "not-allowed";
+      learnerDeleteImg.src = hideDeleteIconImg;
 		}
 		else{
 			learnerDeleteImg.style.cursor = "pointer";
+      learnerDeleteImg.src = deleteIconImg;
 		}
     learnerDeleteImg.onclick = function () {
       coursesRemoveLearner = Object.keys(learner)[0];
@@ -2585,7 +2588,6 @@
       	$('#removeLearnerModalItemText').text(`Remove ${Object.keys(learner)[0]} from all courses?`);
 			}
     }
-    learnerDeleteImg.src = deleteIconImg;
     learnerDelete.appendChild(learnerDeleteImg);
     learnerRow.appendChild(learnerDelete);
   };
