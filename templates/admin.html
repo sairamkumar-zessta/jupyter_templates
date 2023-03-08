@@ -2670,9 +2670,9 @@
         addAndAppendTrainer(trainer);
       }
     }
-    
 
-    $('#selectedListSelect').change(() => {
+    $('#selectedListSelect').on('keyup',function(event){
+      console.log('selected-value')
       $('#trainersSearch').val('');
       trainerCardCont.innerHTML = '';
       if ($('#selectedListSelect').text === 'Mapped') {
