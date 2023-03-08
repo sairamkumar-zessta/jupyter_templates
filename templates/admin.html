@@ -1326,6 +1326,73 @@
     left: 49px;
     font-size: 14px !important;
   }
+
+  .select-outer {
+			width: 200px;
+		}
+
+		.arrange-row {
+			display: flex;
+			padding: 1.6rem 3rem;
+		}
+
+		.course-title {
+			margin-top: 0.6rem;
+			padding-right: 3rem;
+			font-family: 'Poppins';
+			font-style: normal;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 24px;
+			color: #263238;
+		}
+		.placeholder-div{
+			color: #AAAAAA;
+		}
+		.select-arrange {
+			background-image: url(https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_expand.png);
+			background-repeat: no-repeat;
+			background-position: 98%;
+			margin-bottom: -2.1rem;
+			font-family: 'Poppins';
+			font-style: normal;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 24px;
+			overflow: hidden;
+    	text-overflow: ellipsis;
+		}
+		.options-list li:hover{
+			color: #5FBEF0;
+			font-weight: 500;
+		}
+
+
+		.select-input {
+			position: fixed;
+			z-index: 1;
+			width: 24rem;
+			border-radius: 1.4rem;
+			background-color: #fff;
+			padding-left: 1rem;
+			border: 1px solid #5FBEF0;
+			backdrop-filter: blur(15px);
+			border-radius: 19px;
+			padding: 0.7rem 1rem;
+			cursor: pointer;
+		}
+
+		.options-list {
+			/* display: none; */
+			list-style-type: none;
+			font-family: 'Poppins';
+			font-style: normal;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 18px;
+			color: #000;
+			overflow: hidden;
+		}
 </style>
 {% endblock %}
 {% block main %}
@@ -1378,6 +1445,20 @@
               <option value="mapped" class="fs-16">Mapped</option>
               <option value="unmapped" class="fs-16">Unmapped</option>
             </select>
+            <div id='selectouter'>
+							<div class="select-input" id="selectInput">
+								<p id="selectedListSelect" class="placeholder-div select-arrange">CourseName</p>
+								<br>
+								<div class="options-list">
+									<li id="first">first</li>
+									<li id="sec">sec</li>
+									<li>third</li>
+									<li>fourth</li>
+									<li>five</li>
+									<li id="sixaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa">sixaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+								</div>
+							</div>
+						</div>
           </div>
           <button class="map-btn" id="mapBtn">Map Learners</button>
           <button class="add-btn" id="addBtn">Add Course</button>
