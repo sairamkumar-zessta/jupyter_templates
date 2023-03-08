@@ -1869,7 +1869,7 @@
         }
         else {
           $('#alertMsgCont').show().hide(7000);
-          $('#alertMsg').text('Some students not found');
+          $('#alertMsg').text('Some students not found\nplease check downloaded csv for missing students details');
           $('#mapLearnerModal').hide();
           // hubLearnerGroupList, learnerArray
           const noLearnerArray = learnerArray.filter(element => !hubLearnerGroupList.includes(element));
@@ -1883,7 +1883,7 @@
             const url = URL.createObjectURL(blob);
             const link = document.createElement("a");
             link.setAttribute("href", url);
-            link.setAttribute("download", "diff.csv");
+            link.setAttribute("download", "missingStudents.csv");
             link.style.display = "none";
             document.body.appendChild(link);
             link.click();
