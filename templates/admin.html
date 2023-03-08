@@ -1421,13 +1421,13 @@
           </div>
 
           <div class="trainer-select-container" id="trainersFilterCont">
-							<div class="select-input" id="selectInput">
-								<p id="selectedListSelect" class="placeholder-div select-arrange">All</p>
+							<div class="select-input" id="trainerSelectInput">
+								<p id="selectedListSelect" class="select-arrange">All</p>
 								<br>
 								<div class="options-list">
-									<li id="all">All</li>
-									<li id="mapped">Mapped</li>
-									<li id="unmapped">Unmapped</li>
+									<li id="All">All</li>
+									<li id="Mapped">Mapped</li>
+									<li id="Unmapped">Unmapped</li>
 								</div>
 							</div>
 						</div>
@@ -2906,7 +2906,15 @@
 
   $('#trainersFilterCont').click(()=>{
     $('.options-list').toggleClass('after-trainer-select ');
+    $("#selectedListSelect").toggleClass('placeholder-div');
   });
+
+  $("#trainerSelectInput").on("click", "div li", function () {
+		console.log('entered');
+		var selectedText = $(this).attr('id');
+		$("#selectedListSelect").text(selectedText);
+		console.log('selectText',selectedText);
+	});
 
   $('#deleteDoneBtn').click(() => {
     $('#deleteSuccessModal').hide();
