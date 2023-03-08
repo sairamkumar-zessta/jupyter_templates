@@ -1871,6 +1871,9 @@
           $('#alertMsgCont').show().hide(7000);
           $('#alertMsg').text('Some students not found');
           $('#mapLearnerModal').hide();
+          // hubLearnerGroupList, learnerArray
+          const noLearnerArray = hubLearnerGroupList.filter(element => !learnerArray.includes(element));
+          console.log(noLearnerArray);
         }
       }
     }
