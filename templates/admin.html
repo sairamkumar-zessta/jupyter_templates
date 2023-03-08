@@ -2675,7 +2675,7 @@
       console.log('selected-value')
       $('#trainersSearch').val('');
       trainerCardCont.innerHTML = '';
-      if ($('#selectedListSelect').text === 'Mapped') {
+      if ($('#selectedListSelect').text() === 'Mapped') {
         reqList = instructorDetailsMapped;
       }
       else if ($('#selectedListSelect').text() === 'Unmapped') {
@@ -2685,8 +2685,14 @@
         reqList = instructorDetailsAll;
       }
 
-      for (const trainer of reqList) {
-        addAndAppendTrainer(trainer);
+      if (reqList.length === 0) {
+        $('#trainerSearchMsg').show();
+      }
+      else {
+        $('#trainerSearchMsg').hide();
+        for (const trainer of reqList) {
+          addAndAppendTrainer(trainer);
+        }
       }
 
     });
