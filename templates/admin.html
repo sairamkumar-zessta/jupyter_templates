@@ -877,7 +877,9 @@
   .learner-all-course-remove {
     width: 1.5rem;
   }
-
+  .learner-all-course-remove-hide {
+    width: 2.5rem;
+  }
   .change-learner {
     padding-top: -0.5rem;
     padding-left: 2rem;
@@ -2575,10 +2577,12 @@
 		if(Object.values(learner)[0].length === 0){
 			learnerDeleteImg.style.cursor = "not-allowed";
       learnerDeleteImg.src = hideDeleteIconImg;
+      learnerDeleteImg.addClass('learner-all-course-remove-hide');
 		}
 		else{
 			learnerDeleteImg.style.cursor = "pointer";
       learnerDeleteImg.src = deleteIconImg;
+      learnerDeleteImg.removeClass('learner-all-course-remove-hide');
 		}
     learnerDeleteImg.onclick = function () {
       coursesRemoveLearner = Object.keys(learner)[0];
