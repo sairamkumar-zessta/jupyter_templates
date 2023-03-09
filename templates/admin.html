@@ -497,7 +497,8 @@
     cursor: pointer;
     height: 1rem;
     width: 1rem;
-    padding: 0.5px 0.5rem;
+    padding: 0 0.5rem;
+    padding-bottom: 0.5px;
   }
 
   .delete-title {
@@ -598,7 +599,8 @@
     cursor: pointer;
     height: 1rem;
     width: 1rem;
-    padding: 0.5px 0.5rem;
+    padding: 0 0.5rem;
+    padding-bottom: 0.5px;
   }
 
   .add-course-name {
@@ -857,7 +859,8 @@
     cursor: pointer;
     height: 1rem;
     width: 1rem;
-    padding: 0.5px 0.5rem;
+    padding: 0 0.5rem;
+    padding-bottom: 0.5px;
   }
 
   .trainerCourseDetails {
@@ -877,9 +880,11 @@
   .learner-all-course-remove {
     width: 1.5rem;
   }
+
   .learner-all-course-remove-hide {
     width: 2.5rem;
   }
+
   .change-learner {
     padding-top: -0.5rem;
     padding-left: 2rem;
@@ -1314,9 +1319,10 @@
     font-size: 14px !important;
   }
 
-  .placeholder-div{
+  .placeholder-div {
     color: #AAAAAA;
   }
+
   .select-arrange {
     background-image: url(https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_expand.png);
     background-repeat: no-repeat;
@@ -1330,7 +1336,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .options-list li:hover{
+
+  .options-list li:hover {
     color: #5FBEF0;
     font-weight: 500;
   }
@@ -1360,14 +1367,13 @@
   }
 
   .after-trainer-select {
-			display: block;
-			margin-top: 1rem;
-		}
-
-  .select-expand{
-    background-image: url('https://datalab-static-images.s3.ap-south-1.amazonaws.com/dropdown_close.png');
+    display: block;
+    margin-top: 1rem;
   }
 
+  .select-expand {
+    background-image: url('https://datalab-static-images.s3.ap-south-1.amazonaws.com/dropdown_close.png');
+  }
 </style>
 {% endblock %}
 {% block main %}
@@ -1415,16 +1421,16 @@
           </div>
 
           <div class="trainer-select-container" id="trainersFilterCont">
-							<div class="select-input" id="trainerSelectInput">
-								<p id="selectedListSelect" class="select-arrange">All</p>
-								<br>
-								<div class="options-list">
-									<li id="All">All</li>
-									<li id="Mapped">Mapped</li>
-									<li id="Unmapped">Unmapped</li>
-								</div>
-							</div>
-						</div>
+            <div class="select-input" id="trainerSelectInput">
+              <p id="selectedListSelect" class="select-arrange">All</p>
+              <br>
+              <div class="options-list">
+                <li id="All">All</li>
+                <li id="Mapped">Mapped</li>
+                <li id="Unmapped">Unmapped</li>
+              </div>
+            </div>
+          </div>
           <button class="map-btn" id="mapBtn">Map Learners</button>
           <button class="add-btn" id="addBtn">Add Course</button>
         </div>
@@ -1508,7 +1514,7 @@
           </div>
           <p class="name-warn" id="courseNameWarn"></p>
           <div class="choose-trainer-name">
-            <div class="choose-trainer-arrange" style="position:relative" >
+            <div class="choose-trainer-arrange" style="position:relative">
               <p>Choose Trainer<span class="star-adjust" style="left: 97px;top: 23px;">*</span></p>
               <span>Existing Trainer</span>
             </div>
@@ -1627,7 +1633,8 @@
           <div>
             <div class="add-learner">
               <div class="choose-trainer-arrange" style="position:relative">
-                <p class="upload-csv-file">Upload CSV file <span class="star-adjust" style="left: 97px;top: 10px;">*</span></p>
+                <p class="upload-csv-file">Upload CSV file <span class="star-adjust"
+                    style="left: 97px;top: 10px;">*</span></p>
                 <span>Multiple learners</span>
               </div>
               <div class="stop-visible">
@@ -1640,7 +1647,8 @@
             <p class="name-warn" id="mapFileSelectWarn">* please upload CSV file</p>
           </div>
           <div class="choose-trainer-name" style="position:relative">
-            <p class="choose-course-name">Choose Course<span class="star-adjust" style="left: 114px;top: 13px;">*</span></p>
+            <p class="choose-course-name">Choose Course<span class="star-adjust" style="left: 114px;top: 13px;">*</span>
+            </p>
             <select id="mapLearnerCourseSelect" class="choose-course-select">
             </select>
           </div>
@@ -1761,7 +1769,7 @@
   const mapLearnerAdd = document.getElementById("mapLearnerAdd");
   const loaderDisplay = document.getElementsByClassName('loader')[0];
   const deleteIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_delete.png';
-  const hideDeleteIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/hide_delete.png';
+  const hideDeleteIconImg = 'https://i.postimg.cc/8P8sKgrR/Vector-7.png';
   const actionIconImg = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_eye.png';
   const selectDown = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/admin_expand.png';
   const selectUp = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/dropdown_close.png';
@@ -2574,23 +2582,23 @@
     learnerRow.appendChild(learnerEye);
     const learnerDelete = createEl('td');
     const learnerDeleteImg = createEl('img', 'learner-all-course-remove');
-		if(Object.values(learner)[0].length === 0){
-			learnerDeleteImg.style.cursor = "not-allowed";
+    if (Object.values(learner)[0].length === 0) {
+      learnerDeleteImg.style.cursor = "not-allowed";
       learnerDeleteImg.src = hideDeleteIconImg;
       learnerDeleteImg.classList.add('learner-all-course-remove-hide');
-		}
-		else{
-			learnerDeleteImg.style.cursor = "pointer";
+    }
+    else {
+      learnerDeleteImg.style.cursor = "pointer";
       learnerDeleteImg.src = deleteIconImg;
       learnerDeleteImg.classList.remove('learner-all-course-remove-hide');
-		}
+    }
     learnerDeleteImg.onclick = function () {
       coursesRemoveLearner = Object.keys(learner)[0];
       coursesRemoveList = Object.values(learner)[0];
-			if (coursesRemoveList.length !== 0){
-				$('#removeLearnerCourseModal').show();
-      	$('#removeLearnerModalItemText').text(`Remove ${Object.keys(learner)[0]} from all courses?`);
-			}
+      if (coursesRemoveList.length !== 0) {
+        $('#removeLearnerCourseModal').show();
+        $('#removeLearnerModalItemText').text(`Remove ${Object.keys(learner)[0]} from all courses?`);
+      }
     }
     learnerDelete.appendChild(learnerDeleteImg);
     learnerRow.appendChild(learnerDelete);
@@ -2628,7 +2636,7 @@
         addAndAppendCourse(course);
       };
     }
-   
+
 
     //trainer tab
     const hubTrainerGroupFetch = await fetch(`${hub_url}groups/instructor`);
@@ -2668,7 +2676,7 @@
     };
 
     if (instructorDetailsAll.length === 0) {
-        $('#trainerSearchMsg').show();
+      $('#trainerSearchMsg').show();
     }
     else {
       $('#trainerSearchMsg').hide();
@@ -2677,7 +2685,7 @@
       }
     }
 
-    $('#trainerSelectInput').on('click',function(){
+    $('#trainerSelectInput').on('click', function () {
       console.log('selected-value')
       $('#trainersSearch').val('');
       trainerCardCont.innerHTML = '';
@@ -2908,18 +2916,18 @@
     $('#deleteTrainerModal').hide();
   });
 
-  $('#trainersFilterCont').click(()=>{
+  $('#trainersFilterCont').click(() => {
     $('.options-list').toggleClass('after-trainer-select ');
     $("#selectedListSelect").toggleClass('placeholder-div');
     $("#selectedListSelect").toggleClass('select-expand');
   });
 
   $("#trainerSelectInput").on("click", "div li", function () {
-		console.log('entered');
-		var selectedText = $(this).attr('id');
-		$("#selectedListSelect").text(selectedText);
-		console.log('selectText',selectedText);
-	});
+    console.log('entered');
+    var selectedText = $(this).attr('id');
+    $("#selectedListSelect").text(selectedText);
+    console.log('selectText', selectedText);
+  });
 
   $('#deleteDoneBtn').click(() => {
     $('#deleteSuccessModal').hide();

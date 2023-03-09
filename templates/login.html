@@ -1,12 +1,14 @@
-{% extends 'templates/page.html' %} 
+{% extends 'templates/page.html' %}
 {% block title %}Ds lab{% endblock %}
 {% block favicon %}
-    <link rel="icon" href="https://datalab-static-images.s3.ap-south-1.amazonaws.com/career_shaper_fav_icon.png" type="image/x-icon">
+<link rel="icon" href="https://datalab-static-images.s3.ap-south-1.amazonaws.com/career_shaper_fav_icon.png"
+    type="image/x-icon">
 {% endblock %}
 {% block stylesheet %}
 {{ super() }}
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;600&family=Poppins:wght@400;500;600&family=Roboto:wght@400;500&display=swap");
+
     html {
         font-family: 'Poppins';
         line-height: 1.15;
@@ -586,26 +588,32 @@
         .login-form-wrapper h3 {
             font-size: 2rem;
         }
+
         .org-logo {
             width: 12rem;
         }
     }
-    @media (max-width: 930px){
+
+    @media (max-width: 930px) {
         .circle {
             height: 13rem;
         }
+
         .plant {
             left: 5rem;
             bottom: 11rem;
         }
+
         .student-img-wrapper {
             bottom: 11rem;
-            left: 20rem; 
+            left: 20rem;
         }
+
         .left-content-wrapper h3 {
             font-size: 1.6rem;
         }
     }
+
     @media (max-width: 768px) {
         .left-section {
             display: none;
@@ -614,39 +622,48 @@
         .right-section {
             width: 100%;
         }
+
         .login-form-wrapper h3 {
             font-size: 2.3rem;
         }
+
         .form-group {
             padding-top: 0;
         }
+
         .login-form-wrapper-p {
             font-size: 2rem;
         }
+
         .login-form-wrapper-img {
             width: calc(64vw - 2rem);
             height: calc(38vh - 2rem);
         }
+
         .btn.btn-jupyter.btn-lg {
             width: calc(50vw + 2rem);
             font-size: 1.6rem;
         }
-        
+
     }
-    @media (max-width: 600px){
+
+    @media (max-width: 600px) {
         .login-form-wrapper h3 {
             font-size: 2rem;
         }
     }
-    @media (max-width: 521px){
+
+    @media (max-width: 521px) {
         .login-form-wrapper h3 {
             font-size: 1.8rem;
         }
+
         .btn.btn-jupyter.btn-lg {
             width: calc(70vw + 2rem);
         }
     }
-    @media (max-width: 469px){
+
+    @media (max-width: 469px) {
         .login-form-wrapper h3 {
             font-size: 1.7rem;
         }
@@ -658,7 +675,7 @@
 {% set announcement = announcement_login %} {% endif %}
 {% block login_widget %}
 {% endblock %}
-{% block nav_bar %} 
+{% block nav_bar %}
 {% endblock %}
 {% block main %}
 {% block login %}
@@ -675,20 +692,20 @@
                         <h3 class='color-fff font-poppins'>Your differentiated learning journey, begins here.</h3>
                     </div>
                     <div class='student-img-wrapper'>
-                        <img class='student-img' id='student-img'/>
+                        <img class='student-img' id='student-img' />
                     </div>
                     <div class='plant'>
-                        <img id='plant'/>
+                        <img id='plant' />
                     </div>
                     <div class='circle'>
-                        <img id='ellipse'/>
+                        <img id='ellipse' />
                     </div>
                 </div>
                 <div class='right-section d-flex flex-column'>
                     <div class='section-header'>
                         <div class='section-header '>
                             <div class='org-logo'>
-                                <img id='logo'/>
+                                <img id='logo' />
                             </div>
                         </div>
                     </div>
@@ -698,7 +715,7 @@
                             <span class='login-form-wrapper-p font-poppins'>Learn. Code. Act. </p>
                         </div>
                         <div class='login-form-wrapper-img'>
-                            <img class='login-img' id='data-extraction-img'/>
+                            <img class='login-img' id='data-extraction-img' />
                         </div>
                         <div class='sign-flex align-items-center flex-row mt-2 '>
                             <a role='button' class='btn btn-jupyter btn-lg font-poppins'
@@ -760,16 +777,16 @@ script %}
         form.find('.feedback-container>input').attr('disabled', true);
         form.find('.feedback-container>*').toggleClass('hidden');
         form.find('.feedback-widget>*').toggleClass('fa-pulse');
-    });   
-    
+    });
+
     //custom script
 
-    const s3_bucket_url='https://datalab-static-images.s3.ap-south-1.amazonaws.com/';
-    $('#student-img').attr('src',`${s3_bucket_url}jordy-1.png`);
-    $('#plant').attr('src',`${s3_bucket_url}plant.png`);
-    $('#ellipse').attr('src',`${s3_bucket_url}ellipse.png`);
-    $('#logo').attr('src',`${s3_bucket_url}career_shaper_logo.png`);
-    $('#data-extraction-img').attr('src',`${s3_bucket_url}data_extraction.svg`);    
+    const s3_bucket_url = 'https://datalab-static-images.s3.ap-south-1.amazonaws.com/';
+    $('#student-img').attr('src', `${s3_bucket_url}jordy-1.png`);
+    $('#plant').attr('src', `${s3_bucket_url}plant.png`);
+    $('#ellipse').attr('src', `${s3_bucket_url}ellipse.png`);
+    $('#logo').attr('src', `${s3_bucket_url}career_shaper_logo.png`);
+    $('#data-extraction-img').attr('src', `${s3_bucket_url}data_extraction.svg`);
 
 </script>
 {% endblock %}
