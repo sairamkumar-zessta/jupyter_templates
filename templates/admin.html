@@ -2585,12 +2585,10 @@
     if (Object.values(learner)[0].length === 0) {
       learnerDeleteImg.style.cursor = "not-allowed";
       learnerDeleteImg.src = hideDeleteIconImg;
-      learnerDeleteImg.classList.add('learner-all-course-remove-hide');
     }
     else {
       learnerDeleteImg.style.cursor = "pointer";
       learnerDeleteImg.src = deleteIconImg;
-      learnerDeleteImg.classList.remove('learner-all-course-remove-hide');
     }
     learnerDeleteImg.onclick = function () {
       coursesRemoveLearner = Object.keys(learner)[0];
