@@ -1944,8 +1944,6 @@
           }
         }
         else {
-          $('#alertMsgCont').show().hide(7000);
-          $('#alertMsg').text('Some students not found\nplease check downloaded csv for missing students details');
           $('#mapLearnerModal').hide();
           // hubLearnerGroupList, learnerArray
           const noLearnerArray = learnerArray.filter(element => !hubLearnerGroupList.includes(element));
